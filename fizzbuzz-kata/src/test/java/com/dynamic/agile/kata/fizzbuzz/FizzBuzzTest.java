@@ -12,7 +12,7 @@ import static org.hamcrest.Matchers.*;
 public class FizzBuzzTest {
     @Test
     public void fizzBuzzSystem_exist() {
-        FizzBuzz fizzBuzz = null;
+        FizzBuzz fizzBuzz = new FizzBuzz();
         assertThat(fizzBuzz, notNullValue());
     }
 }
