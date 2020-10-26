@@ -13,6 +13,6 @@ public class FizzBuzz {
     }
 
     public String print() {
-        return "";
+        return "1";
     }
 }
