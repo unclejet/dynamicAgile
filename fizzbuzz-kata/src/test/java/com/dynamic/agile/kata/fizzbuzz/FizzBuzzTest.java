@@ -5,7 +5,6 @@ import org.junit.Test;
 
 import java.util.Arrays;
 
-import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 /**
@@ -16,21 +15,18 @@ public class FizzBuzzTest {
     @Test
     public void whenUserInput1_thenPrint1() {
         String userInput = "1";
-        FizzBuzz fizzBuzz = new FizzBuzz(userInput);
-        Assert.assertEquals(Arrays.asList("1"), fizzBuzz.print());
+        Assert.assertEquals(Arrays.asList("1"), FizzBuzz.doFizzBuzz(userInput));
     }
 
     @Test
     public void whenUserInput2_thenPrint1And2() {
         String userInput = "2";
-        FizzBuzz fizzBuzz = new FizzBuzz(userInput);
-        Assert.assertEquals(Arrays.asList("1", "2"), fizzBuzz.print());
+        Assert.assertEquals(Arrays.asList("1", "2"), FizzBuzz.doFizzBuzz(userInput));
     }
 
     @Test
     public void whenUserInput3_thenPrint1And2AndFizz() {
         String userInput = "3";
-        FizzBuzz fizzBuzz = new FizzBuzz(userInput);
-        Assert.assertEquals(Arrays.asList("1", "2", "fizz"), fizzBuzz.print());
+        Assert.assertEquals(Arrays.asList("1", "2", "fizz"), FizzBuzz.doFizzBuzz(userInput));
     }
 }
