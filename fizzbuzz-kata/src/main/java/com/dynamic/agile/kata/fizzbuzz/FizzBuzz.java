@@ -17,9 +17,8 @@ public class FizzBuzz {
     }
 
     public List<String> print() {
-        int number = Integer.parseInt(userInput);
-        IntStream intStream = IntStream.rangeClosed(1, number);
-        List<String> result = intStream.mapToObj(i -> String.valueOf(i)).collect(Collectors.toList());
-        return result;
+        return IntStream.rangeClosed(1, Integer.parseInt(userInput))
+                .mapToObj(i -> String.valueOf(i))
+                .collect(Collectors.toList());
     }
 }
