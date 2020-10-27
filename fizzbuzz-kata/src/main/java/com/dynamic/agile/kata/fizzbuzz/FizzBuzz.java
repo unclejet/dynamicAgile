@@ -8,13 +8,9 @@ import java.util.List;
  */
 public class FizzBuzz {
     public FizzBuzz(String userInput) {
-
     }
 
-    public FizzBuzz() {
-    }
-
-    public String print() {
-        return "1";
+    public String[] print() {
+        return new String[]{"1"};
     }
 }
