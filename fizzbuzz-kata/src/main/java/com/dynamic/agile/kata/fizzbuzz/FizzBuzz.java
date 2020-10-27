@@ -2,6 +2,8 @@ package com.dynamic.agile.kata.fizzbuzz;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 /**
  * @author Uncle Jet(韩金田)
@@ -16,10 +18,8 @@ public class FizzBuzz {
 
     public List<String> print() {
         int number = Integer.parseInt(userInput);
-        List<String> result = new ArrayList<String>(number);
-        for (int i = 1; i <= number; i++) {
-            result.add(String.valueOf(i));
-        }
+        IntStream intStream = IntStream.rangeClosed(1, number);
+        List<String> result = intStream.mapToObj(i -> String.valueOf(i)).collect(Collectors.toList());
         return result;
     }
 }
