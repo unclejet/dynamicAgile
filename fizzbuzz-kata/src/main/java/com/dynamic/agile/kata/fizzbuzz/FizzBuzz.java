@@ -14,12 +14,12 @@ public class FizzBuzz {
         this.userInput = userInput;
     }
 
-    public String[] print() {
+    public List<String> print() {
         int number = Integer.parseInt(userInput);
         List<String> result = new ArrayList<String>(number);
         for (int i = 1; i <= number; i++) {
             result.add(String.valueOf(i));
         }
-        return result.toArray(new String[number]);
+        return result;
     }
 }
