@@ -15,10 +15,11 @@ public class FizzBuzz {
     }
 
     public String[] print() {
-        if ("1".equals(userInput)) {
-            return new String[]{"1"};
-        } else {
-            return new String[]{"1", "2"};
+        int number = Integer.parseInt(userInput);
+        List<String> result = new ArrayList<String>(number);
+        for (int i = 1; i <= number; i++) {
+            result.add(String.valueOf(i));
         }
+        return result.toArray(new String[number]);
     }
 }
