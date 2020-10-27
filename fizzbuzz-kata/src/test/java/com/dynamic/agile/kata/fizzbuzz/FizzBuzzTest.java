@@ -1,11 +1,10 @@
 package com.dynamic.agile.kata.fizzbuzz;
 
-import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.Arrays;
-
+import static com.dynamic.agile.kata.fizzbuzz.FizzBuzz.doFizzBuzz;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.collection.IsIterableContainingInOrder.contains;
 
 /**
  * @author Uncle Jet(韩金田)
@@ -14,8 +13,8 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class FizzBuzzTest {
     @Test
     public void whenUserInputNumber_thenGetFizzBuzz() {
-        Assert.assertEquals(Arrays.asList("1"), FizzBuzz.doFizzBuzz("1"));
-        Assert.assertEquals(Arrays.asList("1", "2"), FizzBuzz.doFizzBuzz("2"));
-        Assert.assertEquals(Arrays.asList("1", "2","fizz"), FizzBuzz.doFizzBuzz("3"));
+        assertThat(doFizzBuzz("1"), contains("1"));
+        assertThat(doFizzBuzz("2"), contains("1", "2"));
+        assertThat(doFizzBuzz("3"), contains("1", "2", "fizz"));
     }
 }
