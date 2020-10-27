@@ -2,6 +2,7 @@ package com.dynamic.agile.kata.fizzbuzz;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.IntFunction;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -18,7 +19,11 @@ public class FizzBuzz {
 
     public List<String> print() {
         return IntStream.rangeClosed(1, Integer.parseInt(userInput))
-                .mapToObj(i -> String.valueOf(i))
+                .mapToObj(int2String())
                 .collect(Collectors.toList());
+    }
+
+    private IntFunction<String> int2String() {
+        return i -> i % 3 == 0 ? "fizz" : String.valueOf(i);
     }
 }
