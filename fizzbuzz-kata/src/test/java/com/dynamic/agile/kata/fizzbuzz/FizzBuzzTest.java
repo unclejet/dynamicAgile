@@ -13,20 +13,9 @@ import static org.hamcrest.MatcherAssert.assertThat;
  */
 public class FizzBuzzTest {
     @Test
-    public void whenUserInput1_thenPrint1() {
-        String userInput = "1";
-        Assert.assertEquals(Arrays.asList("1"), FizzBuzz.doFizzBuzz(userInput));
-    }
-
-    @Test
-    public void whenUserInput2_thenPrint1And2() {
-        String userInput = "2";
-        Assert.assertEquals(Arrays.asList("1", "2"), FizzBuzz.doFizzBuzz(userInput));
-    }
-
-    @Test
-    public void whenUserInput3_thenPrint1And2AndFizz() {
-        String userInput = "3";
-        Assert.assertEquals(Arrays.asList("1", "2", "fizz"), FizzBuzz.doFizzBuzz(userInput));
+    public void whenUserInputNumber_thenGetFizzBuzz() {
+        Assert.assertEquals(Arrays.asList("1"), FizzBuzz.doFizzBuzz("1"));
+        Assert.assertEquals(Arrays.asList("1", "2"), FizzBuzz.doFizzBuzz("2"));
+        Assert.assertEquals(Arrays.asList("1", "2","fizz"), FizzBuzz.doFizzBuzz("3"));
     }
 }
