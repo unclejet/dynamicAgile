@@ -26,4 +26,11 @@ public class FizzBuzzTest {
         FizzBuzz fizzBuzz = new FizzBuzz(userInput);
         Assert.assertEquals(Arrays.asList("1", "2"), fizzBuzz.print());
     }
+
+    @Test
+    public void whenUserInput3_thenPrint1And2AndFizz() {
+        String userInput = "3";
+        FizzBuzz fizzBuzz = new FizzBuzz(userInput);
+        Assert.assertEquals(Arrays.asList("1", "2", "fizz"), fizzBuzz.print());
+    }
 }
