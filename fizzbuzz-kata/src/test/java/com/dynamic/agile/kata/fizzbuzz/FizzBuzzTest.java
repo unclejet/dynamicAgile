@@ -2,7 +2,7 @@ package com.dynamic.agile.kata.fizzbuzz;
 
 import org.junit.Test;
 
-import static com.dynamic.agile.kata.fizzbuzz.FizzBuzz.doFizzBuzz;
+import static com.dynamic.agile.kata.fizzbuzz.FizzBuzz.fizzBuzzList;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.collection.IsIterableContainingInOrder.contains;
 
@@ -13,8 +13,8 @@ import static org.hamcrest.collection.IsIterableContainingInOrder.contains;
 public class FizzBuzzTest {
     @Test
     public void whenUserInputNumber_thenGetFizzBuzz() {
-        assertThat(doFizzBuzz("1"), contains("1"));
-        assertThat(doFizzBuzz("2"), contains("1", "2"));
-        assertThat(doFizzBuzz("3"), contains("1", "2", "fizz"));
+        assertThat(fizzBuzzList("1"), contains("1"));
+        assertThat(fizzBuzzList("2"), contains("1", "2"));
+        assertThat(fizzBuzzList("3"), contains("1", "2", "fizz"));
     }
 }
