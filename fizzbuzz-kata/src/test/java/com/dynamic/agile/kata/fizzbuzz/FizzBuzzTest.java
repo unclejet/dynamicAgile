@@ -16,5 +16,7 @@ public class FizzBuzzTest {
         assertThat(fizzBuzzList("1"), contains("1"));
         assertThat(fizzBuzzList("2"), contains("1", "2"));
         assertThat(fizzBuzzList("3"), contains("1", "2", "fizz"));
+        assertThat(fizzBuzzList("4"), contains("1", "2", "fizz","4"));
+        assertThat(fizzBuzzList("5"), contains("1", "2", "fizz","4", "buzz"));
     }
 }
