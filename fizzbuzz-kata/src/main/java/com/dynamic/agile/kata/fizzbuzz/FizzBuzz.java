@@ -16,6 +16,6 @@ public class FizzBuzz {
     }
 
     private static String doFizzBuzz(int number) {
-        return number % 3 == 0 ? "fizz" : String.valueOf(number);
+        return number % 3 == 0 ? "fizz" : number % 5 == 0 ? "buzz" : String.valueOf(number);
     }
 }
