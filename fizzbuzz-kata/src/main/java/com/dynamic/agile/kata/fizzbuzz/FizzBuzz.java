@@ -15,7 +15,7 @@ public class FizzBuzz {
                 .collect(Collectors.toList());
     }
 
-    private static String doFizzBuzz(int number) {
-        return number % 3 == 0 ? "fizz" : number % 5 == 0 ? "buzz" : String.valueOf(number);
+    static String doFizzBuzz(int number) {
+        return number % 15 == 0 ? "fizzbuzz" : number % 3 == 0 ? "fizz" : number % 5 == 0 ? "buzz" : String.valueOf(number);
     }
 }
