@@ -9,13 +9,9 @@ import java.util.stream.IntStream;
  * @date 10/27/2020 7:16 AM
  */
 public class FizzBuzz {
-    public static List<String> fizzBuzzList(String userInput) {
+    public static List<String> getFizzBuzz(String userInput) {
         return IntStream.rangeClosed(1, Integer.parseInt(userInput))
-                .mapToObj(i -> doFizzBuzz(i))
+                .mapToObj(number -> number % 15 == 0 ? "fizzbuzz" : number % 3 == 0 ? "fizz" : number % 5 == 0 ? "buzz" : String.valueOf(number))
                 .collect(Collectors.toList());
-    }
-
-    private static String doFizzBuzz(int number) {
-        return number % 15 == 0 ? "fizzbuzz" : number % 3 == 0 ? "fizz" : number % 5 == 0 ? "buzz" : String.valueOf(number);
     }
 }
