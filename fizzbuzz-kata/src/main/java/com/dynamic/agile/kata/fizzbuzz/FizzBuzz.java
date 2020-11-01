@@ -17,6 +17,9 @@ public class FizzBuzz {
     }
 
     private static IntFunction<String> doFizzBuzz() {
-        return number -> number % 15 == 0 ? "fizzbuzz" : number % 3 == 0 ? "fizz" : number % 5 == 0 ? "buzz" : String.valueOf(number);
+        return number -> number % 15 == 0 ?
+                "fizzbuzz" : number % 3 == 0 ?
+                "fizz" : number % 5 == 0 ?
+                "buzz" : String.valueOf(number);
     }
 }
