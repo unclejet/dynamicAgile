@@ -14,4 +14,9 @@ public class FizzBuzzTddTest {
     public void nothing() {
 
     }
+
+    @Test
+    public void createFizzBuzzObject() {
+        FizzBuzzTdd fizzBuzz = new FizzBuzzTdd();
+    }
 }
