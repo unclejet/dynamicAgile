@@ -16,8 +16,9 @@ public class FizzBuzzModeling {
     public static List<String> getFizzBuzz(String inputNumber) {
         int number = Integer.parseInt(inputNumber);
         return IntStream.rangeClosed(1, number)
-                .mapToObj(n -> n % 3 == 0 ? "fizz" :
-                    n % 5== 0 ? "buzz" :
+                .mapToObj(n -> n % 15 == 0 ? "fizzbuzz" :
+                        n % 3 == 0 ? "fizz" :
+                        n % 5== 0 ? "buzz" :
                         "" + n)
                 .collect(Collectors.toList());
     }
