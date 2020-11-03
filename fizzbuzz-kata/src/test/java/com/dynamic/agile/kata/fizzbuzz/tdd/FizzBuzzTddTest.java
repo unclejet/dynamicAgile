@@ -19,5 +19,6 @@ public class FizzBuzzTddTest {
         assertThat(FizzBuzzTdd.getFizzBuzz("2"), contains("1", "2"));
         assertThat(FizzBuzzTdd.getFizzBuzz("3"), contains("1", "2", "fizz"));
         assertThat(FizzBuzzTdd.getFizzBuzz("4"), contains("1", "2", "fizz", "4"));
+        assertThat(FizzBuzzTdd.getFizzBuzz("5"), contains("1", "2", "fizz", "4", "buzz"));
     }
 }
