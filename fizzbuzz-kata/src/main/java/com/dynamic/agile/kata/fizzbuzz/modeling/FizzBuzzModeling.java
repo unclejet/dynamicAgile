@@ -2,6 +2,8 @@ package com.dynamic.agile.kata.fizzbuzz.modeling;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 /**
  * @author ：unclejet
@@ -13,16 +15,10 @@ import java.util.List;
 public class FizzBuzzModeling {
     public static List<String> getFizzBuzz(String inputNumber) {
         int number = Integer.parseInt(inputNumber);
-        List<String> fizzbuzzList = new ArrayList<>(number);
-        for (int i = 1; i <= number; i++) {
-            if (i % 3 == 0) {
-                fizzbuzzList.add("fizz");
-            } else if (i % 5 == 0) {
-                fizzbuzzList.add("buzz");
-            } else {
-                fizzbuzzList.add("" + i);
-            }
-        }
-        return fizzbuzzList;
+        return IntStream.rangeClosed(1, number)
+                .mapToObj(n -> n % 3 == 0 ? "fizz" :
+                    n % 5== 0 ? "buzz" :
+                        "" + n)
+                .collect(Collectors.toList());
     }
 }
