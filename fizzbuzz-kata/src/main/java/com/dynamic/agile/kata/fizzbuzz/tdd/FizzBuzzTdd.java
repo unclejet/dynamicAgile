@@ -17,6 +17,8 @@ public class FizzBuzzTdd {
         for (int i = 1; i <= number; i++) {
             if (i % 3 == 0) {
                 fizzbuzzList.add("fizz");
+            } else if (i % 5 == 0) {
+                fizzbuzzList.add("buzz");
             } else {
                 fizzbuzzList.add("" + i);
             }
