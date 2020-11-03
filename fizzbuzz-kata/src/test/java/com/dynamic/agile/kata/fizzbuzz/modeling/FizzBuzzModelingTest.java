@@ -13,8 +13,9 @@ import static org.hamcrest.collection.IsIterableContainingInOrder.contains;
  */
 public class FizzBuzzModelingTest {
     @Test
-    public void whenUserInput1_thenGet1() {
+    public void whenUserInputAnumber_thenGetFizzbuzz() {
         assertThat(FizzBuzzModeling.getFizzBuzz("1"), contains("1"));
         assertThat(FizzBuzzModeling.getFizzBuzz("2"), contains("1", "2"));
+        assertThat(FizzBuzzModeling.getFizzBuzz("3"), contains("1", "2", "fizz"));
     }
 }
