@@ -15,7 +15,9 @@ public class FizzBuzzTdd {
         int number = Integer.parseInt(inputNumber);
         List<String> fizzbuzzList = new ArrayList<>(number);
         for (int i = 1; i <= number; i++) {
-            if (i % 3 == 0) {
+            if (i % 3 == 0 && i % 5 == 0) {
+                fizzbuzzList.add("fizzbuzz");
+            }else if (i % 3 == 0) {
                 fizzbuzzList.add("fizz");
             } else if (i % 5 == 0) {
                 fizzbuzzList.add("buzz");
