@@ -1,5 +1,8 @@
 package com.dynamic.agile.kata.fizzbuzz.modeling;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author ：unclejet
  * @date ：Created in 2020/11/4 6:20
@@ -8,7 +11,9 @@ package com.dynamic.agile.kata.fizzbuzz.modeling;
  * @version:
  */
 public class FizzBuzzModeling {
-    public String getFizzBuzz(String s) {
-        return "1";
+    public List<String> getFizzBuzz(String s) {
+        List<String> fizzbuzzList = new ArrayList<>();
+        fizzbuzzList.add("1");
+        return fizzbuzzList;
     }
 }
