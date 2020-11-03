@@ -11,7 +11,7 @@ import java.util.List;
  * @version:
  */
 public class FizzBuzzTdd {
-    public List<String> getFizzBuzz(String s) {
+    public static List<String> getFizzBuzz(String s) {
         List<String> fizzbuzzList = new ArrayList<>();
         if ("1".equals(s)) {
             fizzbuzzList.add("1");
