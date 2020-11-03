@@ -20,7 +20,6 @@ public class FizzBuzzModelingTest {
         assertThat(fizzBuzzModeling.getFizzBuzz("1"), contains("1"));
     }
 
-    @Ignore
     @Test
     public void whenUserInput2_thenGet1And2() {
         FizzBuzzModeling fizzBuzzModeling = new FizzBuzzModeling();

@@ -13,7 +13,12 @@ import java.util.List;
 public class FizzBuzzModeling {
     public List<String> getFizzBuzz(String s) {
         List<String> fizzbuzzList = new ArrayList<>();
-        fizzbuzzList.add("1");
+        if ("1".equals(s)) {
+            fizzbuzzList.add("1");
+        } else {
+            fizzbuzzList.add("1");
+            fizzbuzzList.add("2");
+        }
         return fizzbuzzList;
     }
 }
