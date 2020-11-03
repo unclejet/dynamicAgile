@@ -4,7 +4,6 @@ import org.junit.Test;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.notNullValue;
 import static org.hamcrest.collection.IsIterableContainingInOrder.contains;
 /**
  * @author ：unclejet
@@ -14,17 +13,6 @@ import static org.hamcrest.collection.IsIterableContainingInOrder.contains;
  * @version:
  */
 public class FizzBuzzModelingTest {
-    @Test
-    public void systemGrowsEnvIsOk() {
-
-    }
-
-    @Test
-    public void thereIsASystemExist() {
-        FizzBuzzModeling fizzBuzzModeling = new FizzBuzzModeling();
-        assertThat(fizzBuzzModeling, is(notNullValue()));
-    }
-
     @Test
     public void whenUserInput1_thenGet1() {
         FizzBuzzModeling fizzBuzzModeling = new FizzBuzzModeling();
