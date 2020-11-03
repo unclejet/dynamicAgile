@@ -11,9 +11,9 @@ import java.util.List;
  * @version:
  */
 public class FizzBuzzModeling {
-    public List<String> getFizzBuzz(String s) {
+    public static List<String> getFizzBuzz(String inputNumber) {
         List<String> fizzbuzzList = new ArrayList<>();
-        if ("1".equals(s)) {
+        if ("1".equals(inputNumber)) {
             fizzbuzzList.add("1");
         } else {
             fizzbuzzList.add("1");
