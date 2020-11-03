@@ -11,13 +11,15 @@ import java.util.List;
  * @version:
  */
 public class FizzBuzzTdd {
-    public static List<String> getFizzBuzz(String s) {
-        List<String> fizzbuzzList = new ArrayList<>();
-        if ("1".equals(s)) {
-            fizzbuzzList.add("1");
-        } else {
-            fizzbuzzList.add("1");
-            fizzbuzzList.add("2");
+    public static List<String> getFizzBuzz(String inputNumber) {
+        int number = Integer.parseInt(inputNumber);
+        List<String> fizzbuzzList = new ArrayList<>(number);
+        for (int i = 1; i <= number; i++) {
+            if (i % 3 == 0) {
+                fizzbuzzList.add("fizz");
+            } else {
+                fizzbuzzList.add("" + i);
+            }
         }
         return fizzbuzzList;
     }
