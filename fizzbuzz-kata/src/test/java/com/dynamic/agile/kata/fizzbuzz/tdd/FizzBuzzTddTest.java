@@ -27,7 +27,8 @@ public class FizzBuzzTddTest {
     }
 
     @Test
-    public void whenUserInputNegative1_thenGetEmptyFizzbuzz() {
+    public void whenUserInputInvalidNumber_thenGetEmptyFizzbuzz() {
         assertThat(FizzBuzzTdd.getFizzBuzz("-1"), empty());
+        assertThat(FizzBuzzTdd.getFizzBuzz("a"), empty());
     }
 }
