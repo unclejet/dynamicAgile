@@ -1,6 +1,7 @@
 package com.dynamic.agile.kata.fizzbuzz.tdd;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -13,6 +14,9 @@ import java.util.List;
 public class FizzBuzzTdd {
     public static List<String> getFizzBuzz(String inputNumber) {
         int number = Integer.parseInt(inputNumber);
+        if (number < 1) {
+            return Collections.emptyList();
+        }
         List<String> fizzbuzzList = new ArrayList<>(number);
         for (int i = 1; i <= number; i++) {
             if (i % 15 == 0) {
