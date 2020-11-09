@@ -22,7 +22,12 @@ public class FizzBuzzTdd {
     }
 
     private static int readInputNumber(String inputNumber) {
-        return Integer.parseInt(inputNumber);
+        try {
+            return Integer.parseInt(inputNumber);
+        } catch (NumberFormatException e) {
+            e.printStackTrace(); //use log.error instead for biz project.
+        }
+        return -1;
     }
 
     private static List<String> doFizzbuzz(int number) {
