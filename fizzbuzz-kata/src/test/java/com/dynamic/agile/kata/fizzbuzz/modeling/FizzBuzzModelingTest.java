@@ -3,6 +3,7 @@ package com.dynamic.agile.kata.fizzbuzz.modeling;
 import org.junit.Test;
 
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.empty;
 import static org.hamcrest.collection.IsIterableContainingInOrder.contains;
 /**
  * @author ：unclejet
@@ -22,5 +23,10 @@ public class FizzBuzzModelingTest {
         assertThat(FizzBuzzModeling.getFizzBuzz("6"), contains("1", "2", "fizz", "4", "buzz", "fizz"));
         assertThat(FizzBuzzModeling.getFizzBuzz("7"), contains("1", "2", "fizz", "4", "buzz", "fizz", "7"));
         assertThat(FizzBuzzModeling.getFizzBuzz("15"), contains("1","2","fizz","4","buzz","fizz","7","8","fizz","buzz","11","fizz","13","14","fizzbuzz"));
+    }
+
+    @Test
+    public void whenUserInputZero_thenGetEmpty() {
+        assertThat(FizzBuzzModeling.getFizzBuzz("0"), empty());
     }
 }
