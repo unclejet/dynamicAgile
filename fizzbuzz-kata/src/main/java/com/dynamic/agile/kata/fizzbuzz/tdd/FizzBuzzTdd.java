@@ -12,13 +12,17 @@ import java.util.List;
  * @version:
  */
 public class FizzBuzzTdd {
+
+    public static final int MIN_ALLOWED_INPUT_NUMBER = 1;
+    public static final int MAX_ALLOWED_INPUT_NUMBER = 1000;
+
     public static List<String> getFizzBuzz(String inputNumber) {
         int number = readInputNumber(inputNumber);
         return isValidNumber(number) ? doFizzbuzz(number) : Collections.emptyList();
     }
 
     private static boolean isValidNumber(int number) {
-        return number >= 1 && number <= 1000;
+        return number >= MIN_ALLOWED_INPUT_NUMBER && number <= MAX_ALLOWED_INPUT_NUMBER;
     }
 
     private static int readInputNumber(String inputNumber) {
