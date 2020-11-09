@@ -30,5 +30,8 @@ public class FizzBuzzTddTest {
     public void whenUserInputInvalidNumber_thenGetEmptyFizzbuzz() {
         assertThat(FizzBuzzTdd.getFizzBuzz("-1"), empty());
         assertThat(FizzBuzzTdd.getFizzBuzz("a"), empty());
+        assertThat(FizzBuzzTdd.getFizzBuzz("\r"), empty());
+        assertThat(FizzBuzzTdd.getFizzBuzz("15.32"), empty());
+        assertThat(FizzBuzzTdd.getFizzBuzz("1001"), empty());
     }
 }
