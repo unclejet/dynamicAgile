@@ -14,7 +14,12 @@ import java.util.stream.IntStream;
  */
 public class FizzBuzzModeling {
     public static List<String> getFizzBuzz(String inputNumber) {
-        int number = Integer.parseInt(inputNumber);
+        int number = 0;
+        try {
+            number = Integer.parseInt(inputNumber);
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+        }
         return IntStream.rangeClosed(1, number)
                 .mapToObj(n -> n % 15 == 0 ? "fizzbuzz" :
                         n % 3 == 0 ? "fizz" :
