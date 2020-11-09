@@ -1,6 +1,6 @@
 package com.dynamic.agile.kata.fizzbuzz.modeling;
 
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -14,7 +14,12 @@ import java.util.stream.IntStream;
  */
 public class FizzBuzzModeling {
     public static List<String> getFizzBuzz(String inputNumber) {
-        return doFizzBuzz(parseInputNumber(inputNumber));
+        int number = parseInputNumber(inputNumber);
+        return isValidNumber(number) ? doFizzBuzz(number) : Collections.emptyList();
+    }
+
+    private static boolean isValidNumber(int number) {
+        return number >= 1 && number <= 1000;
     }
 
     private static int parseInputNumber(String inputNumber) {
