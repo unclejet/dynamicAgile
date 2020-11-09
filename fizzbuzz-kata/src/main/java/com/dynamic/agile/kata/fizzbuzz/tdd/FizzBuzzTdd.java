@@ -13,10 +13,19 @@ import java.util.List;
  */
 public class FizzBuzzTdd {
     public static List<String> getFizzBuzz(String inputNumber) {
-        int number = Integer.parseInt(inputNumber);
-        if (number < 1) {
-            return Collections.emptyList();
-        }
+        int number = readInputNumber(inputNumber);
+        return isValidNumber(number) ? doFizzbuzz(number) : Collections.emptyList();
+    }
+
+    private static boolean isValidNumber(int number) {
+        return number >= 1 ;
+    }
+
+    private static int readInputNumber(String inputNumber) {
+        return Integer.parseInt(inputNumber);
+    }
+
+    private static List<String> doFizzbuzz(int number) {
         List<String> fizzbuzzList = new ArrayList<>(number);
         for (int i = 1; i <= number; i++) {
             if (i % 15 == 0) {
