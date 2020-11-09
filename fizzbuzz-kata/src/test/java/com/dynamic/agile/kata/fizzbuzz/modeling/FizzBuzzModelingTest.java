@@ -29,5 +29,6 @@ public class FizzBuzzModelingTest {
     public void whenUserInputInvalidCharacter_thenGetEmpty() {
         assertThat(FizzBuzzModeling.getFizzBuzz("0"), empty());
         assertThat(FizzBuzzModeling.getFizzBuzz("a"), empty());
+        assertThat(FizzBuzzModeling.getFizzBuzz("3.14159"), empty());
     }
 }
