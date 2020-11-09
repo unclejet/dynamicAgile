@@ -30,5 +30,6 @@ public class FizzBuzzModelingTest {
         assertThat(FizzBuzzModeling.getFizzBuzz("0"), empty());
         assertThat(FizzBuzzModeling.getFizzBuzz("a"), empty());
         assertThat(FizzBuzzModeling.getFizzBuzz("3.14159"), empty());
+        assertThat(FizzBuzzModeling.getFizzBuzz("\t"), empty());
     }
 }

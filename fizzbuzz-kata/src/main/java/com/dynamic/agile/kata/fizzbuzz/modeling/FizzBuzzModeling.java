@@ -14,8 +14,7 @@ import java.util.stream.IntStream;
  */
 public class FizzBuzzModeling {
     public static List<String> getFizzBuzz(String inputNumber) {
-        int number = parseInputNumber(inputNumber);
-        return doFizzBuzz(number);
+        return doFizzBuzz(parseInputNumber(inputNumber));
     }
 
     private static int parseInputNumber(String inputNumber) {
