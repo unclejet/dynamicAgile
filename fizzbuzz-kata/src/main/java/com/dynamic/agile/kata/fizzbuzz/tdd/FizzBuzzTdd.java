@@ -18,7 +18,7 @@ public class FizzBuzzTdd {
     }
 
     private static boolean isValidNumber(int number) {
-        return number >= 1 ;
+        return number >= 1 && number <= 1000;
     }
 
     private static int readInputNumber(String inputNumber) {
