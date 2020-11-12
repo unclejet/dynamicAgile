@@ -1,11 +1,11 @@
-package com.dynamic.agile.bowling.game;
+package com.dynamic.agile.bowling.game.v3;
 
 /**
  * @author: UncleJet
  * @date: Created in 2020/11/12 20:18
  * @description:
  */
-public class Frame {
+public class FrameV3 {
     public static final int ALL_HIT_PINS_NUMBER = 10;
 
     protected int[] rollIndex = new int[2];

@@ -1,10 +1,10 @@
-package com.dynamic.agile.bowling.game;
+package com.dynamic.agile.bowling.game.v3;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
 
-import static com.dynamic.agile.bowling.game.Frame.ALL_HIT_PINS_NUMBER;
+import static com.dynamic.agile.bowling.game.v3.FrameV3.ALL_HIT_PINS_NUMBER;
 
 /**
  * @author: UncleJet
@@ -15,14 +15,14 @@ import static com.dynamic.agile.bowling.game.Frame.ALL_HIT_PINS_NUMBER;
  * rolls属于game，每一次投球都必须保存下来
  * 因为spare和strike的算法是拿到下一投或下两投，所以需要把rolls传给Frame来算轮分
  */
-public class BowlingGame {
+public class BowlingGameV3 {
     public static final int MAX_FRAMES_IN_GAME = 10;
     public static final int MAX_ROLLS_NUMBER = 21;
 
     private int[] rolls = new int[MAX_ROLLS_NUMBER];
     private int rollIndex;
 
-    private List<Frame> frames = new ArrayList<>(); //size可能大于10
+    private List<FrameV3> frames = new ArrayList<>(); //size可能大于10
     private int rollInFrame;
 
     public void roll(int pins) {
@@ -58,29 +58,29 @@ public class BowlingGame {
     }
 
     private void handleRollMissed() {
-        Frame frame = new Frame();
+        FrameV3 frame = new FrameV3();
         handleFrame(frame);
     }
 
     private void handleRollSpare() {
-        SpareFrame spareFrame = new SpareFrame();
+        SpareFrameV3 spareFrame = new SpareFrameV3();
         handleFrame(spareFrame);
     }
 
     private void handleRollStrike() {
-        StrikeFrame strikeFrame = new StrikeFrame();
+        StrikeFrameV3 strikeFrame = new StrikeFrameV3();
         strikeFrame.addFirstRollIndex(rollIndex);
         frames.add(strikeFrame);
         rollInFrame = 0;
     }
 
-    private void handleFrame(Frame frame) {
+    private void handleFrame(FrameV3 frame) {
         addRollInFrame(frame);
         frames.add(frame);
         rollInFrame = 0;
     }
 
-    private void addRollInFrame(Frame frame) {
+    private void addRollInFrame(FrameV3 frame) {
         frame.addFirstRollIndex(rollIndex - 1);
         frame.addSecondRollIndex(rollIndex);
     }

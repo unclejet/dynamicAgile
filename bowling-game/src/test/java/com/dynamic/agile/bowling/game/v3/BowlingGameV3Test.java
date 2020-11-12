@@ -1,15 +1,13 @@
-package com.dynamic.agile.bowling.game;
+package com.dynamic.agile.bowling.game.v3;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 
-import static com.dynamic.agile.bowling.game.Frame.ALL_HIT_PINS_NUMBER;
+import static com.dynamic.agile.bowling.game.v3.FrameV3.ALL_HIT_PINS_NUMBER;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.empty;
 import static org.hamcrest.Matchers.not;
 
 /**
@@ -17,12 +15,12 @@ import static org.hamcrest.Matchers.not;
  * @date: Created in 2020/11/12 17:01
  * @description:
  */
-public class BowlingGameTest {
-    private BowlingGame game;
+public class BowlingGameV3Test {
+    private BowlingGameV3 game;
 
     @Before
     public void setUp() throws Exception {
-        game = new BowlingGame();
+        game = new BowlingGameV3();
     }
 
     private void rollMany(int times, int pins) {
