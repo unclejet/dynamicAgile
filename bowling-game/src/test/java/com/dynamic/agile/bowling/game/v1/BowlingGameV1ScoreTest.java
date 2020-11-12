@@ -1,5 +1,7 @@
-package com.dynamic.agile.bowling.game;
+package com.dynamic.agile.bowling.game.v1;
 
+import com.dynamic.agile.bowling.game.v1.BowlingGameV1;
+import com.dynamic.agile.bowling.game.v1.FrameV1;
 import org.junit.Before;
 import org.junit.Test;
 

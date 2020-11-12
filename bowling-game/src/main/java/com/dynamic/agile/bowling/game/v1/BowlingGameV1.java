@@ -1,4 +1,4 @@
-package com.dynamic.agile.bowling.game;
+package com.dynamic.agile.bowling.game.v1;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,7 +7,13 @@ import java.util.stream.Stream;
 /**
  * @author: UncleJet
  * @date: Created in 2020/11/10 18:18
- * @description:
+ * @description: 计算一局(game)的分数
+ * V1版只是尝试抛开uncle bob的视频算法，从保龄球的业务建模，用模型的语言来表达算法
+ * 引入了Frame类，因为是在frame里面roll的，所有需要找到frame间的关联关系才能正确的计算spare，strike
+ * 上一步其实是没有正确的理解业务模型：
+ *  spare pins = 10+next roll
+ *  strike pins = 10 + next roll + next*2 roll
+ *  可以看到，计算spare和strike并没有和frame有什么关系，是和下一投有关系
  * @modified By:
  */
 public class BowlingGameV1 {
