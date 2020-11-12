@@ -1,7 +1,5 @@
 package com.dynamic.agile.bowling.game.v2;
 
-import com.dynamic.agile.bowling.game.Roll;
-
 import java.util.stream.IntStream;
 
 /**
@@ -17,7 +15,7 @@ public class BowlingGameScoreV2 {
     public static final int MAX_ALLOWED_ROLLS_NUMBER = 21;
 
     private FrameV2[] frames = new FrameV2[FRAME_NUMBER_IN_GAME];
-    private Roll[] rolls = new Roll[MAX_ALLOWED_ROLLS_NUMBER];
+    private RollV2[] rolls = new RollV2[MAX_ALLOWED_ROLLS_NUMBER];
 
     private int frameIndex;
     private int rollIndex;
@@ -29,7 +27,7 @@ public class BowlingGameScoreV2 {
     }
 
     public void roll(int pins) {
-        Roll roll = new Roll(rollIndex, pins);
+        RollV2 roll = new RollV2(rollIndex, pins);
         rolls[rollIndex++] = roll;
         FrameV2 frame = getSpecialFrame(frameIndex);
         frame.add(roll);

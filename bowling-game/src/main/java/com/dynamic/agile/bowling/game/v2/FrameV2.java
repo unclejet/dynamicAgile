@@ -1,7 +1,5 @@
 package com.dynamic.agile.bowling.game.v2;
 
-import com.dynamic.agile.bowling.game.Roll;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,12 +11,12 @@ import java.util.List;
  */
 public class FrameV2 {
     public static final int ALL_HIT_PINS = 10;
-    private List<Roll> rolls = new ArrayList<>();
+    private List<RollV2> rolls = new ArrayList<>();
 
     public FrameV2() {
     }
 
-    public void add(Roll roll) {
+    public void add(RollV2 roll) {
         rolls.add(roll);
     }
 
@@ -26,7 +24,7 @@ public class FrameV2 {
         return rolls.size() >= 2 || isStrike();
     }
 
-    public int calculateScore(Roll[] rolls) {
+    public int calculateScore(RollV2[] rolls) {
         int score = 0;
         if (isSpare()) {
             score += ALL_HIT_PINS + rolls[getLastRollIndex() + 1].getPins();
@@ -39,7 +37,7 @@ public class FrameV2 {
     }
 
     private int getPins() {
-        return rolls.stream().map(Roll::getPins).mapToInt(Integer::intValue).sum();
+        return rolls.stream().map(RollV2::getPins).mapToInt(Integer::intValue).sum();
     }
 
     private boolean isSpare() {

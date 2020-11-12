@@ -1,4 +1,4 @@
-package com.dynamic.agile.bowling.game;
+package com.dynamic.agile.bowling.game.v2;
 
 /**
  * @author: UncleJet
@@ -6,11 +6,11 @@ package com.dynamic.agile.bowling.game;
  * @description:
  * @modified By:
  */
-public class Roll {
+public class RollV2 {
     private int index;
     private int pins;
 
-    public Roll(int index, int pins) {
+    public RollV2(int index, int pins) {
         this.index = index;
         this.pins = pins;
     }
