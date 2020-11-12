@@ -22,7 +22,7 @@ public class BowlingGame {
     private int[] rolls = new int[MAX_ROLLS_NUMBER];
     private int rollIndex;
 
-    private List<Frame> frames = new ArrayList<>(MAX_FRAMES_IN_GAME);
+    private List<Frame> frames = new ArrayList<>(); //size可能大于10
     private int rollInFrame;
 
     public void roll(int pins) {
