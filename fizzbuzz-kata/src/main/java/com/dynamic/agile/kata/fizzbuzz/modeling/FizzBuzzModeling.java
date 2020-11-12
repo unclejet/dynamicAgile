@@ -2,6 +2,7 @@ package com.dynamic.agile.kata.fizzbuzz.modeling;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.function.IntFunction;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -37,10 +38,14 @@ public class FizzBuzzModeling {
 
     private static List<String> doFizzBuzz(int number) {
         return IntStream.rangeClosed(1, number)
-                .mapToObj(n -> n % 15 == 0 ? "fizzbuzz" :
-                        n % 3 == 0 ? "fizz" :
-                                n % 5 == 0 ? "buzz" :
-                                        "" + n)
+                .mapToObj(calculateFizzbuzz())
                 .collect(Collectors.toList());
+    }
+
+    private static IntFunction<String> calculateFizzbuzz() {
+        return n -> n % 15 == 0 ? "fizzbuzz" :
+                    n % 3 == 0 ? "fizz" :
+                            n % 5 == 0 ? "buzz" :
+                                "" + n;
     }
 }
