@@ -1,8 +1,9 @@
 package com.dynamic.agile.kata.fizzbuzz.tdd;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 /**
  * @author ：unclejet
@@ -18,7 +19,7 @@ public class FizzBuzzTdd {
 
     public static List<String> getFizzBuzz(String inputNumber) {
         int number = readInputNumber(inputNumber);
-        return isValidNumber(number) ? doFizzbuzz(number) : Collections.emptyList();
+        return isValidNumber(number) ? getFizzbuzz(number) : Collections.emptyList();
     }
 
     private static boolean isValidNumber(int number) {
@@ -34,19 +35,23 @@ public class FizzBuzzTdd {
         return -1;
     }
 
-    private static List<String> doFizzbuzz(int number) {
-        List<String> fizzbuzzList = new ArrayList<>(number);
-        for (int i = 1; i <= number; i++) {
-            if (i % 15 == 0) {
-                fizzbuzzList.add("fizzbuzz");
-            }else if (i % 3 == 0) {
-                fizzbuzzList.add("fizz");
-            } else if (i % 5 == 0) {
-                fizzbuzzList.add("buzz");
-            } else {
-                fizzbuzzList.add("" + i);
-            }
+    private static List<String> getFizzbuzz(int number) {
+        return IntStream.rangeClosed(1, number)
+                .mapToObj(FizzBuzzTdd::calculateFizzbuzz)
+                .collect(Collectors.toList());
+    }
+
+    private static String calculateFizzbuzz(int i) {
+        String fizzbuzz;
+        if (i % 15 == 0) {
+            fizzbuzz = "fizzbuzz";
+        } else if (i % 3 == 0) {
+            fizzbuzz = "fizz";
+        } else if (i % 5 == 0) {
+            fizzbuzz = "buzz";
+        } else {
+            fizzbuzz = "" + i;
         }
-        return fizzbuzzList;
+        return fizzbuzz;
     }
 }
