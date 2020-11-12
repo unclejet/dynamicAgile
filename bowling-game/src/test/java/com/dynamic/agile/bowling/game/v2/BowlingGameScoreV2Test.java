@@ -5,7 +5,7 @@ import org.junit.Test;
 
 import java.util.stream.IntStream;
 
-import static com.dynamic.agile.bowling.game.v2.Frame.ALL_HIT_PINS;
+import static com.dynamic.agile.bowling.game.v2.FrameV2.ALL_HIT_PINS;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -15,13 +15,13 @@ import static org.hamcrest.MatcherAssert.assertThat;
  * @description:
  * @modified By:
  */
-public class BowlingGameScoreTest {
+public class BowlingGameScoreV2Test {
 
-    private BowlingGameScore gameScore;
+    private BowlingGameScoreV2 gameScore;
 
     @Before
     public void setUp() throws Exception {
-        gameScore = new BowlingGameScore();
+        gameScore = new BowlingGameScoreV2();
     }
 
     private void roll(int pins) {

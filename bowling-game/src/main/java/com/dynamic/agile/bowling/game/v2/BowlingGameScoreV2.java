@@ -12,33 +12,33 @@ import java.util.stream.IntStream;
  * 这一版的roll方法有些复杂，因为这一版和第一版一样，都是先把10格frame创建好了再进行game的
  * 下一版可以考虑通过roll动作来创建不同的frame(比如SpareFrame，StrikeFrame等)
  */
-public class BowlingGameScore {
+public class BowlingGameScoreV2 {
     public static final int FRAME_NUMBER_IN_GAME = 10;
     public static final int MAX_ALLOWED_ROLLS_NUMBER = 21;
 
-    private Frame[] frames = new Frame[FRAME_NUMBER_IN_GAME];
+    private FrameV2[] frames = new FrameV2[FRAME_NUMBER_IN_GAME];
     private Roll[] rolls = new Roll[MAX_ALLOWED_ROLLS_NUMBER];
 
     private int frameIndex;
     private int rollIndex;
     private int score;
 
-    public BowlingGameScore() {
+    public BowlingGameScoreV2() {
         IntStream.range(0, 10)
-                .forEach(i -> frames[i] = new Frame());
+                .forEach(i -> frames[i] = new FrameV2());
     }
 
     public void roll(int pins) {
         Roll roll = new Roll(rollIndex, pins);
         rolls[rollIndex++] = roll;
-        Frame frame = getSpecialFrame(frameIndex);
+        FrameV2 frame = getSpecialFrame(frameIndex);
         frame.add(roll);
         if (frame.isRolledFinished()) {
             frameIndex++;
         }
     }
 
-    public Frame getSpecialFrame(int i) {
+    public FrameV2 getSpecialFrame(int i) {
         if (i >= FRAME_NUMBER_IN_GAME) {
             return frames[FRAME_NUMBER_IN_GAME - 1];
         }

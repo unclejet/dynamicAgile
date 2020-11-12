@@ -11,11 +11,11 @@ import java.util.List;
  * @description:
  * @modified By:
  */
-public class Frame {
+public class FrameV2 {
     public static final int ALL_HIT_PINS = 10;
     private List<Roll> rolls = new ArrayList<>();
 
-    public Frame() {
+    public FrameV2() {
     }
 
     public void add(Roll roll) {
