@@ -1,6 +1,7 @@
 package com.dynamic.agile.bowling.game.pair.gamescore;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -72,17 +73,102 @@ public class BowlingGameScoreTest {
     }
 
     @Test
-    public void whenIRollAllStrike_thenScore300() {
+    public void whenIRollAllStrike_thenGameScore300() {
         rollMany(12, 10);
         assertThat(game.getGameScore(), is(300));
     }
 
     @Test
-    public void complexRolls_score() {
+    public void complexRolls_gameScore() {
         rollFrame(1,2);
         rollStrike();
         rollSpare(4, 6);
         rollMany(14, 1);
         assertThat(game.getGameScore(), is(3 + 20 + 11 + 14));
+    }
+
+    @Test
+    public void roll5_getScore0() {
+        roll(5);
+        assertThat(game.getScore(), is(0));
+    }
+
+    @Test
+    public void roll5And4_getScore9() {
+        rollFrame(5, 4);
+        assertThat(game.getScore(), is(9));
+    }
+    @Test
+    public void roll5And4And5_getScore9() {
+        rollFrame(5, 4);
+        roll(5);
+        assertThat(game.getScore(), is(9));
+    }
+    @Test
+    public void roll3Balls_getScore9() {
+        rollFrame(5, 4);
+        rollFrame(5, 4);
+        rollFrame(5, 4);
+        rollFrame(5, 4);
+        roll(5);
+        assertThat(game.getScore(), is(36));
+    }
+
+    @Test
+    public void rollSpare() {
+        rollSpare(5, 5);
+        assertThat(game.getScore(), is(0));
+    }
+
+    @Test
+    public void rollSpareAndNextRoll() {
+        rollSpare(5, 5);
+        roll(3);
+        assertThat(game.getScore(), is(13));
+    }
+
+    @Test
+    public void rollSomeSpares() {
+        rollSpare(5, 5);
+        rollSpare(3, 7);
+        roll(3);
+        assertThat(game.getScore(), is(13 + 13));
+    }
+
+    @Test
+    public void rollMissAndSpares() {
+        rollMany(18, 1);
+        rollSpare(5, 5);
+        roll(3);
+        assertThat(game.getScore(), is(18 + 13));
+    }
+
+    @Test
+    public void rollOneStrike() {
+        rollStrike();
+        assertThat(game.getScore(), is(0));
+    }
+    @Test
+    public void rollStrikes() {
+        rollFrame(3, 4);
+        rollStrike();
+        rollFrame(3, 4);
+        roll(5);
+        assertThat(game.getScore(), is(7 + 17 + 7));
+    }
+    @Test
+    public void roll2Strikes() {
+        rollFrame(3, 4);
+        rollStrike();
+        rollStrike();
+        rollFrame(3, 4);
+        roll(5);
+        assertThat(game.getScore(), is(7 + 23 + 17 + 7));
+    }
+
+    @Test
+    public void rollAllStrikes() {
+        rollMany(12, 10);
+        assertThat(game.getScore(), is(300));
     }
 }
