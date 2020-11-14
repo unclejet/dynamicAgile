@@ -44,7 +44,6 @@ public class BowlingGameScoreTest {
     }
 
 
-    @Ignore
     @Test
     public void whenIRollOneSpareInOneGame_thenIHaveGameScore22() {
         rollMany(2, 5);//spare
