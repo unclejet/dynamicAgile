@@ -9,7 +9,9 @@ import org.junit.Test;
  */
 public class BowlingGameScoreTest {
     @Test
-    public void systemEnvIsOk() {
-
+    public void bowlingGameSystemExist() {
+        BowlingGame game = new BowlingGame();
     }
+
+
 }
