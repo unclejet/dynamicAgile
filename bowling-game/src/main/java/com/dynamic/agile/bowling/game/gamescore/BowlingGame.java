@@ -15,19 +15,23 @@ public class BowlingGame {
     private List<Integer> rolls = new ArrayList<>();
 
     public int getGameScore() {
+        int rollIndexForTheFrame = 0;
         for (int frame = 0; frame < FRAMES_IN_GAME; frame++) {
+            int firstRollInCurrentFrame = rollIndexForTheFrame;
             int frameScore;
-            int firstRollInCurrentFrame = frame * 2;
-            int secondRollInCurrentFrame = firstRollInCurrentFrame + 1;
             if (rolls.get(firstRollInCurrentFrame) == 10) { //strike
                 frameScore = 10 + rolls.get(firstRollInCurrentFrame + 1) + rolls.get(firstRollInCurrentFrame + 2);
-            } else if (isSpare(rolls.get(firstRollInCurrentFrame) + rolls.get(secondRollInCurrentFrame))) {
+                rollIndexForTheFrame += 1;
+            } else if (isSpare(rolls.get(firstRollInCurrentFrame) + rolls.get(rollIndexForTheFrame + 1))) {
                 int firstRollInNextFrame = firstRollInCurrentFrame + 2;
                 frameScore = 10 + rolls.get(firstRollInNextFrame);
+                rollIndexForTheFrame += 2;
             } else {
-                frameScore = rolls.get(firstRollInCurrentFrame) + rolls.get(secondRollInCurrentFrame);
+                frameScore = rolls.get(firstRollInCurrentFrame) + rolls.get(rollIndexForTheFrame + 1);
+                rollIndexForTheFrame += 2;
             }
             gameScore += frameScore;
+
         }
         return gameScore;
     }
