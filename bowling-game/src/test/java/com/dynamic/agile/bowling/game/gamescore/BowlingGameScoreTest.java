@@ -21,11 +21,6 @@ public class BowlingGameScoreTest {
     }
 
     @Test
-    public void whenIPlayBowlingGame_IHaveAScore() {
-        assertThat(game.getGameScore(), is(-1));
-    }
-
-    @Test
     public void whenIRoll0InOneGame_thenIHaveGameScore0() {
         BowlingGame game = new BowlingGame();
         for (int i = 0; i < 20; i++) {
