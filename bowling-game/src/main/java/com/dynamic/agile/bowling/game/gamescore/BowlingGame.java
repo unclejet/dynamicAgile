@@ -11,23 +11,22 @@ import java.util.List;
 public class BowlingGame {
     public static final int FRAMES_IN_GAME = 10;
     public static final int PINS_IN_FRAME = 10;
-    private int gameScore;
     private List<Integer> rolls = new ArrayList<>();
 
     public int getGameScore() {
+        int gameScore = 0;
         int rollIndexForTheFrame = 0;
         for (int frame = 0; frame < FRAMES_IN_GAME; frame++) {
-            int firstRollInCurrentFrame = rollIndexForTheFrame;
             int frameScore;
-            if (rolls.get(firstRollInCurrentFrame) == 10) { //strike
-                frameScore = 10 + rolls.get(firstRollInCurrentFrame + 1) + rolls.get(firstRollInCurrentFrame + 2);
+            if (isStrike(rollIndexForTheFrame)) {
+                frameScore = PINS_IN_FRAME + getTwoRollsPins(rollIndexForTheFrame + 1);
                 rollIndexForTheFrame += 1;
-            } else if (isSpare(rolls.get(firstRollInCurrentFrame) + rolls.get(rollIndexForTheFrame + 1))) {
-                int firstRollInNextFrame = firstRollInCurrentFrame + 2;
-                frameScore = 10 + rolls.get(firstRollInNextFrame);
+            } else if (isSpare(getTwoRollsPins(rollIndexForTheFrame))) {
+                int firstRollInNextFrame = rollIndexForTheFrame + 2;
+                frameScore = PINS_IN_FRAME + rolls.get(firstRollInNextFrame);
                 rollIndexForTheFrame += 2;
             } else {
-                frameScore = rolls.get(firstRollInCurrentFrame) + rolls.get(rollIndexForTheFrame + 1);
+                frameScore = getTwoRollsPins(rollIndexForTheFrame);
                 rollIndexForTheFrame += 2;
             }
             gameScore += frameScore;
@@ -38,6 +37,14 @@ public class BowlingGame {
 
     private boolean isSpare(int frameScore) {
         return frameScore == PINS_IN_FRAME;
+    }
+
+    private int getTwoRollsPins(int rollIndex) {
+        return rolls.get(rollIndex) + rolls.get(rollIndex + 1);
+    }
+
+    private boolean isStrike(int rollIndex) {
+        return rolls.get(rollIndex) == PINS_IN_FRAME;
     }
 
     public void roll(int pins) {

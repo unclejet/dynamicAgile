@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import static com.dynamic.agile.bowling.game.gamescore.BowlingGame.PINS_IN_FRAME;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -25,6 +26,11 @@ public class BowlingGameScoreTest {
         game.roll(pins);
     }
 
+    private void rollFrame(int firstPins, int secondPins) {
+        roll(firstPins);
+        roll(secondPins);
+    }
+
     private void rollMany(int times, int pins) {
         for (int i = 0; i < times; i++) {
             roll(pins);
@@ -34,6 +40,10 @@ public class BowlingGameScoreTest {
     private void rollSpare(int firstPins, int secondPins) {
         roll(firstPins);
         roll(secondPins);
+    }
+
+    private void rollStrike() {
+        roll(PINS_IN_FRAME);
     }
 
     @Test
@@ -59,9 +69,8 @@ public class BowlingGameScoreTest {
 
     @Test
     public void whenIRollOneStrikeInOneGame_thenIHaveGameScore22() {
-        roll(10);//strike
-        rollMany(1, 6);
-        rollMany(1, 0); //rollFrame
+        rollStrike();
+        rollFrame(6, 0);
         rollMany(17, 0);
         assertThat(game.getGameScore(), is(22));
     }
