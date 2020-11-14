@@ -20,21 +20,26 @@ public class BowlingGameScoreTest {
         game = new BowlingGame();
     }
 
+    private void roll(int pins) {
+        game.roll(pins);
+    }
+
+    private void rollMany(int times, int pins) {
+        for (int i = 0; i < times; i++) {
+            roll(pins);
+        }
+    }
+
     @Test
     public void whenIRoll0InOneGame_thenIHaveGameScore0() {
         BowlingGame game = new BowlingGame();
-        for (int i = 0; i < 20; i++) {
-            game.roll(0);
-        }
+        rollMany(20, 0);
         assertThat(game.getGameScore(), is(0));
     }
 
     @Test
     public void whenIRoll1InOneGame_thenIHaveGameScore20() {
-        BowlingGame game = new BowlingGame();
-        for (int i = 0; i < 20; i++) {
-            game.roll(1);
-        }
+        rollMany(20, 1);
         assertThat(game.getGameScore(), is(20));
     }
 }
