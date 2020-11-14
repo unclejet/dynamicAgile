@@ -66,7 +66,6 @@ public class BowlingGameScoreTest {
         assertThat(game.getGameScore(), is(22));
     }
 
-
     @Test
     public void whenIRollOneStrikeInOneGame_thenIHaveGameScore22() {
         rollStrike();
@@ -79,5 +78,14 @@ public class BowlingGameScoreTest {
     public void whenIRollAllStrike_thenScore300() {
         rollMany(12, 10);
         assertThat(game.getGameScore(), is(300));
+    }
+
+    @Test
+    public void complexRolls_score() {
+        rollFrame(1,2);
+        rollStrike();
+        rollSpare(4, 6);
+        rollMany(14, 1);
+        assertThat(game.getGameScore(), is(3 + 20 + 11 + 14));
     }
 }
