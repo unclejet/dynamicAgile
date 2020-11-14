@@ -31,6 +31,11 @@ public class BowlingGameScoreTest {
         }
     }
 
+    private void rollSpare(int firstPins, int secondPins) {
+        roll(firstPins);
+        roll(secondPins);
+    }
+
     @Test
     public void whenIRoll0InOneGame_thenIHaveGameScore0() {
         rollMany(20, 0);
@@ -46,7 +51,7 @@ public class BowlingGameScoreTest {
 
     @Test
     public void whenIRollOneSpareInOneGame_thenIHaveGameScore22() {
-        rollMany(2, 5);//spare
+        rollSpare(5, 5);
         rollMany(1, 6);
         rollMany(17, 0);
         assertThat(game.getGameScore(), is(22));

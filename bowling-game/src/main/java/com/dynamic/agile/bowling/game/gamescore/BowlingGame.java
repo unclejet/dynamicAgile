@@ -10,18 +10,23 @@ import java.util.List;
  */
 public class BowlingGame {
     public static final int FRAMES_IN_GAME = 10;
+    public static final int PINS_IN_FRAME = 10;
     private int gameScore;
     private List<Integer> rolls = new ArrayList<>();
 
     public int getGameScore() {
         for (int frame = 0; frame < FRAMES_IN_GAME; frame++) {
             int frameScore = rolls.get(frame * 2) + rolls.get(frame * 2 + 1);
-            if (frameScore == 10) {
+            if (isSpare(frameScore)) {
                 frameScore += rolls.get(frame * 2 + 2);
             }
             gameScore += frameScore;
         }
         return gameScore;
+    }
+
+    private boolean isSpare(int frameScore) {
+        return frameScore == PINS_IN_FRAME;
     }
 
     public void roll(int pins) {
