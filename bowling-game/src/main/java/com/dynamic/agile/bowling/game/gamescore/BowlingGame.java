@@ -7,6 +7,7 @@ package com.dynamic.agile.bowling.game.gamescore;
  */
 public class BowlingGame {
     private int gameScore;
+
     public int getGameScore() {
         return gameScore;
     }

@@ -28,4 +28,13 @@ public class BowlingGameScoreTest {
         }
         assertThat(game.getGameScore(), is(0));
     }
+
+    @Test
+    public void whenIRoll1InOneGame_thenIHaveGameScore20() {
+        BowlingGame game = new BowlingGame();
+        for (int i = 0; i < 20; i++) {
+            game.roll(1);
+        }
+        assertThat(game.getGameScore(), is(20));
+    }
 }
