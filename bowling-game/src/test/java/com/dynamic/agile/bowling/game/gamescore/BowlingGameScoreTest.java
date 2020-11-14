@@ -42,4 +42,12 @@ public class BowlingGameScoreTest {
         rollMany(20, 1);
         assertThat(game.getGameScore(), is(20));
     }
+
+    @Test
+    public void whenIRollOneSpareInOneGame_thenIHaveGameScore22() {
+        rollMany(2, 5);//spare
+        rollMany(1, 6);
+        rollMany(17, 0);
+        assertThat(game.getGameScore(), is(22));
+    }
 }
