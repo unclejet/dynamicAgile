@@ -74,4 +74,10 @@ public class BowlingGameScoreTest {
         rollMany(17, 0);
         assertThat(game.getGameScore(), is(22));
     }
+
+    @Test
+    public void whenIRollAllStrike_thenScore300() {
+        rollMany(12, 10);
+        assertThat(game.getGameScore(), is(300));
+    }
 }
