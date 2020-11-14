@@ -33,7 +33,6 @@ public class BowlingGameScoreTest {
 
     @Test
     public void whenIRoll0InOneGame_thenIHaveGameScore0() {
-        BowlingGame game = new BowlingGame();
         rollMany(20, 0);
         assertThat(game.getGameScore(), is(0));
     }

@@ -9,12 +9,14 @@ import java.util.List;
  * @description
  */
 public class BowlingGame {
+    public static final int FRAMES_IN_GAME = 10;
     private int gameScore;
-    private List<Integer> rolls = new ArrayList<Integer>();
+    private List<Integer> rolls = new ArrayList<>();
 
     public int getGameScore() {
-        for (Integer pins : rolls) {
-            gameScore += pins;
+        for (int frame = 0; frame < FRAMES_IN_GAME; frame++) {
+            int frameScore = rolls.get(frame * 2) + rolls.get(frame * 2 + 1);
+            gameScore += frameScore;
         }
         return gameScore;
     }
