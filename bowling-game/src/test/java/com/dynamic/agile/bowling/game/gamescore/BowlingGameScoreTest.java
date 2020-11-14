@@ -12,4 +12,9 @@ public class BowlingGameScoreTest {
     public void nothing() {
 
     }
+
+    @Test
+    public void createBowlingGame() {
+        BowlingGame game = new BowlingGame();
+    }
 }
