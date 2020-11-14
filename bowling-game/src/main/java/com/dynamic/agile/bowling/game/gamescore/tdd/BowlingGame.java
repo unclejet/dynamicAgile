@@ -1,4 +1,4 @@
-package com.dynamic.agile.bowling.game.gamescore;
+package com.dynamic.agile.bowling.game.gamescore.tdd;
 
 import java.util.ArrayList;
 import java.util.List;
