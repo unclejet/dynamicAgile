@@ -6,7 +6,11 @@ package com.dynamic.agile.bowling.game.gamescore;
  * @description
  */
 public class BowlingGame {
-    public int getScore() {
+    public int getGameScore() {
         return -1;
+    }
+
+    public void roll(int pins) {
+
     }
 }
