@@ -1,6 +1,7 @@
 package com.dynamic.agile.bowling.game.gamescore;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -43,6 +44,8 @@ public class BowlingGameScoreTest {
         assertThat(game.getGameScore(), is(20));
     }
 
+
+    @Ignore
     @Test
     public void whenIRollOneSpareInOneGame_thenIHaveGameScore22() {
         rollMany(2, 5);//spare
