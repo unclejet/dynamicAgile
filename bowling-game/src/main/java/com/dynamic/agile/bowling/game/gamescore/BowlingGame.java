@@ -16,6 +16,9 @@ public class BowlingGame {
     public int getGameScore() {
         for (int frame = 0; frame < FRAMES_IN_GAME; frame++) {
             int frameScore = rolls.get(frame * 2) + rolls.get(frame * 2 + 1);
+            if (frameScore == 10) {
+                frameScore += rolls.get(frame * 2 + 2);
+            }
             gameScore += frameScore;
         }
         return gameScore;
