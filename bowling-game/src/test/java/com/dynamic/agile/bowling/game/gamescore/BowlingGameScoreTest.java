@@ -1,6 +1,10 @@
 package com.dynamic.agile.bowling.game.gamescore;
 
+import org.junit.Before;
 import org.junit.Test;
+
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 /**
  * @author UncleJet
@@ -8,13 +12,16 @@ import org.junit.Test;
  * @description
  */
 public class BowlingGameScoreTest {
-    @Test
-    public void nothing() {
 
+    private BowlingGame game;
+
+    @Before
+    public void setUp() throws Exception {
+        game = new BowlingGame();
     }
 
     @Test
-    public void createBowlingGame() {
-        BowlingGame game = new BowlingGame();
+    public void whenIPlayBowlingGame_IHaveAScore() {
+        assertThat(game.getScore(), is(-1));
     }
 }
