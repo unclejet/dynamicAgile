@@ -9,4 +9,8 @@ public class BowlingGame {
     public int getGameScore() {
         return -1;
     }
+
+    public void roll(int pins) {
+
+    }
 }
