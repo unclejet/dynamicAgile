@@ -83,4 +83,12 @@ public class BowlingGameScoreTest {
         rollSpare(6, 4);
         assertThat(game.getGameScore(), is(10 + 6));
     }
+
+    @Test
+    public void rollTwoSparesWithNextRoll() {
+        rollSpare(5, 5);
+        rollSpare(6, 4);
+        roll(3);
+        assertThat(game.getGameScore(), is(16 + 13));
+    }
 }
