@@ -1,5 +1,7 @@
 package com.dynamic.agile.bowling.game.gamescore.modeling;
 
+import java.util.List;
+
 /**
  * @author: UncleJet
  * @date: Created in 2020/11/15 8:57
@@ -17,5 +19,5 @@ public abstract class Frame {
         this.secondRollIndex = secondRollIndex;
     }
 
-    public abstract int calculateScore(int[] pins);
+    public abstract int calculateScore(List<Integer> pins);
 }

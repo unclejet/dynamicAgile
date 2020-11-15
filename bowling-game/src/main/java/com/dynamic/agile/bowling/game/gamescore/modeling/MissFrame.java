@@ -1,5 +1,7 @@
 package com.dynamic.agile.bowling.game.gamescore.modeling;
 
+import java.util.List;
+
 /**
  * @author: UncleJet
  * @date: Created in 2020/11/15 9:05
@@ -11,7 +13,7 @@ public class MissFrame extends Frame {
     }
 
     @Override
-    public int calculateScore(int[] pins) {
-        return pins[firstRollIndex] + pins[secondRollIndex];
+    public int calculateScore(List<Integer> pins) {
+        return pins.get(firstRollIndex) + pins.get(secondRollIndex);
     }
 }

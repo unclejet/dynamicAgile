@@ -12,8 +12,7 @@ import static com.dynamic.agile.bowling.game.gamescore.modeling.Frame.PINS_IN_FR
  * @description:
  */
 public class BowlingGame {
-    public static final int MAX_ROLL_NUMBER = 21;
-    private int[] pins = new int[MAX_ROLL_NUMBER];
+    private List<Integer> pins = new ArrayList<>();
     private int rollIndex;
 
     private List<Frame> frames = new ArrayList<>();
@@ -29,7 +28,7 @@ public class BowlingGame {
 
     public void roll(int pins) {
         rollIndexOfFrame++;
-        this.pins[rollIndex] = pins;
+        this.pins.add(pins);
         if (isMiss()) {
             frames.add(new MissFrame(rollIndex - 1, rollIndex));
             resetRollIndexOfFrame();
@@ -46,11 +45,11 @@ public class BowlingGame {
 
     private boolean isMiss() {
         return rollIndexOfFrame == MAX_ROLL_NUMBER_IN_FRAME
-                && pins[rollIndex - 1] + pins[rollIndex] < PINS_IN_FRAME;
+                && pins.get(rollIndex - 1) + pins.get(rollIndex) < PINS_IN_FRAME;
     }
 
     private boolean isSpare() {
         return rollIndexOfFrame == MAX_ROLL_NUMBER_IN_FRAME
-                && pins[rollIndex - 1] + pins[rollIndex] == PINS_IN_FRAME;
+                && pins.get(rollIndex - 1) + pins.get(rollIndex) == PINS_IN_FRAME;
     }
 }
