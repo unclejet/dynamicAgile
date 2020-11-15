@@ -157,5 +157,23 @@ public class BowlingGameScoreTest {
         assertThat(game.getGameScore(), is(300));
     }
 
+    @Test
+    public void complexRolls_score() {
+        rollFrame(2, 3);
+        rollFrame(7, 0);
+        rollSpare(5, 5);
+        rollSpare(6, 4);
+        rollFrame(5, 4);
+        rollStrike();
+        rollStrike();
+        rollFrame(3, 6);
+        rollStrike();
+        rollSpare(6, 4);
+        rollExtra(4);
+        assertThat(game.getGameScore(), is(137));
+    }
 
+    private void rollExtra(int pins) {
+        roll(pins);
+    }
 }
