@@ -7,6 +7,6 @@ package com.dynamic.agile.bowling.game.gamescore.modeling;
  */
 public class BowlingGame {
     public int getGameScore() {
-        return 0;
+        return -1;
     }
 }
