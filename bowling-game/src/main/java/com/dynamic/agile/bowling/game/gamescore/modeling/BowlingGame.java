@@ -3,6 +3,9 @@ package com.dynamic.agile.bowling.game.gamescore.modeling;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.dynamic.agile.bowling.game.gamescore.modeling.Frame.MAX_ROLL_NUMBER_IN_FRAME;
+import static com.dynamic.agile.bowling.game.gamescore.modeling.Frame.PINS_IN_FRAME;
+
 /**
  * @author: UncleJet
  * @date: Created in 2020/11/15 7:37
@@ -27,13 +30,17 @@ public class BowlingGame {
         this.pins[rollIndex] = pins;
         if (isMiss()) {
             frames.add(new MissFrame(this.pins[rollIndex - 1], this.pins[rollIndex]));
-            rollIndexOfFrame = 0;
+            resetRollIndexOfFrame();
         }
         rollIndex++;
     }
 
+    private void resetRollIndexOfFrame() {
+        rollIndexOfFrame = 0;
+    }
+
     private boolean isMiss() {
-        return rollIndexOfFrame == 2
-                && pins[rollIndex - 1] + pins[rollIndex] < 10;
+        return rollIndexOfFrame == MAX_ROLL_NUMBER_IN_FRAME
+                && pins[rollIndex - 1] + pins[rollIndex] < PINS_IN_FRAME;
     }
 }

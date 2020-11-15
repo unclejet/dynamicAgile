@@ -20,16 +20,24 @@ public class BowlingGameScoreTest {
         game = new BowlingGame();
     }
 
+    private void roll(int pins) {
+        game.roll(pins);
+    }
+
+    private void rollFrame(int firstRollPins, int secondRollPins) {
+        roll(firstRollPins);
+        roll(secondRollPins);
+    }
+
     @Test
     public void givenGameStart_whenIRoll2_thenGetGameScore0() {
-        game.roll(2);
+        roll(2);
         assertThat(game.getGameScore(), is(0));
     }
 
     @Test
     public void givenGameStart_whenIRoll2And3_thenGetGameScore5() {
-        game.roll(2);
-        game.roll(3);
+        rollFrame(2, 3);
         assertThat(game.getGameScore(), is(5));
     }
 }

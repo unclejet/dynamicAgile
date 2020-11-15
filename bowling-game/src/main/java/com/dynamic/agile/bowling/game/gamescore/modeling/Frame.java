@@ -6,6 +6,9 @@ package com.dynamic.agile.bowling.game.gamescore.modeling;
  * @description:
  */
 public abstract class Frame {
+    public static final int PINS_IN_FRAME = 10;
+    public static final int MAX_ROLL_NUMBER_IN_FRAME = 2;
+
     protected int firstRollPins;
     protected int secondRollPins;
 
