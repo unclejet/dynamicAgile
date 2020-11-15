@@ -2,16 +2,16 @@ package com.dynamic.agile.bowling.game.gamescore.modeling;
 
 /**
  * @author: UncleJet
- * @date: Created in 2020/11/15 9:05
+ * @date: Created in 2020/11/15 10:00
  * @description:
  */
-public class MissFrame extends Frame {
-    public MissFrame(int firstRollPins, int secondRollPins) {
+public class SpareFrame extends Frame {
+    public SpareFrame(int firstRollPins, int secondRollPins) {
         super(firstRollPins, secondRollPins);
     }
 
     @Override
     public int calculateScore(int[] pins) {
-        return firstRollPins + secondRollPins;
+        return PINS_IN_FRAME + rolls[next roll index];
     }
 }

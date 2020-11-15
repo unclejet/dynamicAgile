@@ -1,6 +1,7 @@
 package com.dynamic.agile.bowling.game.gamescore.modeling;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static com.dynamic.agile.bowling.game.gamescore.modeling.Frame.*;
@@ -69,6 +70,7 @@ public class BowlingGameScoreTest {
         assertThat(game.getGameScore(), is(0));
     }
 
+    @Ignore
     @Test
     public void rollOneSpare() {
         rollSpare(5, 5);

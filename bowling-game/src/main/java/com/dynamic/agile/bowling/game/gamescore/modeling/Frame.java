@@ -17,5 +17,5 @@ public abstract class Frame {
         this.secondRollPins = secondRollPins;
     }
 
-    public abstract int calculateScore();
+    public abstract int calculateScore(int[] pins);
 }

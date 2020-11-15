@@ -31,6 +31,8 @@ public class BowlingGame {
         if (isMiss()) {
             frames.add(new MissFrame(this.pins[rollIndex - 1], this.pins[rollIndex]));
             resetRollIndexOfFrame();
+        } else if (isSpare()) {
+
         }
         rollIndex++;
     }
