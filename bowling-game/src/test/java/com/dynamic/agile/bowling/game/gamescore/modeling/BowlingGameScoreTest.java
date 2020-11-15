@@ -29,6 +29,12 @@ public class BowlingGameScoreTest {
         roll(secondRollPins);
     }
 
+    private void rollMany(int times, int pins) {
+        for (int i = 0; i < times; i++) {
+            roll(pins);
+        }
+    }
+
     @Test
     public void givenGameStart_whenIRoll2_thenGetGameScore0() {
         roll(2);
@@ -43,9 +49,7 @@ public class BowlingGameScoreTest {
 
     @Test
     public void rollAll1_thenGetGameScore20() {
-        for (int i = 0; i < 20; i++) {
-            roll(1);
-        }
+        rollMany(20, 1);
         assertThat(game.getGameScore(), is(20));
     }
 }
