@@ -114,4 +114,11 @@ public class BowlingGameScoreTest {
         rollStrike();
         assertThat(game.getGameScore(), is(0));
     }
+
+    @Test
+    public void rollStrike_oneNextRoll() {
+        rollStrike();
+        roll(4);
+        assertThat(game.getGameScore(), is(0));
+    }
 }
