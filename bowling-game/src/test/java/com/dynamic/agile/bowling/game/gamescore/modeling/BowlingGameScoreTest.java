@@ -38,13 +38,15 @@ public class BowlingGameScoreTest {
         roll(secondRollPins);
     }
 
+    private void rollStrike() {
+        roll(10);
+    }
+
     private void rollMany(int times, int pins) {
         for (int i = 0; i < times; i++) {
             roll(pins);
         }
     }
-
-
 
     @Test
     public void givenGameStart_whenIRoll2_thenGetGameScore0() {
@@ -109,7 +111,7 @@ public class BowlingGameScoreTest {
 
     @Test
     public void rollStrike_noNextRoll() {
-        roll(10);//strike
+        rollStrike();
         assertThat(game.getGameScore(), is(0));
     }
 }
