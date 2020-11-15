@@ -29,14 +29,26 @@ public class BowlingGame {
     public void roll(int pins) {
         rollIndexOfFrame++;
         this.pins.add(pins);
+        handleFrame();
+        rollIndex++;
+    }
+
+    private void handleFrame() {
         if (isMiss()) {
-            handleFrameWithTwoRoll(new MissFrame(rollIndex - 1, rollIndex));
+            handleMiss();
         } else if (isSpare()) {
-            handleFrameWithTwoRoll(new SpareFrame(rollIndex - 1, rollIndex));
+            handleSpare();
         } else if (isStrike()) {
             handleStrike();
         }
-        rollIndex++;
+    }
+
+    private void handleMiss() {
+        handleFrameWithTwoRoll(new MissFrame(rollIndex - 1, rollIndex));
+    }
+
+    private void handleSpare() {
+        handleFrameWithTwoRoll(new SpareFrame(rollIndex - 1, rollIndex));
     }
 
     private void handleFrameWithTwoRoll(Frame frame) {
