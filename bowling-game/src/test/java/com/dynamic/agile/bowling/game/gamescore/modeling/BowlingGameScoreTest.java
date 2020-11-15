@@ -128,4 +128,13 @@ public class BowlingGameScoreTest {
         rollFrame(4, 5);
         assertThat(game.getGameScore(), is(28));
     }
+
+    @Test
+    public void rollOneStrikeAndOneSpare() {
+        rollStrike();
+        rollSpare(5, 5);
+        assertThat(game.getGameScore(), is(20));
+    }
+
+
 }
