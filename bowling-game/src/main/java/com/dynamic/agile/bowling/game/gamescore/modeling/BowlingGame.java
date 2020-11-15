@@ -33,6 +33,9 @@ public class BowlingGame {
         if (isMiss()) {
             frames.add(new MissFrame(rollIndex - 1, rollIndex));
             resetRollIndexOfFrame();
+        } else if (isSpare()) {
+            frames.add(new SpareFrame(rollIndex - 1, rollIndex));
+            resetRollIndexOfFrame();
         }
         rollIndex++;
     }
@@ -44,5 +47,10 @@ public class BowlingGame {
     private boolean isMiss() {
         return rollIndexOfFrame == MAX_ROLL_NUMBER_IN_FRAME
                 && pins[rollIndex - 1] + pins[rollIndex] < PINS_IN_FRAME;
+    }
+
+    private boolean isSpare() {
+        return rollIndexOfFrame == MAX_ROLL_NUMBER_IN_FRAME
+                && pins[rollIndex - 1] + pins[rollIndex] == PINS_IN_FRAME;
     }
 }

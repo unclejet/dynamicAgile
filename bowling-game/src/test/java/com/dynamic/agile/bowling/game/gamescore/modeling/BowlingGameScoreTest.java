@@ -70,7 +70,6 @@ public class BowlingGameScoreTest {
         assertThat(game.getGameScore(), is(0));
     }
 
-    @Ignore
     @Test
     public void rollOneSpare() {
         rollSpare(5, 5);
