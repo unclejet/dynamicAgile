@@ -3,6 +3,7 @@ package com.dynamic.agile.bowling.game.gamescore.modeling;
 import org.junit.Before;
 import org.junit.Test;
 
+import static com.dynamic.agile.bowling.game.gamescore.modeling.Frame.*;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -25,6 +26,7 @@ public class BowlingGameScoreTest {
     }
 
     private void rollFrame(int firstRollPins, int secondRollPins) {
+        assert firstRollPins + secondRollPins < PINS_IN_FRAME;
         roll(firstRollPins);
         roll(secondRollPins);
     }
@@ -51,5 +53,12 @@ public class BowlingGameScoreTest {
     public void rollAll1_thenGetGameScore20() {
         rollMany(20, 1);
         assertThat(game.getGameScore(), is(20));
+    }
+
+    @Test
+    public void rollOneSpareButNoNextRoll_gameScore0() {
+        roll(5);
+        roll(5);
+        assertThat(game.getGameScore(), is(0));
     }
 }
