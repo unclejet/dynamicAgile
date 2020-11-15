@@ -171,4 +171,18 @@ public class BowlingGameScoreTest {
         rollMany(12, 10);
         assertThat(game.getScore(), is(300));
     }
+
+    @Test
+    public void complexRolls() {
+        rollFrame(1,2);
+        rollStrike();
+        rollSpare(4, 6);
+        rollMany(14, 1);
+        assertThat(game.getScore(), is(3 + 20 + 11 + 14));
+    }
+
+    @Test
+    public void ICanSeeScoreBoard() {
+
+    }
 }

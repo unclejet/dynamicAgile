@@ -52,50 +52,43 @@ public class BowlingGameScore {
     }
 
     public int getScore() {
-        return new ScoreBoard().getScore();
-    }
-
-    //todo finish score board.
-    private class ScoreBoard {
-        private int frameIndex = 1;
-        private int rollInFrame = 1;
-
-        public int getScore() {
-            int score = 0;
-            for (int roll = 0; roll < rolls.size(); roll++) {
-                int pins = rolls.get(roll);
-                if (rollInFrame == 1) {
-                    if (roll > 1 && isStrike(roll - 1) && isStrike(roll - 2)) {
-                        score += PINS_OF_FRAME + PINS_OF_FRAME + pins;
-                    }
-                    if (roll > 1 && isSpare(roll - 2)) {
-                        score += PINS_OF_FRAME + pins;
-                    }
-                } else if (rollInFrame == 2) {
-                    if (roll > 1 && isStrike(roll - 2)) {
-                        score += PINS_OF_FRAME + getTwoRollsScore(roll - 1);
-                    }
-                    if (isMiss(roll - 1)) {
-                        score += getTwoRollsScore(roll - 1);
-                    }
+        int frameIndex = 1;
+        int rollInFrame = 1;
+        int score = 0;
+        for (int roll = 0; roll < rolls.size(); roll++) {
+            int pins = rolls.get(roll);
+            if (rollInFrame == 1) {
+                if (roll > 1 && isStrike(roll - 1) && isStrike(roll - 2)) {
+                    score += PINS_OF_FRAME + PINS_OF_FRAME + pins;
                 }
-
-                if (rollInFrame == 1) {
-                    if (isStrike(roll)) {
-                        frameIndex++;
-                    } else {
-                        rollInFrame = 2;
-                    }
-                } else if (rollInFrame == 2) {
-                    frameIndex++;
-                    rollInFrame = 1;
+                if (roll > 1 && isSpare(roll - 2)) {
+                    score += PINS_OF_FRAME + pins;
+                }
+            } else if (rollInFrame == 2) {
+                if (roll > 1 && isStrike(roll - 2)) {
+                    score += PINS_OF_FRAME + getTwoRollsScore(roll - 1);
+                }
+                if (isMiss(roll - 1)) {
+                    score += getTwoRollsScore(roll - 1);
                 }
             }
-            return score;
-        }
 
-        private boolean isMiss(int roll) {
-            return getTwoRollsScore(roll) < 10;
+            if (rollInFrame == 1) {
+                if (isStrike(roll)) {
+                    frameIndex++;
+                } else {
+                    rollInFrame = 2;
+                }
+            } else if (rollInFrame == 2) {
+                frameIndex++;
+                rollInFrame = 1;
+            }
         }
+        return score;
+    }
+
+
+    private boolean isMiss(int roll) {
+        return getTwoRollsScore(roll) < 10;
     }
 }
