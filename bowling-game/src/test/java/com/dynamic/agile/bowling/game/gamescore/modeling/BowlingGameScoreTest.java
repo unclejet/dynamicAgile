@@ -98,4 +98,12 @@ public class BowlingGameScoreTest {
         rollSpare(5, 5);
         assertThat(game.getGameScore(), is(0));
     }
+
+    @Test
+    public void rollSpareInLastFrame_hasNextRoll() {
+        rollMany(18, 0);
+        rollSpare(5, 5);
+        roll(7);
+        assertThat(game.getGameScore(), is(17));
+    }
 }
