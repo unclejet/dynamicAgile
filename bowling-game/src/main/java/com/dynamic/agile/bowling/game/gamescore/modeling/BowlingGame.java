@@ -7,10 +7,9 @@ package com.dynamic.agile.bowling.game.gamescore.modeling;
  */
 public class BowlingGame {
     public int getGameScore() {
-        return -1;
+        return 0;
     }
 
     public void roll(int pins) {
-
     }
 }

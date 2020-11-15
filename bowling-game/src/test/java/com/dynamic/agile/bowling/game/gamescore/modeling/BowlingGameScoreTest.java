@@ -21,11 +21,6 @@ public class BowlingGameScoreTest {
     }
 
     @Test
-    public void whenIDoNothing_thenICanGetGameScore() {
-        assertThat(game.getGameScore(), is(-1));
-    }
-
-    @Test
     public void givenGameStart_whenIRoll2_thenGetGameScore0() {
         game.roll(2);
         assertThat(game.getGameScore(), is(0));
