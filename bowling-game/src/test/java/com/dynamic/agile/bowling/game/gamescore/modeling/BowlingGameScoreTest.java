@@ -106,4 +106,10 @@ public class BowlingGameScoreTest {
         roll(7);
         assertThat(game.getGameScore(), is(17));
     }
+
+    @Test
+    public void rollStrike_noNextRoll() {
+        roll(10);//strike
+        assertThat(game.getGameScore(), is(0));
+    }
 }
