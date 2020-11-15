@@ -1,4 +1,4 @@
-package com.dynamic.agile.bowling.game.pair.scoreboard;
+package com.dynamic.agile.bowling.game.scoreboard.pair;
 
 import java.util.ArrayList;
 import java.util.List;

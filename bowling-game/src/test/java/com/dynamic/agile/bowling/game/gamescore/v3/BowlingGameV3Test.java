@@ -1,10 +1,10 @@
-package com.dynamic.agile.bowling.game.v3;
+package com.dynamic.agile.bowling.game.gamescore.v3;
 
 import org.junit.Before;
 import org.junit.Test;
 
 
-import static com.dynamic.agile.bowling.game.v3.FrameV3.ALL_HIT_PINS_NUMBER;
+import static com.dynamic.agile.bowling.game.gamescore.v3.FrameV3.ALL_HIT_PINS_NUMBER;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;

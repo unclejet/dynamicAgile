@@ -1,7 +1,7 @@
-package com.dynamic.agile.bowling.game.pair.gamescore;
+package com.dynamic.agile.bowling.game.gamescore.pair;
 
+import com.dynamic.agile.bowling.game.gamescore.pair.BowlingGameScore;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.is;

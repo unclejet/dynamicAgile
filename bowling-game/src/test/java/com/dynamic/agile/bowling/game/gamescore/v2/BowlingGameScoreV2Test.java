@@ -1,11 +1,11 @@
-package com.dynamic.agile.bowling.game.v2;
+package com.dynamic.agile.bowling.game.gamescore.v2;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.stream.IntStream;
 
-import static com.dynamic.agile.bowling.game.v2.FrameV2.ALL_HIT_PINS;
+import static com.dynamic.agile.bowling.game.gamescore.v2.FrameV2.ALL_HIT_PINS;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 

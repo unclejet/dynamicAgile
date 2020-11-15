@@ -1,4 +1,4 @@
-package com.dynamic.agile.bowling.game.v2;
+package com.dynamic.agile.bowling.game.gamescore.v2;
 
 /**
  * @author: UncleJet

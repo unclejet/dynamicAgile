@@ -1,5 +1,6 @@
-package com.dynamic.agile.bowling.game.pair.scoreboard;
+package com.dynamic.agile.bowling.game.scoreboard.pair;
 
+import com.dynamic.agile.bowling.game.scoreboard.pair.BowlingGameScoreBoardComplex;
 import org.junit.Before;
 import org.junit.Test;
 
