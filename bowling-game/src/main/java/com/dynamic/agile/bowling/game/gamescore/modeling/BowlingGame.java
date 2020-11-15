@@ -22,17 +22,17 @@ public class BowlingGame {
 
 
     public int getGameScore() {
-        return frames.stream().mapToInt(Frame::calculateScore).sum();
+        return frames.stream()
+                .mapToInt(frame -> frame.calculateScore(pins))
+                .sum();
     }
 
     public void roll(int pins) {
         rollIndexOfFrame++;
         this.pins[rollIndex] = pins;
         if (isMiss()) {
-            frames.add(new MissFrame(this.pins[rollIndex - 1], this.pins[rollIndex]));
+            frames.add(new MissFrame(rollIndex - 1, rollIndex));
             resetRollIndexOfFrame();
-        } else if (isSpare()) {
-
         }
         rollIndex++;
     }

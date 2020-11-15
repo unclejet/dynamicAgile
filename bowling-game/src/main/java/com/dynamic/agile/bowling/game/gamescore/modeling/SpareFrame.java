@@ -12,6 +12,7 @@ public class SpareFrame extends Frame {
 
     @Override
     public int calculateScore(int[] pins) {
-        return PINS_IN_FRAME + rolls[next roll index];
+//        return PINS_IN_FRAME + rolls[next roll index];
+        return 0;
     }
 }

@@ -9,12 +9,12 @@ public abstract class Frame {
     public static final int PINS_IN_FRAME = 10;
     public static final int MAX_ROLL_NUMBER_IN_FRAME = 2;
 
-    protected int firstRollPins;
-    protected int secondRollPins;
+    protected int firstRollIndex;
+    protected int secondRollIndex;
 
-    public Frame(int firstRollPins, int secondRollPins) {
-        this.firstRollPins = firstRollPins;
-        this.secondRollPins = secondRollPins;
+    public Frame(int firstRollIndex, int secondRollIndex) {
+        this.firstRollIndex = firstRollIndex;
+        this.secondRollIndex = secondRollIndex;
     }
 
     public abstract int calculateScore(int[] pins);
