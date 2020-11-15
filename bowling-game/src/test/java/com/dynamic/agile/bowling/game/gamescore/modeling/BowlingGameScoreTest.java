@@ -151,5 +151,11 @@ public class BowlingGameScoreTest {
         assertThat(game.getGameScore(), is(30));
     }
 
+    @Test
+    public void rollAllStrikes() {
+        rollMany(12, 10);
+        assertThat(game.getGameScore(), is(300));
+    }
+
 
 }
