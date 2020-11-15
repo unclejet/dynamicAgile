@@ -14,6 +14,7 @@ public class StrikeFrame extends Frame {
 
     @Override
     public int calculateScore(List<Integer> pins) {
-        return PINS_IN_FRAME + pins.get(firstRollIndex + 1) + pins.get(firstRollIndex + 2);
+        return pins.size() >= firstRollIndex + 3 ?
+                PINS_IN_FRAME + pins.get(firstRollIndex + 1) + pins.get(firstRollIndex + 2) : 0;
     }
 }
