@@ -142,4 +142,14 @@ public class BowlingGameScoreTest {
         rollStrike();
         assertThat(game.getGameScore(), is(0));
     }
+
+    @Test
+    public void roll3Strikes() {
+        rollStrike();
+        rollStrike();
+        rollStrike();
+        assertThat(game.getGameScore(), is(30));
+    }
+
+
 }
