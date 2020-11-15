@@ -40,4 +40,12 @@ public class BowlingGameScoreTest {
         rollFrame(2, 3);
         assertThat(game.getGameScore(), is(5));
     }
+
+    @Test
+    public void rollAll1_thenGetGameScore20() {
+        for (int i = 0; i < 20; i++) {
+            roll(1);
+        }
+        assertThat(game.getGameScore(), is(20));
+    }
 }
