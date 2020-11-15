@@ -126,6 +126,6 @@ public class BowlingGameScoreTest {
     public void rollStrike_twoNextRoll() {
         rollStrike();
         rollFrame(4, 5);
-        assertThat(game.getGameScore(), is(19));
+        assertThat(game.getGameScore(), is(28));
     }
 }

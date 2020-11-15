@@ -33,12 +33,19 @@ public class BowlingGame {
             handleFrameWithTwoRoll(new MissFrame(rollIndex - 1, rollIndex));
         } else if (isSpare()) {
             handleFrameWithTwoRoll(new SpareFrame(rollIndex - 1, rollIndex));
+        } else if (isStrike()) {
+            handleStrike();
         }
         rollIndex++;
     }
 
     private void handleFrameWithTwoRoll(Frame frame) {
         frames.add(frame);
+        resetRollIndexOfFrame();
+    }
+
+    private void handleStrike() {
+        frames.add(new StrikeFrame(rollIndex));
         resetRollIndexOfFrame();
     }
 
@@ -54,6 +61,10 @@ public class BowlingGame {
     private boolean isSpare() {
         return rollIndexOfFrame == MAX_ROLL_NUMBER_IN_FRAME
                 && addTwoRollPinsInFrame(rollIndex - 1, rollIndex) == PINS_IN_FRAME;
+    }
+
+    private boolean isStrike() {
+        return rollIndexOfFrame == 1 && pins.get(rollIndex) == PINS_IN_FRAME;
     }
 
     private int addTwoRollPinsInFrame(int firstRollIndexInFrame, int secondRollIndexInFrame) {
