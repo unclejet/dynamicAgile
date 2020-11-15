@@ -14,6 +14,14 @@ public class SpareFrame extends Frame {
 
     @Override
     public int calculateScore(List<Integer> pins) {
-        return pins.size() > secondRollIndex + 1? PINS_IN_FRAME + pins.get(secondRollIndex + 1) : 0;
+        return hasNextRoll(pins) ? PINS_IN_FRAME + nextRollPins(pins) : 0;
+    }
+
+    private Integer nextRollPins(List<Integer> pins) {
+        return pins.get(secondRollIndex + 1);
+    }
+
+    private boolean hasNextRoll(List<Integer> pins) {
+        return pins.size() > secondRollIndex + 1;
     }
 }
