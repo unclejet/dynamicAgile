@@ -136,5 +136,10 @@ public class BowlingGameScoreTest {
         assertThat(game.getGameScore(), is(20));
     }
 
-
+    @Test
+    public void rollTwoStrikes() {
+        rollStrike();
+        rollStrike();
+        assertThat(game.getGameScore(), is(0));
+    }
 }
