@@ -25,4 +25,11 @@ public class BowlingGameScoreTest {
         game.roll(2);
         assertThat(game.getGameScore(), is(0));
     }
+
+    @Test
+    public void givenGameStart_whenIRoll2And3_thenGetGameScore5() {
+        game.roll(2);
+        game.roll(3);
+        assertThat(game.getGameScore(), is(5));
+    }
 }
