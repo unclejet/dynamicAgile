@@ -91,4 +91,11 @@ public class BowlingGameScoreTest {
         roll(3);
         assertThat(game.getGameScore(), is(16 + 13));
     }
+
+    @Test
+    public void rollSpareInLastFrame() {
+        rollMany(18, 0);
+        rollSpare(5, 5);
+        assertThat(game.getGameScore(), is(0));
+    }
 }
