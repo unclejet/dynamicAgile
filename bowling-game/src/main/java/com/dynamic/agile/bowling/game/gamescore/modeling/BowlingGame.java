@@ -64,12 +64,8 @@ public class BowlingGame {
     }
 
     private void handleAdded() {
-        Frame tenthFrame = getTensFrame();
+        Frame tenthFrame = getLatestFrame();
         tenthFrame.addAddedRollIndex(rollIndex);
-    }
-
-    private Frame getTensFrame() {
-        return frames.get(frames.size() - 1);
     }
 
     private void handleMiss() {
@@ -102,13 +98,13 @@ public class BowlingGame {
         if (isFirstRoll()) {
             return firstRollScoreBoard();
         } else {
-            Frame latestFrame = frames.get(frames.size() - 1);
-            int frameNumber = getFrameNumber(latestFrame);
-            String rollIndexOfFrame = getRollIndexOfFrame(latestFrame);
-            String pinsLeft = getPinsLeft(latestFrame);
-            int score = getGameScore();
-            return formatScoreBoard(frameNumber, rollIndexOfFrame, pinsLeft, score);
+            Frame latestFrame = getLatestFrame();
+            return formatScoreBoard(getFrameNumber(latestFrame), getRollIndexOfFrame(latestFrame), getPinsLeft(latestFrame), getGameScore());
         }
+    }
+
+    private Frame getLatestFrame() {
+        return frames.get(frames.size() - 1);
     }
 
     private String firstRollScoreBoard() {

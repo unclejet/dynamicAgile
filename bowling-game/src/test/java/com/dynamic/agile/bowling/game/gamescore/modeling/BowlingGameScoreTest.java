@@ -13,40 +13,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
  * @date: Created in 2020/11/15 7:34
  * @description:
  */
-public class BowlingGameScoreTest {
-
-    private BowlingGame game;
-
-    @Before
-    public void setUp() throws Exception {
-        game = new BowlingGame();
-    }
-
-    private void roll(int pins) {
-        game.roll(pins);
-    }
-
-    private void rollFrame(int firstRollPins, int secondRollPins) {
-        assert firstRollPins + secondRollPins < PINS_IN_FRAME;
-        roll(firstRollPins);
-        roll(secondRollPins);
-    }
-
-    private void rollSpare(int firstRollPins, int secondRollPins) {
-        assert firstRollPins + secondRollPins == PINS_IN_FRAME;
-        roll(firstRollPins);
-        roll(secondRollPins);
-    }
-
-    private void rollStrike() {
-        roll(10);
-    }
-
-    private void rollMany(int times, int pins) {
-        for (int i = 0; i < times; i++) {
-            roll(pins);
-        }
-    }
+public class BowlingGameScoreTest extends BowlingGameTest {
 
     @Test
     public void givenGameStart_whenIRoll2_thenGetGameScore0() {
@@ -171,9 +138,5 @@ public class BowlingGameScoreTest {
         rollSpare(6, 4);
         rollExtra(4);
         assertThat(game.getGameScore(), is(137));
-    }
-
-    private void rollExtra(int pins) {
-        roll(pins);
     }
 }

@@ -14,41 +14,9 @@ import static org.hamcrest.Matchers.is;
  * @date 11/16/2020 8:26 AM
  * @description
  */
-public class BowlingGameScoreBoardTest {
-
-    private BowlingGame game;
-
-    @Before
-    public void setUp() throws Exception {
-        game = new BowlingGame();
-    }
-
+public class BowlingGameScoreBoardTest extends BowlingGameTest {
     private void verifyScoreBoard(int frameNumber, String rollIndexOfFrame, String pinsLeft, int score) {
         assertThat(game.getScoreBoard(), is(String.format("Frame:%d;Roll:%s;Pins Left:%s;Score:%d", frameNumber, rollIndexOfFrame, pinsLeft, score)));
-    }
-
-    private void roll(int pins) {
-        game.roll(pins);
-    }
-
-    private void rollSpare(int firstRollPins, int secondRollPins) {
-        roll(firstRollPins);
-        roll(secondRollPins);
-    }
-
-    private void rollStrike() {
-        roll(10);
-    }
-
-    private void rollFrame(int firstRollPins, int secondRollPins) {
-        roll(firstRollPins);
-        roll(secondRollPins);
-    }
-
-    private void rollMany(int times, int pins) {
-        for (int i = 0; i < times; i++) {
-            roll(pins);
-        }
     }
 
     @Test
