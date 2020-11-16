@@ -8,6 +8,9 @@ import java.util.List;
  * @description:
  */
 public class StrikeFrame extends Frame {
+
+    public static final String STRIKE = "X";
+
     public StrikeFrame(int firstRollIndex) {
         super(firstRollIndex, -1);
     }
@@ -20,7 +23,7 @@ public class StrikeFrame extends Frame {
 
     @Override
     public String getPinsLeft(List<Integer> pins) {
-        return "X";
+        return STRIKE;
     }
 
     private boolean hasNextTwoRolls(List<Integer> pins) {

@@ -8,6 +8,9 @@ import java.util.List;
  * @description:
  */
 public class SpareFrame extends Frame {
+
+    public static final String SPARE = "/";
+
     public SpareFrame(int firstRollIndex, int secondRollIndex) {
         super(firstRollIndex, secondRollIndex);
     }
@@ -19,7 +22,7 @@ public class SpareFrame extends Frame {
 
     @Override
     public String getPinsLeft(List<Integer> pins) {
-        return "/";
+        return SPARE;
     }
 
     private Integer nextRollPins(List<Integer> pins) {

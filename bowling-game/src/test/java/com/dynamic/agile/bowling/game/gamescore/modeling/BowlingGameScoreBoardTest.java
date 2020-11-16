@@ -3,6 +3,8 @@ package com.dynamic.agile.bowling.game.gamescore.modeling;
 import org.junit.Before;
 import org.junit.Test;
 
+import static com.dynamic.agile.bowling.game.gamescore.modeling.SpareFrame.SPARE;
+import static com.dynamic.agile.bowling.game.gamescore.modeling.StrikeFrame.STRIKE;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
@@ -51,13 +53,13 @@ public class BowlingGameScoreBoardTest {
     @Test
     public void rollSpareNoNextRoll() {
         rollSpare(7, 3);
-        verifyScoreBoard(1, 2, "/", 0);
+        verifyScoreBoard(1, 2, SPARE, 0);
     }
 
     @Test
     public void rollSpareHasNextRoll() {
         rollSpare(7, 3);
         rollStrike();
-        verifyScoreBoard(2, 1, "X", 20);
+        verifyScoreBoard(2, 1, STRIKE, 20);
     }
 }
