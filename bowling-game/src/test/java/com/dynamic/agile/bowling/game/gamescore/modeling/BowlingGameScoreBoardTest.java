@@ -24,6 +24,19 @@ public class BowlingGameScoreBoardTest {
         assertThat(game.getScoreBoard(), is(String.format("Frame:%d;Roll:%d;Pins Left:%s;Score:%d", frameNumber, rollIndexOfFrame, pinsLeft, score)));
     }
 
+    private void roll(int pins) {
+        game.roll(pins);
+    }
+
+    private void rollSpare(int firstRollPins, int secondRollPins) {
+        roll(secondRollPins);
+        roll(firstRollPins);
+    }
+
+    private void rollStrike() {
+        roll(10);
+    }
+
     @Test
     public void whenGameStart_ICanSeeScoreBoard() {
         verifyScoreBoard(1, 1, "10", 0);
@@ -31,14 +44,20 @@ public class BowlingGameScoreBoardTest {
 
     @Test
     public void roll7() {
-        game.roll(7);
+        roll(7);
         verifyScoreBoard(1, 1, "3", 0);
     }
 
     @Test
     public void rollSpareNoNextRoll() {
-        game.roll(7);
-        game.roll(3); //spare
+        rollSpare(7, 3);
         verifyScoreBoard(1, 2, "/", 0);
+    }
+
+    @Test
+    public void rollSpareHasNextRoll() {
+        rollSpare(7, 3);
+        rollStrike();
+        verifyScoreBoard(2, 1, "X", 20);
     }
 }
