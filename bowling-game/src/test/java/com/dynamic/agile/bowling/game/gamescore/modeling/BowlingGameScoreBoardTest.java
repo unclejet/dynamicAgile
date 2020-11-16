@@ -1,5 +1,6 @@
 package com.dynamic.agile.bowling.game.gamescore.modeling;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -11,16 +12,26 @@ import static org.hamcrest.Matchers.is;
  * @description
  */
 public class BowlingGameScoreBoardTest {
+
+    private BowlingGame game;
+
+    @Before
+    public void setUp() throws Exception {
+        game = new BowlingGame();
+    }
+
+    private void verifyScoreBoard(int frameNumber, int rollIndexOfFrame, String pinsLeft, int score) {
+        assertThat(game.getScoreBoard(), is(String.format("Frame:%d;Roll:%d;Pins Left:%s;Score:%d", frameNumber, rollIndexOfFrame, pinsLeft, score)));
+    }
+
     @Test
     public void whenGameStart_ICanSeeScoreBoard() {
-        BowlingGame game = new BowlingGame();
-        assertThat(game.getScoreBoard(), is(String.format("Frame:%d;Roll:%d;Pins Left:%s;Score:%d", 1, 1, "10", 0)));
+        verifyScoreBoard(1, 1, "10", 0);
     }
 
     @Test
     public void roll7() {
-        BowlingGame game = new BowlingGame();
         game.roll(7);
-        assertThat(game.getScoreBoard(), is(String.format("Frame:%d;Roll:%d;Pins Left:%s;Score:%d", 1, 1, "3", 0)));
+        verifyScoreBoard(1, 1, "3", 0);
     }
 }
