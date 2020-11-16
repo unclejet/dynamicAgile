@@ -62,4 +62,12 @@ public class BowlingGameScoreBoardTest {
         rollStrike();
         verifyScoreBoard(2, 1, STRIKE, 20);
     }
+
+    @Test
+    public void rollSpareAndStrikeHasNextRoll() {
+        rollSpare(7, 3);
+        rollStrike();
+        roll(4);
+        verifyScoreBoard(3, 1, "6", 20);
+    }
 }
