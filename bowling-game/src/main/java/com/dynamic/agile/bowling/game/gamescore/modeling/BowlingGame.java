@@ -84,11 +84,15 @@ public class BowlingGame {
     }
 
     public String getScoreBoard() {
-        int frameNumber = 1;
+        int frameNumber = getFrameNumber();
         int rollIndexOfFrame = getRollIndexOfFrame();
         String pinsLeft = getPinsLeft();
-        int score = 0;
+        int score = getGameScore();
         return String.format("Frame:%d;Roll:%d;Pins Left:%s;Score:%d", frameNumber, rollIndexOfFrame, pinsLeft, score);
+    }
+
+    private int getFrameNumber() {
+        return frames.size() == 0 ? 1 : frames.size();
     }
 
     private int getRollIndexOfFrame() {
