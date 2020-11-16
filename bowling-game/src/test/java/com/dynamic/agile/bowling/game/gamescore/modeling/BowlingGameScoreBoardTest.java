@@ -39,6 +39,11 @@ public class BowlingGameScoreBoardTest {
         roll(10);
     }
 
+    private void rollFrame(int firstRollPins, int secondRollPins) {
+        roll(firstRollPins);
+        roll(secondRollPins);
+    }
+
     @Test
     public void whenGameStart_ICanSeeScoreBoard() {
         verifyScoreBoard(1, 1, "10", 0);
@@ -69,5 +74,13 @@ public class BowlingGameScoreBoardTest {
         rollStrike();
         roll(4);
         verifyScoreBoard(3, 1, "6", 20);
+    }
+
+    @Test
+    public void rollSpareAndStrikeHasNextTwoRolls() {
+        rollSpare(7, 3);
+        rollStrike();
+        rollFrame(4, 5);
+        verifyScoreBoard(3, 2, "1", 48);
     }
 }
