@@ -17,6 +17,11 @@ public class SpareFrame extends Frame {
         return hasNextRoll(pins) ? PINS_IN_FRAME + nextRollPins(pins) : 0;
     }
 
+    @Override
+    public String getPinsLeft(List<Integer> pins) {
+        return "/";
+    }
+
     private Integer nextRollPins(List<Integer> pins) {
         return pins.get(secondRollIndex + 1);
     }

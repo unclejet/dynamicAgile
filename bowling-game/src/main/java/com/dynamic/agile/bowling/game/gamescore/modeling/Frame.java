@@ -20,4 +20,13 @@ public abstract class Frame {
     }
 
     public abstract int calculateScore(List<Integer> pins);
+
+    public int getRollIndexOfFrame(int currentRollIndex) {
+        if (currentRollIndex == secondRollIndex) {
+            return 2;
+        }
+        return 1;
+    }
+
+    public abstract String getPinsLeft(List<Integer> pins);
 }

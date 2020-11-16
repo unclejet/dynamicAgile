@@ -85,16 +85,34 @@ public class BowlingGame {
 
     public String getScoreBoard() {
         int frameNumber = 1;
-        int rollIndexOfFrame = 1;
+        int rollIndexOfFrame = getRollIndexOfFrame();
         String pinsLeft = getPinsLeft();
         int score = 0;
         return String.format("Frame:%d;Roll:%d;Pins Left:%s;Score:%d", frameNumber, rollIndexOfFrame, pinsLeft, score);
     }
 
-    private String getPinsLeft() {
-        if (pins.size() == 0) {
-            return String.valueOf(PINS_IN_FRAME);
+    private int getRollIndexOfFrame() {
+        if (isFirstRoll()) {
+            return 1;
         }
-        return String.valueOf(PINS_IN_FRAME - pins.get(pins.size() - 1));
+        Frame frame = frames.get(frames.size() - 1);
+        return frame.getRollIndexOfFrame(rollIndex - 1);
+    }
+
+    private String getPinsLeft() {
+        if (isFirstRoll()) {
+            return isNoRoll() ? String.valueOf(PINS_IN_FRAME)
+                    : String.valueOf(PINS_IN_FRAME - pins.get(0));
+        }
+        Frame frame = frames.get(frames.size() - 1);
+        return frame.getPinsLeft(pins);
+    }
+
+    private boolean isNoRoll() {
+        return pins.size() == 0;
+    }
+
+    private boolean isFirstRoll() {
+        return frames.size() == 0;
     }
 }

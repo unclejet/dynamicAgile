@@ -16,4 +16,9 @@ public class MissFrame extends Frame {
     public int calculateScore(List<Integer> pins) {
         return pins.get(firstRollIndex) + pins.get(secondRollIndex);
     }
+
+    @Override
+    public String getPinsLeft(List<Integer> pins) {
+        return String.valueOf(PINS_IN_FRAME - pins.get(firstRollIndex) - pins.get(secondRollIndex));
+    }
 }

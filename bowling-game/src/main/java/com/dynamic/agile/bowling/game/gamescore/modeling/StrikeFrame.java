@@ -18,6 +18,11 @@ public class StrikeFrame extends Frame {
                 PINS_IN_FRAME + pins.get(firstRollIndex + 1) + pins.get(firstRollIndex + 2) : 0;
     }
 
+    @Override
+    public String getPinsLeft(List<Integer> pins) {
+        return "X";
+    }
+
     private boolean hasNextTwoRolls(List<Integer> pins) {
         return pins.size() >= firstRollIndex + 3;
     }
