@@ -2,8 +2,10 @@ package com.dynamic.agile.bowling.game.gamescore.modeling;
 
 import org.hamcrest.CoreMatchers;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
+import static com.dynamic.agile.bowling.game.gamescore.modeling.Frame.ADDED_FRAME;
 import static com.dynamic.agile.bowling.game.gamescore.modeling.SpareFrame.SPARE;
 import static com.dynamic.agile.bowling.game.gamescore.modeling.StrikeFrame.STRIKE;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -23,8 +25,8 @@ public class BowlingGameScoreBoardTest {
         game = new BowlingGame();
     }
 
-    private void verifyScoreBoard(int frameNumber, int rollIndexOfFrame, String pinsLeft, int score) {
-        assertThat(game.getScoreBoard(), is(String.format("Frame:%d;Roll:%d;Pins Left:%s;Score:%d", frameNumber, rollIndexOfFrame, pinsLeft, score)));
+    private void verifyScoreBoard(String frameNumber, int rollIndexOfFrame, String pinsLeft, int score) {
+        assertThat(game.getScoreBoard(), is(String.format("Frame:%s;Roll:%d;Pins Left:%s;Score:%d", frameNumber, rollIndexOfFrame, pinsLeft, score)));
     }
 
     private void roll(int pins) {
@@ -32,8 +34,8 @@ public class BowlingGameScoreBoardTest {
     }
 
     private void rollSpare(int firstRollPins, int secondRollPins) {
-        roll(secondRollPins);
         roll(firstRollPins);
+        roll(secondRollPins);
     }
 
     private void rollStrike() {
@@ -47,26 +49,26 @@ public class BowlingGameScoreBoardTest {
 
     @Test
     public void whenGameStart_ICanSeeScoreBoard() {
-        verifyScoreBoard(1, 1, "10", 0);
+        verifyScoreBoard("1", 1, "10", 0);
     }
 
     @Test
     public void roll7() {
         roll(7);
-        verifyScoreBoard(1, 1, "3", 0);
+        verifyScoreBoard("1", 1, "3", 0);
     }
 
     @Test
     public void rollSpareNoNextRoll() {
         rollSpare(7, 3);
-        verifyScoreBoard(1, 2, SPARE, 0);
+        verifyScoreBoard("1", 2, SPARE, 0);
     }
 
     @Test
     public void rollSpareHasNextRoll() {
         rollSpare(7, 3);
         rollStrike();
-        verifyScoreBoard(2, 1, STRIKE, 20);
+        verifyScoreBoard("2", 1, STRIKE, 20);
     }
 
     @Test
@@ -74,7 +76,7 @@ public class BowlingGameScoreBoardTest {
         rollSpare(7, 3);
         rollStrike();
         roll(4);
-        verifyScoreBoard(3, 1, "6", 20);
+        verifyScoreBoard("3", 1, "6", 20);
     }
 
     @Test
@@ -82,32 +84,48 @@ public class BowlingGameScoreBoardTest {
         rollSpare(7, 3);
         rollStrike();
         rollFrame(4, 5);
-        verifyScoreBoard(3, 2, "1", 48);
+        verifyScoreBoard("3", 2, "1", 48);
     }
 
     @Test
     public void rollStrike_noNextRoll() {
         rollStrike();
-        verifyScoreBoard(1, 1, STRIKE, 0);
+        verifyScoreBoard("1", 1, STRIKE, 0);
     }
 
     @Test
     public void rollStrike_oneNextRoll() {
         rollStrike();
         roll(4);
-        verifyScoreBoard(2, 1, "6", 0);
+        verifyScoreBoard("2", 1, "6", 0);
     }
 
     @Test
     public void rollStrike_twoNextRoll() {
         rollStrike();
         rollFrame(4, 5);
-        verifyScoreBoard(2, 2, "1", 28);
+        verifyScoreBoard("2", 2, "1", 28);
     }
 
     @Test
     public void rollMiss() {
         rollFrame(4, 5);
-        verifyScoreBoard(1, 2, "1", 9);
+        verifyScoreBoard("1", 2, "1", 9);
+    }
+
+    @Test
+    public void complexRolls_score() {
+        rollFrame(2, 3);
+        rollFrame(7, 0);
+        rollSpare(5, 5);
+        rollSpare(6, 4);
+        rollFrame(5, 4);
+        rollStrike();
+        rollStrike();
+        rollFrame(3, 6);
+        rollStrike();
+        rollSpare(6, 4);
+        roll(4);
+        verifyScoreBoard(ADDED_FRAME, 1, SPARE, 137);
     }
 }
