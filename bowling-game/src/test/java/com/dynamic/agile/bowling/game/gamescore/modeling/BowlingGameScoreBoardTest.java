@@ -45,6 +45,12 @@ public class BowlingGameScoreBoardTest {
         roll(secondRollPins);
     }
 
+    private void rollMany(int times, int pins) {
+        for (int i = 0; i < times; i++) {
+            roll(pins);
+        }
+    }
+
     @Test
     public void whenGameStart_ICanSeeScoreBoard() {
         verifyScoreBoard(1, "1", "10", 0);
@@ -136,9 +142,11 @@ public class BowlingGameScoreBoardTest {
         verifyScoreBoard(10, "added 2", STRIKE, 30);
     }
 
-    private void rollMany(int times, int pins) {
-        for (int i = 0; i < times; i++) {
-            roll(pins);
-        }
+    @Test
+    public void rollLastStrike_nextTwoRolls() {
+        rollMany(18, 0);
+        rollStrike();
+        rollFrame(4, 4);
+        verifyScoreBoard(10, "added 2", STRIKE, 18);
     }
 }
