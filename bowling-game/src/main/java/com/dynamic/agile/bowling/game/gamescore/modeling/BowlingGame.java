@@ -92,7 +92,15 @@ public class BowlingGame {
     }
 
     private int getFrameNumber() {
-        return frames.size() == 0 ? 1 : frames.size();
+        if (frames.size() == 0) {
+            return 1;
+        }
+        Frame frame = frames.get(frames.size() - 1);
+        if (frame.contains(rollIndex - 1)) {
+            return frames.size();
+        } else {
+            return frames.size() + 1;
+        }
     }
 
     private int getRollIndexOfFrame() {
@@ -109,7 +117,10 @@ public class BowlingGame {
                     : String.valueOf(PINS_IN_FRAME - pins.get(0));
         }
         Frame frame = frames.get(frames.size() - 1);
-        return frame.getPinsLeft(pins);
+        if (frame.contains(rollIndex - 1)) {
+            return frame.getPinsLeft(pins);
+        }
+        return String.valueOf(PINS_IN_FRAME - pins.get(rollIndex - 1));
     }
 
     private boolean isNoRoll() {

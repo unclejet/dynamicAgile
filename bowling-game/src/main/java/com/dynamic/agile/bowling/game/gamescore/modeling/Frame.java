@@ -29,4 +29,9 @@ public abstract class Frame {
     }
 
     public abstract String getPinsLeft(List<Integer> pins);
+
+    public boolean contains(int rollIndex) {
+        return firstRollIndex == rollIndex
+                || secondRollIndex == rollIndex;
+    }
 }
