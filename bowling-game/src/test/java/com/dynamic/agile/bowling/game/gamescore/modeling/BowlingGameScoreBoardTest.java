@@ -126,4 +126,19 @@ public class BowlingGameScoreBoardTest {
         roll(4);
         verifyScoreBoard(10, "added 1", SPARE, 137);
     }
+
+    @Test
+    public void rollLastStrikes() {
+        rollMany(18, 0);
+        rollStrike();
+        rollStrike();
+        rollStrike();
+        verifyScoreBoard(10, "added 2", STRIKE, 30);
+    }
+
+    private void rollMany(int times, int pins) {
+        for (int i = 0; i < times; i++) {
+            roll(pins);
+        }
+    }
 }
