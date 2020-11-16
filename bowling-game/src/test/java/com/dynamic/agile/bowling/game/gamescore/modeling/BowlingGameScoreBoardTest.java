@@ -1,5 +1,6 @@
 package com.dynamic.agile.bowling.game.gamescore.modeling;
 
+import org.hamcrest.CoreMatchers;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -82,5 +83,25 @@ public class BowlingGameScoreBoardTest {
         rollStrike();
         rollFrame(4, 5);
         verifyScoreBoard(3, 2, "1", 48);
+    }
+
+    @Test
+    public void rollStrike_noNextRoll() {
+        rollStrike();
+        verifyScoreBoard(1, 1, STRIKE, 0);
+    }
+
+    @Test
+    public void rollStrike_oneNextRoll() {
+        rollStrike();
+        roll(4);
+        verifyScoreBoard(2, 1, "6", 0);
+    }
+
+    @Test
+    public void rollStrike_twoNextRoll() {
+        rollStrike();
+        rollFrame(4, 5);
+        verifyScoreBoard(2, 2, "1", 28);
     }
 }
