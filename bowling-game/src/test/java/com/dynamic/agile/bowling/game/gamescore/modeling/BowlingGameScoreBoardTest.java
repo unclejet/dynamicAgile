@@ -34,4 +34,11 @@ public class BowlingGameScoreBoardTest {
         game.roll(7);
         verifyScoreBoard(1, 1, "3", 0);
     }
+
+    @Test
+    public void rollSpareNoNextRoll() {
+        game.roll(7);
+        game.roll(3); //spare
+        verifyScoreBoard(1, 2, "/", 0);
+    }
 }
