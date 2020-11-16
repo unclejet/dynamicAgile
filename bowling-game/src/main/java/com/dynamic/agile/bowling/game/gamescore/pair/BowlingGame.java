@@ -9,11 +9,16 @@ import java.util.List;
  * @description 计算一个人打一局保龄球的得分
  * 该算法参考过uncle bob clean code视频TDD partII
  */
-public class BowlingGameScore {
+public class BowlingGame {
     public static final int FRAMES_OF_GAME = 10;
     public static final int PINS_OF_FRAME = 10;
+    private final ScoreBoard scoreBoard;
     private int gameScore;
     private List<Integer> rolls = new ArrayList<>();
+
+    public BowlingGame() {
+        scoreBoard = new ScoreBoard();
+    }
 
     public int getGameScore() {
         int rollIndexForTheFrame = 0;
@@ -52,14 +57,20 @@ public class BowlingGameScore {
     }
 
     public int getScore() {
-        return new ScoreBoard().invoke();
+        return scoreBoard.getScore();
+    }
+
+    public String getScoreBoard() {
+        return scoreBoard.getBoardContent();
     }
 
 
     private class ScoreBoard {
-        public int invoke() {
-            int frameIndex = 1;
-            int rollInFrame = 1;
+        private int frameIndex = 1;
+        private int rollInFrame = 1;
+        private String pinsLeft = "10";
+
+        public int getScore() {
             int score = 0;
             for (int roll = 0; roll < rolls.size(); roll++) {
                 int pins = rolls.get(roll);
@@ -82,10 +93,17 @@ public class BowlingGameScore {
                 if (rollInFrame == 1) {
                     if (isStrike(roll)) {
                         frameIndex++;
+                        pinsLeft = "x";
                     } else {
+                        pinsLeft = "" + (PINS_OF_FRAME - rolls.get(roll));
                         rollInFrame = 2;
                     }
                 } else if (rollInFrame == 2) {
+                    if (isSpare(roll - 1)) {
+                        pinsLeft = "/";
+                    } else {
+                        pinsLeft = "" + (PINS_OF_FRAME - getTwoRollsScore(roll - 1));
+                    }
                     frameIndex++;
                     rollInFrame = 1;
                 }
@@ -95,6 +113,34 @@ public class BowlingGameScore {
 
         private boolean isMiss(int roll) {
             return getTwoRollsScore(roll) < 10;
+        }
+
+        public String getBoardContent() {
+            int score = getScore();
+            int frameIndex = getFrameIndex();
+            String pinsLeft = getPinsLeft();
+            int rollInFrame = getRollInFrame();
+            return String.format("Frame:%d;Roll:%d;Pins Left:%s;Score:%d", frameIndex, rollInFrame, pinsLeft, score);
+        }
+
+        private int getFrameIndex() {
+            if (rollInFrame == 2) {
+                return frameIndex;
+            }
+            return frameIndex - 1;
+        }
+
+        private int getRollInFrame() {
+            if (rollInFrame == 2) {
+                return 1;
+            } else if (rollInFrame == 1) {
+                return pinsLeft.equals("x") ? 1 : 2;
+            }
+            return -1;
+        }
+
+        private String getPinsLeft() {
+            return pinsLeft;
         }
     }
 }

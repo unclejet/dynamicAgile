@@ -1,6 +1,5 @@
 package com.dynamic.agile.bowling.game.gamescore.pair;
 
-import com.dynamic.agile.bowling.game.gamescore.pair.BowlingGameScore;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -12,13 +11,13 @@ import static org.hamcrest.MatcherAssert.assertThat;
  * @date 11/8/2020 4:59 PM
  *
  */
-public class BowlingGameScoreTest {
+public class BowlingGameTest {
 
-    private BowlingGameScore game;
+    private BowlingGame game;
 
     @Before
     public void setUp() throws Exception {
-        game = new BowlingGameScore();
+        game = new BowlingGame();
     }
 
     private void roll(int pins) {
@@ -181,8 +180,43 @@ public class BowlingGameScoreTest {
         assertThat(game.getScore(), is(3 + 20 + 11 + 14));
     }
 
-    @Test
-    public void ICanSeeScoreBoard() {
+    private void verifyScoreBoard(int frame, int rollIndexOfFrame, String pinsLeft, int score) {
+        assertThat(game.getScoreBoard(), is(String.format("Frame:%d;Roll:%d;Pins Left:%s;Score:%d", frame, rollIndexOfFrame, pinsLeft, score)));
+    }
 
+    @Test
+    public void rollOne_showScoreBoard() {
+        roll(7);
+        verifyScoreBoard(1, 1, "" + 3, 0);
+    }
+
+    @Test
+    public void rollSpareNoNextRoll_showScoreBoard() {
+        roll(7);
+        roll(3);
+        verifyScoreBoard(1, 2, "/", 0);
+    }
+
+    @Test
+    public void rollSpareHasNextRoll_showScoreBoard() {
+        rollSpare(7, 3);
+        rollStrike();
+        verifyScoreBoard(2, 1, "x", 20);
+    }
+
+    @Test
+    public void rollSpareAndStrikeHasNextRoll_showScoreBoard() {
+        rollSpare(7, 3);
+        rollStrike();
+        roll(4);
+        verifyScoreBoard(3, 1, "6", 20);
+    }
+
+    @Test
+    public void rollSpareAndStrikeHasNextTwoRolls_showScoreBoard() {
+        rollSpare(7, 3);
+        rollStrike();
+        rollFrame(4, 5);
+        verifyScoreBoard(3, 2, "1", 48);
     }
 }
