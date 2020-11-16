@@ -104,4 +104,10 @@ public class BowlingGameScoreBoardTest {
         rollFrame(4, 5);
         verifyScoreBoard(2, 2, "1", 28);
     }
+
+    @Test
+    public void rollMiss() {
+        rollFrame(4, 5);
+        verifyScoreBoard(1, 2, "1", 9);
+    }
 }
