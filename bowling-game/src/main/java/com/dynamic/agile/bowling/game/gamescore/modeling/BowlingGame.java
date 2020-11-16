@@ -84,43 +84,46 @@ public class BowlingGame {
     }
 
     public String getScoreBoard() {
-        int frameNumber = getFrameNumber();
-        int rollIndexOfFrame = getRollIndexOfFrame();
-        String pinsLeft = getPinsLeft();
-        int score = getGameScore();
+        if (isFirstRoll()) {
+            return firstRollScoreBoard();
+        } else {
+            Frame latestFrame = frames.get(frames.size() - 1);
+            int frameNumber = getFrameNumber(latestFrame);
+            int rollIndexOfFrame = getRollIndexOfFrame(latestFrame);
+            String pinsLeft = getPinsLeft(latestFrame);
+            int score = getGameScore();
+            return formatScoreBoard(frameNumber, rollIndexOfFrame, pinsLeft, score);
+        }
+
+    }
+
+    private String firstRollScoreBoard() {
+        String pinsLeft = isNoRoll() ? String.valueOf(PINS_IN_FRAME)
+                : String.valueOf(PINS_IN_FRAME - pins.get(0));
+        return formatScoreBoard(1, 1, pinsLeft, 0);
+    }
+
+    private String formatScoreBoard(int frameNumber, int rollIndexOfFrame, String pinsLeft, int score) {
         return String.format("Frame:%d;Roll:%d;Pins Left:%s;Score:%d", frameNumber, rollIndexOfFrame, pinsLeft, score);
     }
 
-    private int getFrameNumber() {
-        if (frames.size() == 0) {
-            return 1;
-        }
-        Frame frame = frames.get(frames.size() - 1);
-        if (frame.contains(rollIndex - 1)) {
-            return frames.size();
-        } else {
-            return frames.size() + 1;
-        }
+    private int getFrameNumber(Frame latestFrame) {
+        return isCurrentRollIn(latestFrame) ? frames.size() : frames.size() + 1;
+
     }
 
-    private int getRollIndexOfFrame() {
-        if (isFirstRoll()) {
-            return 1;
-        }
-        Frame frame = frames.get(frames.size() - 1);
-        return frame.getRollIndexOfFrame(rollIndex - 1);
+    private boolean isCurrentRollIn(Frame latestFrame) {
+        return latestFrame.contains(rollIndex - 1);
     }
 
-    private String getPinsLeft() {
-        if (isFirstRoll()) {
-            return isNoRoll() ? String.valueOf(PINS_IN_FRAME)
-                    : String.valueOf(PINS_IN_FRAME - pins.get(0));
-        }
-        Frame frame = frames.get(frames.size() - 1);
-        if (frame.contains(rollIndex - 1)) {
-            return frame.getPinsLeft(pins);
-        }
-        return String.valueOf(PINS_IN_FRAME - pins.get(rollIndex - 1));
+    private int getRollIndexOfFrame(Frame latestFrame) {
+//        return isCurrentRollIn(latestFrame) ? 2 : 1;
+        return latestFrame.getRollIndexOfFrame(rollIndex - 1);
+    }
+
+    private String getPinsLeft(Frame latestFrame) {
+        return isCurrentRollIn(latestFrame) ? latestFrame.getPinsLeft(pins) :
+                String.valueOf(PINS_IN_FRAME - pins.get(rollIndex - 1));
     }
 
     private boolean isNoRoll() {
