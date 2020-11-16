@@ -83,4 +83,7 @@ public class BowlingGame {
         return pins.get(firstRollIndexInFrame) + pins.get(secondRollIndexInFrame);
     }
 
+    public String getScoreBoard() {
+        return null;
+    }
 }
