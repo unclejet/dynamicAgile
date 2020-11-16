@@ -10,28 +10,42 @@ import java.util.List;
 public abstract class Frame {
     public static final int PINS_IN_FRAME = 10;
     public static final int MAX_ROLL_NUMBER_IN_FRAME = 2;
+    public static final int INVALID_ROLL_INDEX = -1;
 
     protected int firstRollIndex;
     protected int secondRollIndex;
+    protected int addedFirstRollIndex;
+    protected int addedSecondRollIndex;
 
     public Frame(int firstRollIndex, int secondRollIndex) {
         this.firstRollIndex = firstRollIndex;
         this.secondRollIndex = secondRollIndex;
+        addedFirstRollIndex = INVALID_ROLL_INDEX;
+        addedSecondRollIndex = INVALID_ROLL_INDEX;
     }
 
-    public abstract int calculateScore(List<Integer> pins);
+    public String getRollIndexOfFrame(int currentRollIndex) {
+        return currentRollIndex == addedSecondRollIndex ? "added 2" :
+                currentRollIndex == addedFirstRollIndex ? "added 1" :
+                        currentRollIndex == secondRollIndex ? "2" : "1";
+    }
 
-    public int getRollIndexOfFrame(int currentRollIndex) {
-        if (currentRollIndex == secondRollIndex) {
-            return 2;
+    public void addAddedRollIndex(int rollIndex) {
+        if (addedFirstRollIndex == INVALID_ROLL_INDEX) {
+            addedFirstRollIndex = rollIndex;
+        } else {
+            addedSecondRollIndex = rollIndex;
         }
-        return 1;
+    }
+
+    public boolean contains(int rollIndex) {
+        return firstRollIndex == rollIndex
+                || secondRollIndex == rollIndex
+                || addedFirstRollIndex == rollIndex
+                || addedSecondRollIndex == rollIndex;
     }
 
     public abstract String getPinsLeft(List<Integer> pins);
 
-    public boolean contains(int rollIndex) {
-        return firstRollIndex == rollIndex
-                || secondRollIndex == rollIndex;
-    }
+    public abstract int calculateScore(List<Integer> pins);
 }
