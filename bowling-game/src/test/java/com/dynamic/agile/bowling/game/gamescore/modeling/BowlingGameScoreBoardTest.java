@@ -14,6 +14,13 @@ public class BowlingGameScoreBoardTest {
     @Test
     public void whenGameStart_ICanSeeScoreBoard() {
         BowlingGame game = new BowlingGame();
-        assertThat(game.getScoreBoard(), is(String.format("Frame:%d;Roll:%d;Pins Left:%s;Score:%d", 1, 1, 10, 0)));
+        assertThat(game.getScoreBoard(), is(String.format("Frame:%d;Roll:%d;Pins Left:%s;Score:%d", 1, 1, "10", 0)));
+    }
+
+    @Test
+    public void roll7() {
+        BowlingGame game = new BowlingGame();
+        game.roll(7);
+        assertThat(game.getScoreBoard(), is(String.format("Frame:%d;Roll:%d;Pins Left:%s;Score:%d", 1, 1, "3", 0)));
     }
 }
