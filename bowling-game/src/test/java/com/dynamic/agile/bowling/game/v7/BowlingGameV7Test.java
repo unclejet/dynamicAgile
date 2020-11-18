@@ -65,4 +65,10 @@ public class BowlingGameV7Test {
         roll(1);
         assertThat(game.score(),is(2));
     }
+
+    @Test
+    public void roll64(){
+        rollSpare(6,4);
+        assertThat(game.score(),is(0));
+    }
 }
