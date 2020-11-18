@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class BowlingGameV7 {
     private ArrayList<FrameV7> frames = new ArrayList<>();
+    private ArrayList<Integer> rolls = new ArrayList<>();
     private FrameV7 currentFrame;
 
     BowlingGameV7() {
@@ -16,17 +17,15 @@ public class BowlingGameV7 {
     }
 
     public void roll(int pins) {
+        rolls.add(pins);
         currentFrame.hitPins(pins);
-        if(currentFrame.hasTwoRollPins()){
+        if (currentFrame.hasTwoRollPins()) {
+            currentFrame.prepareCalRule(rolls);
             refreshFrame();
         }
     }
 
     public int score() {
-        int score = 0;
-        for (FrameV7 frame : frames) {
-            score += frame.score();
-        }
-        return score;
+        return frames.stream().mapToInt(FrameV7::score).sum();
     }
 }

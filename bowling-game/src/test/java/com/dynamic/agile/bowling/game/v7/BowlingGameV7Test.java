@@ -3,6 +3,7 @@ package com.dynamic.agile.bowling.game.v7;
 import com.dynamic.agile.bowling.game.v6.BowlingGameV6;
 import com.dynamic.agile.bowling.game.v6.FrameV6;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -48,27 +49,34 @@ public class BowlingGameV7Test {
     }
 
     @Test
-    public void roll1(){
+    public void roll1() {
         game.roll(1);
-        assertThat(game.score(),is(0));
+        assertThat(game.score(), is(0));
     }
 
     @Test
-    public void roll11(){
-        rollMiss(1,1);
-        assertThat(game.score(),is(2));
+    public void roll11() {
+        rollMiss(1, 1);
+        assertThat(game.score(), is(2));
     }
 
     @Test
-    public void roll111(){
-        rollMiss(1,1);
+    public void roll111() {
+        rollMiss(1, 1);
         roll(1);
-        assertThat(game.score(),is(2));
+        assertThat(game.score(), is(2));
     }
 
     @Test
-    public void roll64(){
-        rollSpare(6,4);
-        assertThat(game.score(),is(0));
+    public void roll64() {
+        rollSpare(6, 4);
+        assertThat(game.score(), is(0));
+    }
+
+    @Test
+    public void roll552() {
+        rollSpare(5, 5);
+        roll(2);
+        assertThat(game.score(), is(12));
     }
 }

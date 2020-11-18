@@ -4,15 +4,27 @@ import java.util.ArrayList;
 
 class FrameV7 {
     private ArrayList<Integer> framePins = new ArrayList<>();
+    private CalRule calRule;
 
-    int score() {
+    void hitPins(int pins) {
+        framePins.add(pins);
+    }
+
+    boolean hasTwoRollPins() {
+        return framePins.size() == 2;
+    }
+
+    void prepareCalRule(ArrayList<Integer> rolls) {
         if (isMiss()) {
-            return countTwoRollPins();
+            calRule = new MissRule(rolls);
         }
         if (isSpare()) {
-            return 0;
+            calRule = new SpareRule(rolls);
         }
-        return 0;
+    }
+
+    int score() {
+        return calRule != null ? calRule.score() : 0;
     }
 
     private boolean isMiss() {
@@ -27,11 +39,4 @@ class FrameV7 {
         return framePins.get(0) + framePins.get(1);
     }
 
-    void hitPins(int pins) {
-        framePins.add(pins);
-    }
-
-    boolean hasTwoRollPins() {
-        return framePins.size() == 2;
-    }
 }
