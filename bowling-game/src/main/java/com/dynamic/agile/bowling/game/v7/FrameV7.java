@@ -6,7 +6,25 @@ class FrameV7 {
     private ArrayList<Integer> framePins = new ArrayList<>();
 
     int score() {
-        return hasTwoRollPins() ? framePins.get(0) + framePins.get(1) : 0;
+        if (isMiss()) {
+            return countTwoRollPins();
+        }
+        if (isSpare()) {
+            return 0;
+        }
+        return 0;
+    }
+
+    private boolean isMiss() {
+        return hasTwoRollPins() && countTwoRollPins() < 10;
+    }
+
+    private boolean isSpare() {
+        return hasTwoRollPins() && countTwoRollPins() == 10;
+    }
+
+    private int countTwoRollPins() {
+        return framePins.get(0) + framePins.get(1);
     }
 
     void hitPins(int pins) {
