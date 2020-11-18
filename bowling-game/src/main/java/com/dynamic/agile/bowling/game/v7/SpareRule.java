@@ -9,11 +9,15 @@ class SpareRule extends CalRule {
 
     @Override
     int score() {
-        return hasNextRoll() ? 10 + rolls.get(lastFrameRollIndex + 1) : 0;
+        return hasNextRoll() ? FrameV7.PINS_OF_FRAME + rolls.get(nextRollIndex()) : 0;
     }
 
     private boolean hasNextRoll() {
-        return lastRollIndex() > lastFrameRollIndex;
+        return lastRollIndex() >= nextRollIndex();
+    }
+
+    private int nextRollIndex() {
+        return lastFrameRollIndex + 1;
     }
 
 }

@@ -79,4 +79,31 @@ public class BowlingGameV7Test {
         roll(2);
         assertThat(game.score(), is(12));
     }
+
+    @Test
+    public void roll556422() {
+        rollSpare(5, 5);
+        rollSpare(6, 4);
+        rollMiss(2, 2);
+        assertThat(game.score(), is(16 + 12 + 4));
+    }
+
+    @Test
+    public void roll1Strike() {
+        rollStrike();
+        assertThat(game.score(), is(0));
+    }
+
+    @Test
+    public void roll1Strike22() {
+        rollStrike();
+        rollMiss(2, 2);
+        assertThat(game.score(), is(14 + 4));
+    }
+
+    @Test
+    public void rollAllStrikes() {
+        rollMany(12,10);
+        assertThat(game.score(), is(300));
+    }
 }

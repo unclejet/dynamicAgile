@@ -8,20 +8,24 @@ public class BowlingGameV7 {
     private FrameV7 currentFrame;
 
     BowlingGameV7() {
-        refreshFrame();
+        createNewFrame();
     }
 
-    private void refreshFrame() {
+    private void createNewFrame() {
         currentFrame = new FrameV7();
         frames.add(currentFrame);
     }
 
     public void roll(int pins) {
         rolls.add(pins);
+        refreshFrameAfterEachRoll(pins);
+    }
+
+    private void refreshFrameAfterEachRoll(int pins) {
         currentFrame.hitPins(pins);
-        if (currentFrame.hasTwoRollPins()) {
+        if (currentFrame.isFinished()) {
             currentFrame.prepareCalRule(rolls);
-            refreshFrame();
+            createNewFrame();
         }
     }
 

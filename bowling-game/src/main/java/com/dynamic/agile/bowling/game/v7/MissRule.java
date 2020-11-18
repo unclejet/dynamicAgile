@@ -9,6 +9,6 @@ class MissRule extends CalRule {
 
     @Override
     int score() {
-        return rolls.get(lastFrameRollIndex - 1)+rolls.get(lastFrameRollIndex);
+        return rolls.get(lastFrameRollIndex - 1) + rolls.get(lastFrameRollIndex);
     }
 }
