@@ -7,12 +7,19 @@ public class BowlingGameV7 {
     private FrameV7 currentFrame;
 
     BowlingGameV7() {
+        refreshFrame();
+    }
+
+    private void refreshFrame() {
         currentFrame = new FrameV7();
         frames.add(currentFrame);
     }
 
     public void roll(int pins) {
         currentFrame.hitPins(pins);
+        if(currentFrame.hasTwoRollPins()){
+            refreshFrame();
+        }
     }
 
     public int score() {
