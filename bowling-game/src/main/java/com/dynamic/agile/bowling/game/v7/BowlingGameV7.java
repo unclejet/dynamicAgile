@@ -1,10 +1,25 @@
 package com.dynamic.agile.bowling.game.v7;
 
+import java.util.ArrayList;
+
 public class BowlingGameV7 {
+    private ArrayList<FrameV7> frames = new ArrayList<>();
+    private FrameV7 currentFrame;
+
+    BowlingGameV7() {
+        currentFrame = new FrameV7();
+        frames.add(currentFrame);
+    }
+
     public void roll(int pins) {
+        currentFrame.hitPins(pins);
     }
 
     public int score() {
-        return 0;
+        int score = 0;
+        for (FrameV7 frame : frames) {
+            score += frame.score();
+        }
+        return score;
     }
 }

@@ -52,4 +52,10 @@ public class BowlingGameV7Test {
         game.roll(1);
         assertThat(game.score(),is(0));
     }
+
+    @Test
+    public void roll11(){
+        rollMiss(1,1);
+        assertThat(game.score(),is(2));
+    }
 }
