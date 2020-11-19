@@ -9,16 +9,25 @@ import java.util.List;
  * @description:
  */
 public class Frame {
+    public static final int ALL_PINS_IN_FRAME = 10;
     private List<Integer> pins = new ArrayList<>();
     public int score() {
         if (isMiss()) {
-            return pins.get(0) + pins.get(1);
+            return firstRollPins() + secondRollPins();
         }
         return 0;
     }
 
+    private Integer secondRollPins() {
+        return pins.get(1);
+    }
+
+    private Integer firstRollPins() {
+        return pins.get(0);
+    }
+
     private boolean isMiss() {
-        return pins.size() == 2 && pins.get(0) + pins.get(1) < 10;
+        return pins.size() == 2 && firstRollPins() + secondRollPins() < ALL_PINS_IN_FRAME;
     }
 
     public void hitPins(int pins) {
