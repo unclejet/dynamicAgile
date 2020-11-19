@@ -24,11 +24,12 @@ public class BowlingGame {
 
     public void roll(int pins) {
         rolls.add(pins);
+        currentFrame.hitPins(pins);
         if (currentFrame.isFinished()) {
             currentFrame.setLastRollIndex(rolls.size() - 2);
+            currentFrame.makeSureScoreRule(rolls);
             newFrame();
         }
-        currentFrame.hitPins(pins);
     }
 
     private void newFrame() {

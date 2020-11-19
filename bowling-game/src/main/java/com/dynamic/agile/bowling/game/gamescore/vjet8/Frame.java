@@ -12,13 +12,14 @@ public class Frame {
     public static final int ALL_PINS_IN_FRAME = 10;
     private List<Integer> pins = new ArrayList<>();
     private int lastRollIndex = -1;
+    private ScoreRule scoreRule;
 
     public int score(List<Integer> rolls) {
         if (!isFinished()) {
             return 0;
         }
-        if (isMiss()) {
-            return firstRollPins() + secondRollPins();
+        if (isMiss() && scoreRule != null) {
+            return scoreRule.score();
         }
         if (isSpare() && hasNextRoll(rolls)) {
             return ALL_PINS_IN_FRAME + nextRollPins(rolls);
@@ -75,5 +76,11 @@ public class Frame {
 
     public void setLastRollIndex(int lastRollIndex) {
         this.lastRollIndex = lastRollIndex;
+    }
+
+    public void makeSureScoreRule(List<Integer> rolls) {
+        if (isMiss()) {
+            scoreRule = new MissScoreRule(rolls);
+        }
     }
 }
