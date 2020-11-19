@@ -6,6 +6,7 @@ public class BowlingGameDAPV1 {
     private ArrayList<FrameDAPV1> frames = new ArrayList<>();
     private ArrayList<Integer> rolls = new ArrayList<>();
     private FrameDAPV1 currentFrame;
+    private ScoreBoard scoreBoard = new ScoreBoard();
 
     BowlingGameDAPV1() {
         createNewFrame();
@@ -29,13 +30,45 @@ public class BowlingGameDAPV1 {
         return frames.stream().mapToInt(FrameDAPV1::score).sum();
     }
 
-    public String scoreBoard() {
-        FrameDAPV1 frame = currentFrame;
-        int frameIndex = frames.size();
-        if (currentFrame.isNew()) {
-            frame = frames.get(frames.size() - 2);
-            frameIndex = frames.size() - 1;
+    String scoreBoard() {
+        return scoreBoard.showBoard();
+    }
+
+    private class ScoreBoard {
+        String showBoard() {
+            return showFrameIndex() + "," + frameRollIndex() + "," + showHitPins() + "," + score();
         }
-        return frameIndex + "," + frame.frameRollIndex() + "," + frame.showHitPins() + "," + score();
+
+        private String showFrameIndex() {
+            return appendixRoll() ? "-" : String.valueOf(frameIndex());
+        }
+
+        private String showHitPins() {
+            return appendixRoll() ? lastRollPins() : workingFrame().showHitPins();
+        }
+
+        private String lastRollPins() {
+            return String.valueOf(rolls.get(rolls.size() - 1));
+        }
+
+        private String frameRollIndex() {
+            return appendixRoll() ? "-" : workingFrame().frameRollIndex();
+        }
+
+        private boolean appendixRoll() {
+            return frameIndex() > 10;
+        }
+
+        private FrameDAPV1 workingFrame() {
+            return frames.get(frameIndex() - 1);
+        }
+
+        private int frameIndex() {
+            return lastFrame().isNew() ? frames.size() - 1 : frames.size();
+        }
+
+        private FrameDAPV1 lastFrame() {
+            return frames.get(frames.size() - 1);
+        }
     }
 }

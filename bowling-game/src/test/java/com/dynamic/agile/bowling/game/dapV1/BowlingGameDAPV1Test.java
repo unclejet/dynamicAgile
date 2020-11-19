@@ -147,11 +147,17 @@ public class BowlingGameDAPV1Test {
         assertThat(game.scoreBoard(), is("1,1,x,0"));
     }
 
-    @Ignore
     @Test
-    public void rollAF1AR1() {
+    public void rollAR1() {
         rollMany(10, 10);
         roll(5);
-        assertThat(game.scoreBoard(), is("af1,ar1,5,265"));
+        assertThat(game.scoreBoard(), is("-,-,5,265"));
+    }
+
+    @Test
+    public void rollAR2() {
+        rollMany(10, 10);
+        rollMiss(5, 4);
+        assertThat(game.scoreBoard(), is("-,-,4,293"));
     }
 }
