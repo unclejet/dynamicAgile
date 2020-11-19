@@ -10,10 +10,10 @@ import java.util.List;
  */
 public class BowlingGame {
     private List<Frame> frames = new ArrayList<>();
+    private Frame currentFrame;
 
     public BowlingGame() {
-        Frame frame = new Frame();
-        frames.add(frame);
+        newFrame();
     }
 
     public int score() {
@@ -21,7 +21,14 @@ public class BowlingGame {
     }
 
     public void roll(int pins) {
-        Frame currentFrame = frames.get(frames.size() - 1);
+        if (currentFrame.isFinished()) {
+            newFrame();
+        }
         currentFrame.hitPins(pins);
+    }
+
+    private void newFrame() {
+        currentFrame = new Frame();
+        frames.add(currentFrame);
     }
 }

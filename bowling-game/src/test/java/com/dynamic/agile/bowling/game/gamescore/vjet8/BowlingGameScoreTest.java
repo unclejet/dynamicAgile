@@ -1,6 +1,7 @@
 package com.dynamic.agile.bowling.game.gamescore.vjet8;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -43,6 +44,7 @@ public class BowlingGameScoreTest {
         assertThat(game.score(), is(5));
     }
 
+    @Ignore
     @Test
     public void rollMisAndNextRoll() {
         rollMiss(3, 2);

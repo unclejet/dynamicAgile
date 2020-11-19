@@ -33,4 +33,8 @@ public class Frame {
     public void hitPins(int pins) {
         this.pins.add(pins);
     }
+
+    public boolean isFinished() {
+        return pins.size() == 2;
+    }
 }
