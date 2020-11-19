@@ -44,7 +44,6 @@ public class BowlingGameScoreTest {
         assertThat(game.score(), is(5));
     }
 
-    @Ignore
     @Test
     public void rollMisAndNextRoll() {
         rollMiss(3, 2);
