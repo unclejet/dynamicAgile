@@ -6,13 +6,6 @@ class FrameDAPV1 {
     public static final int PINS_OF_FRAME = 10;
     private ArrayList<Integer> hitPins = new ArrayList<>();
 
-    int score() {
-        if (isSpare()) {
-            return 0;
-        }
-        return hasTwoRolls() ? countTwoRollPins() : 0;
-    }
-
     private boolean isSpare() {
         return hasTwoRolls() && countTwoRollPins() == PINS_OF_FRAME;
     }
@@ -28,4 +21,20 @@ class FrameDAPV1 {
     boolean hasTwoRolls() {
         return hitPins.size() == 2;
     }
+
+    int score() {
+        if (isSpare()) {
+            return hasNextRoll() ? PINS_OF_FRAME + nextRollPins() : 0;
+        }
+        return hasTwoRolls() ? countTwoRollPins() : 0;
+    }
+
+    private boolean hasNextRoll() {
+        return false;
+    }
+
+    private int nextRollPins() {
+        return 2;
+    }
+
 }
