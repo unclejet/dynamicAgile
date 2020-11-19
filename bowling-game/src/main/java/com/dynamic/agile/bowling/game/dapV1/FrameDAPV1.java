@@ -40,7 +40,7 @@ class FrameDAPV1 {
         if (isMiss()) {
             scoreRule = new MissRule(rolls);
         }
-        if(isStrike()){
+        if (isStrike()) {
             scoreRule = new StrikeRule(rolls);
         }
     }
@@ -55,5 +55,21 @@ class FrameDAPV1 {
 
     private boolean hasRolls() {
         return hitPins.size() > 0;
+    }
+
+    public String frameRollIndex() {
+        return String.valueOf(hitPins.size());
+    }
+
+    public String showHitPins() {
+        return isStrike() ? "x" : isSpare() ? "/" : String.valueOf(frameHitPins());
+    }
+
+    private int frameHitPins() {
+        return hitPins.stream().mapToInt(Integer::intValue).sum();
+    }
+
+    public boolean isNew() {
+        return hitPins.size() == 0;
     }
 }

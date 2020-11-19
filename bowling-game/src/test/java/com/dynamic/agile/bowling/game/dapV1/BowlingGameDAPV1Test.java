@@ -111,8 +111,47 @@ public class BowlingGameDAPV1Test {
     }
 
     @Test
-    public void rollAllStrikes(){
-        rollMany(12,10);
-        assertThat(game.score(),is(300));
+    public void rollAllStrikes() {
+        rollMany(12, 10);
+        assertThat(game.score(), is(300));
+    }
+
+    @Test
+    public void roll1_1110() {
+        roll(1);
+        assertThat(game.scoreBoard(), is("1,1,1,0"));
+    }
+
+    @Test
+    public void roll11_1222() {
+        rollMiss(1, 1);
+        assertThat(game.scoreBoard(), is("1,2,2,2"));
+    }
+
+    @Test
+    public void roll113_2132() {
+        rollMiss(1, 1);
+        roll(3);
+        assertThat(game.scoreBoard(), is("2,1,3,2"));
+    }
+
+    @Test
+    public void roll1Spare_64s0() {
+        rollSpare(6, 4);
+        assertThat(game.scoreBoard(), is("1,2,/,0"));
+    }
+
+    @Test
+    public void roll1Strike_11x0() {
+        rollStrike();
+        assertThat(game.scoreBoard(), is("1,1,x,0"));
+    }
+
+    @Ignore
+    @Test
+    public void rollAF1AR1() {
+        rollMany(10, 10);
+        roll(5);
+        assertThat(game.scoreBoard(), is("af1,ar1,5,265"));
     }
 }
