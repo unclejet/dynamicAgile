@@ -43,6 +43,10 @@ public class BowlingGameScoreTest {
         roll(secondRollPins);
     }
 
+    private void rollStrike() {
+        roll(Frame.ALL_PINS_IN_FRAME);
+    }
+
     @Test
     public void rollOneBallHit3Pins() {
         int pins = 3;
@@ -129,14 +133,14 @@ public class BowlingGameScoreTest {
 
     @Test
     public void rollOneStrike() {
-        roll(10);
+        rollStrike();
         assertThat(game.score(), is(0));
     }
 
     @Test
     public void rollTwoStrike() {
-        roll(10);
-        roll(10);
+        rollStrike();
+        rollStrike();
         assertThat(game.score(), is(0));
     }
 }
