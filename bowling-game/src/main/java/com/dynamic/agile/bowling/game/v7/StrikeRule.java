@@ -2,8 +2,8 @@ package com.dynamic.agile.bowling.game.v7;
 
 import java.util.ArrayList;
 
-public class StrikeRule extends CalRule {
-    public StrikeRule(ArrayList<Integer> rolls) {
+class StrikeRule extends CalRule {
+    StrikeRule(ArrayList<Integer> rolls) {
         super(rolls);
     }
 
