@@ -7,4 +7,8 @@ class FrameDAPV2 {
     int score() {
         return hitPins.stream().mapToInt(Integer::intValue).sum();
     }
+
+    void hitPins(int pins) {
+        hitPins.add(pins);
+    }
 }
