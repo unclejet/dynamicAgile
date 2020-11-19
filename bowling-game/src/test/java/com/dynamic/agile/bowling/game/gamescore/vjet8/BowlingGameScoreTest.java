@@ -104,5 +104,13 @@ public class BowlingGameScoreTest {
         assertThat(game.score(), is(13 + 18));
     }
 
+    @Test
+    public void rollTwoSpareAndRollMiss() {
+        rollSpare(5, 5);
+        rollSpare(3, 7);
+        rollMiss(8, 1);
+        assertThat(game.score(), is(13 + 18 + 9));
+    }
+
 
 }
