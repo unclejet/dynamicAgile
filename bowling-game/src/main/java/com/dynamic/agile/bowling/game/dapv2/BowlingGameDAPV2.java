@@ -1,10 +1,13 @@
 package com.dynamic.agile.bowling.game.dapv2;
 
-public class BowlingGameDAPV2 {
-    public void roll(int pins) {
+import java.util.ArrayList;
+
+class BowlingGameDAPV2 {
+    private ArrayList<FrameDAPV2> frames = new ArrayList<>();
+    void roll(int pins) {
     }
 
-    public int score() {
-        return 0;
+    int score() {
+        return frames.stream().mapToInt(FrameDAPV2::score).sum();
     }
 }
