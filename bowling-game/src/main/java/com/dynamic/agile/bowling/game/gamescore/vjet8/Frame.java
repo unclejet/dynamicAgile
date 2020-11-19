@@ -18,11 +18,11 @@ public class Frame {
         if (!isFinished()) {
             return 0;
         }
-        if (isMiss() && scoreRule != null) {
+        if (isMiss()) {
             return scoreRule.score();
         }
-        if (isSpare() && hasNextRoll(rolls)) {
-            return ALL_PINS_IN_FRAME + nextRollPins(rolls);
+        if (isSpare()) {
+            return scoreRule.score();
         }
         if (isStrike() && hasNextTwoRolls(rolls)) {
             return ALL_PINS_IN_FRAME + nextTwoRollPins(rolls);
@@ -42,16 +42,8 @@ public class Frame {
         return pins.size() == 1 && pins.get(0) == ALL_PINS_IN_FRAME;
     }
 
-    private boolean hasNextRoll(List<Integer> rolls) {
-        return lastRollIndex > 0 && rolls.size() - 1 > lastRollIndex;
-    }
-
     private boolean isSpare() {
         return pins.size() == 2 && firstRollPins() + secondRollPins() == ALL_PINS_IN_FRAME;
-    }
-
-    private int nextRollPins(List<Integer> rolls) {
-        return rolls.get(lastRollIndex + 1);
     }
 
     private Integer secondRollPins() {
@@ -81,6 +73,8 @@ public class Frame {
     public void makeSureScoreRule(List<Integer> rolls) {
         if (isMiss()) {
             scoreRule = new MissScoreRule(rolls);
+        } else if (isSpare()) {
+            scoreRule = new SpareScoreRule(rolls);
         }
     }
 }
