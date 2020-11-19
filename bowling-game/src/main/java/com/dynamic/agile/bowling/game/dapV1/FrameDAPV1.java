@@ -6,10 +6,14 @@ class FrameDAPV1 {
     private ArrayList<Integer> hitPins = new ArrayList<>();
 
     int score() {
-        return hitPins.size() == 2 ? hitPins.stream().mapToInt(Integer::intValue).sum() : 0;
+        return hasTwoRolls() ? hitPins.stream().mapToInt(Integer::intValue).sum() : 0;
     }
 
     void hitPins(int pins) {
         hitPins.add(pins);
+    }
+
+    boolean hasTwoRolls() {
+        return hitPins.size() == 2;
     }
 }

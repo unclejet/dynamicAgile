@@ -47,9 +47,17 @@ public class BowlingGameDAPV1Test {
         roll(1);
         assertThat(game.score(), is(0));
     }
+
     @Test
-    public void roll11(){
-        rollMiss(1,1);
-        assertThat(game.score(),is(2));
+    public void roll11() {
+        rollMiss(1, 1);
+        assertThat(game.score(), is(2));
+    }
+
+    @Test
+    public void roll111() {
+        rollMiss(1, 1);
+        roll(1);
+        assertThat(game.score(), is(2));
     }
 }
