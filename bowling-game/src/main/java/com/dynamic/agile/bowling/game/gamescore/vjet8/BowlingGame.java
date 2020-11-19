@@ -19,14 +19,13 @@ public class BowlingGame {
     }
 
     public int score() {
-        return frames.stream().mapToInt(frame -> frame.score(rolls)).sum();
+        return frames.stream().mapToInt(Frame::score).sum();
     }
 
     public void roll(int pins) {
         rolls.add(pins);
         currentFrame.hitPins(pins);
         if (currentFrame.isFinished()) {
-            currentFrame.setLastRollIndex(rolls.size() - 2);
             currentFrame.makeSureScoreRule(rolls);
             newFrame();
         }

@@ -11,31 +11,32 @@ import java.util.List;
 public class Frame {
     public static final int ALL_PINS_IN_FRAME = 10;
     private List<Integer> pins = new ArrayList<>();
-    private int lastRollIndex = -1;
     private ScoreRule scoreRule;
 
-    public int score(List<Integer> rolls) {
-        if (!isFinished()) {
-            return 0;
-        }
+    public int score() {
+        return isRuleMakeSure() ? scoreRule.score() : 0;
+    }
+
+    public void hitPins(int pins) {
+        this.pins.add(pins);
+    }
+
+    public boolean isFinished() {
+        return pins.size() == 2 || isStrike();
+    }
+
+    public void makeSureScoreRule(List<Integer> rolls) {
         if (isMiss()) {
-            return scoreRule.score();
+            scoreRule = new MissScoreRule(rolls);
+        } else if (isSpare()) {
+            scoreRule = new SpareScoreRule(rolls);
+        } else if (isStrike()) {
+            scoreRule = new StrikeScoreRule(rolls);
         }
-        if (isSpare()) {
-            return scoreRule.score();
-        }
-        if (isStrike() && hasNextTwoRolls(rolls)) {
-            return ALL_PINS_IN_FRAME + nextTwoRollPins(rolls);
-        }
-        return 0;
     }
 
-    private int nextTwoRollPins(List<Integer> rolls) {
-        return rolls.get(lastRollIndex + 1) + rolls.get(lastRollIndex + 2);
-    }
-
-    private boolean hasNextTwoRolls(List<Integer> rolls) {
-        return lastRollIndex >= 0 && rolls.size() - 2 > lastRollIndex;
+    private boolean isRuleMakeSure() {
+        return scoreRule != null;
     }
 
     private boolean isStrike() {
@@ -56,25 +57,5 @@ public class Frame {
 
     private boolean isMiss() {
         return pins.size() == 2 && firstRollPins() + secondRollPins() < ALL_PINS_IN_FRAME;
-    }
-
-    public void hitPins(int pins) {
-        this.pins.add(pins);
-    }
-
-    public boolean isFinished() {
-        return pins.size() == 2 || isStrike();
-    }
-
-    public void setLastRollIndex(int lastRollIndex) {
-        this.lastRollIndex = lastRollIndex;
-    }
-
-    public void makeSureScoreRule(List<Integer> rolls) {
-        if (isMiss()) {
-            scoreRule = new MissScoreRule(rolls);
-        } else if (isSpare()) {
-            scoreRule = new SpareScoreRule(rolls);
-        }
     }
 }

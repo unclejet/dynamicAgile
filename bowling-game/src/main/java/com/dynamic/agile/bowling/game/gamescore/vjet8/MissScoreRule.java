@@ -14,6 +14,14 @@ public class MissScoreRule extends ScoreRule {
 
     @Override
     public int score() {
-        return rolls.get(lastRollIndex - 1) + rolls.get(lastRollIndex);
+        return getFirstRollPins() + getSecondRollPins();
+    }
+
+    private Integer getSecondRollPins() {
+        return rolls.get(lastRollIndex);
+    }
+
+    private Integer getFirstRollPins() {
+        return rolls.get(lastRollIndex - 1);
     }
 }

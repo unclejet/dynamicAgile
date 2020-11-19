@@ -22,6 +22,7 @@ public class SpareScoreRule extends ScoreRule {
     }
 
     private boolean hasNextRoll() {
-        return lastRollIndex > 0 && rolls.size() - 1 > lastRollIndex;
+        int totalRollIndex = rolls.size() - 1;
+        return totalRollIndex > lastRollIndex;
     }
 }

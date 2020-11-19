@@ -18,5 +18,4 @@ public abstract class ScoreRule {
 
     public abstract int score();
 
-
 }
