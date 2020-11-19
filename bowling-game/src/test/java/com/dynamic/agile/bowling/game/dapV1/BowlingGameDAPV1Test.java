@@ -74,4 +74,12 @@ public class BowlingGameDAPV1Test {
         rollSpare(6,4);
         assertThat(game.score(),is(0));
     }
+
+    @Ignore
+    @Test
+    public void roll1SpareAnd2(){
+        rollSpare(3,7);
+        roll(2);
+        assertThat(game.score(),is(12));
+    }
 }
