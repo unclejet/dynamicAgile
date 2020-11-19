@@ -11,11 +11,31 @@ import java.util.List;
 public class Frame {
     public static final int ALL_PINS_IN_FRAME = 10;
     private List<Integer> pins = new ArrayList<>();
-    public int score() {
+    private int lastRollIndex = -1;
+
+    public int score(List<Integer> rolls) {
+        if (!isFinished()) {
+            return 0;
+        }
         if (isMiss()) {
             return firstRollPins() + secondRollPins();
         }
+        if (isSpare() && hasNextRoll(rolls)) {
+            return ALL_PINS_IN_FRAME + nextRollPins(rolls);
+        }
         return 0;
+    }
+
+    private boolean hasNextRoll(List<Integer> rolls) {
+        return lastRollIndex > 0 && rolls.size() - 1 > lastRollIndex;
+    }
+
+    private boolean isSpare() {
+        return isFinished() && firstRollPins() + secondRollPins() == ALL_PINS_IN_FRAME;
+    }
+
+    private int nextRollPins(List<Integer> rolls) {
+        return rolls.get(lastRollIndex + 1);
     }
 
     private Integer secondRollPins() {
@@ -27,7 +47,7 @@ public class Frame {
     }
 
     private boolean isMiss() {
-        return pins.size() == 2 && firstRollPins() + secondRollPins() < ALL_PINS_IN_FRAME;
+        return isFinished() && firstRollPins() + secondRollPins() < ALL_PINS_IN_FRAME;
     }
 
     public void hitPins(int pins) {
@@ -36,5 +56,9 @@ public class Frame {
 
     public boolean isFinished() {
         return pins.size() == 2;
+    }
+
+    public void setLastRollIndex(int lastRollIndex) {
+        this.lastRollIndex = lastRollIndex;
     }
 }

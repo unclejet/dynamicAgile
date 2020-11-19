@@ -12,16 +12,20 @@ public class BowlingGame {
     private List<Frame> frames = new ArrayList<>();
     private Frame currentFrame;
 
+    private List<Integer> rolls = new ArrayList<>();
+
     public BowlingGame() {
         newFrame();
     }
 
     public int score() {
-        return frames.stream().mapToInt(Frame::score).sum();
+        return frames.stream().mapToInt(frame -> frame.score(rolls)).sum();
     }
 
     public void roll(int pins) {
+        rolls.add(pins);
         if (currentFrame.isFinished()) {
+            currentFrame.setLastRollIndex(rolls.size() - 2);
             newFrame();
         }
         currentFrame.hitPins(pins);
