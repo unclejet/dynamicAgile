@@ -52,8 +52,20 @@ public class BowlingGameDAPV2Test {
     }
 
     @Test
-    public void roll111(){
-        rollMany(3,1);
-        assertEquals(2,game.score());
+    public void roll111() {
+        rollMany(3, 1);
+        assertEquals(2, game.score());
+    }
+
+    @Test
+    public void roll11111() {
+        rollMany(5, 1);
+        assertEquals(4, game.score());
+    }
+
+    @Test
+    public void roll1Spare() {
+        rollSpare(6, 4);
+        assertEquals(0, game.score());
     }
 }
