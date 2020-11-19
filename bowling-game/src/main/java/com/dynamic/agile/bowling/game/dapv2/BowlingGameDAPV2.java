@@ -6,13 +6,20 @@ class BowlingGameDAPV2 {
     private ArrayList<FrameDAPV2> frames = new ArrayList<>();
     private FrameDAPV2 frame;
 
-    public BowlingGameDAPV2() {
+    BowlingGameDAPV2() {
+        createNewFrame();
+    }
+
+    private void createNewFrame() {
         frame = new FrameDAPV2();
         frames.add(frame);
     }
 
     void roll(int pins) {
         frame.hitPins(pins);
+        if(frame.hasTwoRolls()){
+            createNewFrame();
+        }
     }
 
     int score() {

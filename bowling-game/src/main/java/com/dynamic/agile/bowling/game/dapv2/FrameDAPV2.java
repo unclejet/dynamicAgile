@@ -9,7 +9,7 @@ class FrameDAPV2 {
         return hasTwoRolls() ? hitPins.get(0) + hitPins.get(1) : 0;
     }
 
-    private boolean hasTwoRolls() {
+    boolean hasTwoRolls() {
         return hitPins.size() == 2;
     }
 

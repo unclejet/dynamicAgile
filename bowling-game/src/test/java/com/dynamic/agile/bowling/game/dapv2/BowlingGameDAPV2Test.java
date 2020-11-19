@@ -51,4 +51,9 @@ public class BowlingGameDAPV2Test {
         assertEquals(2, game.score());
     }
 
+    @Test
+    public void roll111(){
+        rollMany(3,1);
+        assertEquals(2,game.score());
+    }
 }
