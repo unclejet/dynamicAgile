@@ -47,7 +47,6 @@ public class BowlingGameDAPV1Test {
         roll(1);
         assertThat(game.score(), is(0));
     }
-@Ignore
     @Test
     public void roll11(){
         rollMiss(1,1);
