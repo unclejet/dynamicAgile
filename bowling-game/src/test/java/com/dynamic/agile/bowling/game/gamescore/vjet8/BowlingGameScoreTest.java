@@ -151,4 +151,10 @@ public class BowlingGameScoreTest {
         rollStrike();
         assertThat(game.score(), is(30));
     }
+
+    @Test
+    public void rollAllStrike() {
+        rollMany(12 ,Frame.ALL_PINS_IN_FRAME);
+        assertThat(game.score(), is(300));
+    }
 }

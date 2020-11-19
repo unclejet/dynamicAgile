@@ -23,7 +23,22 @@ public class Frame {
         if (isSpare() && hasNextRoll(rolls)) {
             return ALL_PINS_IN_FRAME + nextRollPins(rolls);
         }
+        if (isStrike() && hasNextTwoRolls(rolls)) {
+            return ALL_PINS_IN_FRAME + nextTwoRollPins(rolls);
+        }
         return 0;
+    }
+
+    private int nextTwoRollPins(List<Integer> rolls) {
+        return rolls.get(lastRollIndex + 1) + rolls.get(lastRollIndex + 2);
+    }
+
+    private boolean hasNextTwoRolls(List<Integer> rolls) {
+        return lastRollIndex >= 0 && rolls.size() - 2 > lastRollIndex;
+    }
+
+    private boolean isStrike() {
+        return pins.size() == 1 && pins.get(0) == ALL_PINS_IN_FRAME;
     }
 
     private boolean hasNextRoll(List<Integer> rolls) {
@@ -31,7 +46,7 @@ public class Frame {
     }
 
     private boolean isSpare() {
-        return isFinished() && firstRollPins() + secondRollPins() == ALL_PINS_IN_FRAME;
+        return pins.size() == 2 && firstRollPins() + secondRollPins() == ALL_PINS_IN_FRAME;
     }
 
     private int nextRollPins(List<Integer> rolls) {
@@ -47,7 +62,7 @@ public class Frame {
     }
 
     private boolean isMiss() {
-        return isFinished() && firstRollPins() + secondRollPins() < ALL_PINS_IN_FRAME;
+        return pins.size() == 2 && firstRollPins() + secondRollPins() < ALL_PINS_IN_FRAME;
     }
 
     public void hitPins(int pins) {
@@ -55,7 +70,7 @@ public class Frame {
     }
 
     public boolean isFinished() {
-        return pins.size() == 2;
+        return pins.size() == 2 || isStrike();
     }
 
     public void setLastRollIndex(int lastRollIndex) {
