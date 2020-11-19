@@ -14,13 +14,7 @@ class FrameDAPV1 {
     }
 
     int score() {
-        if (isSpare()) {
-            return hasNextRoll() ? PINS_OF_FRAME + nextRollPins() : 0;
-        }
-        if (isMiss()) {
-            return scoreRule.score();
-        }
-        return SCORE_IS_NOT_READY_TO_COUNT;
+        return hasTwoRolls() ? scoreRule.score() : SCORE_IS_NOT_READY_TO_COUNT;
     }
 
     private boolean isMiss() {
@@ -39,17 +33,9 @@ class FrameDAPV1 {
         hitPins.add(pins);
     }
 
-    private boolean hasNextRoll() {
-        return false;
-    }
-
-    private int nextRollPins() {
-        return 2;
-    }
-
     public void setScoreRule(ArrayList<Integer> rolls) {
         if (isSpare()) {
-//            scoreRule = new SpareRule(rolls);
+            scoreRule = new SpareRule(rolls);
         }
         if (isMiss()) {
             scoreRule = new MissRule(rolls);

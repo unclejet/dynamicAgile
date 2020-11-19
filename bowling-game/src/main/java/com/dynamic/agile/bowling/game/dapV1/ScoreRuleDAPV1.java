@@ -7,8 +7,12 @@ abstract class ScoreRuleDAPV1 {
     protected int frameLastRollIndex;
     ScoreRuleDAPV1(ArrayList<Integer> rolls) {
         this.rolls = rolls;
-        frameLastRollIndex = rolls.size() - 1;
+        frameLastRollIndex = lastRollIndex();
     }
 
     abstract int score();
+
+    protected int lastRollIndex(){
+        return rolls.size() - 1;
+    }
 }
