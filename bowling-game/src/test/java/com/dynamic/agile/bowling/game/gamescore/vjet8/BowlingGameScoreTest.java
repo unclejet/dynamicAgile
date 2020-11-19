@@ -127,4 +127,9 @@ public class BowlingGameScoreTest {
         assertThat(game.score(), is(18 + 19));
     }
 
+    @Test
+    public void rollOneStrike() {
+        roll(10);
+        assertThat(game.score(), is(0));
+    }
 }
