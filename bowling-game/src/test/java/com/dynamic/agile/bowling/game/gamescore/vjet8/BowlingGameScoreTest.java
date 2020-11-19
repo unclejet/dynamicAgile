@@ -45,9 +45,24 @@ public class BowlingGameScoreTest {
     }
 
     @Test
-    public void rollMisAndNextRoll() {
+    public void rollMissAndNextRoll() {
         rollMiss(3, 2);
         roll(4);
         assertThat(game.score(), is(5));
+    }
+
+    @Test
+    public void rollTwoMiss() {
+        rollMiss(3, 2);
+        rollMiss(4, 5);
+        assertThat(game.score(), is(5 + 9));
+    }
+
+    @Test
+    public void rollAllMiss() {
+        for (int i = 0; i < 20; i++) {
+            roll(1);
+        }
+        assertThat(game.score(), is(20));
     }
 }
