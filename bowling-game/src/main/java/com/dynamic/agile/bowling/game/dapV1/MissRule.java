@@ -3,7 +3,7 @@ package com.dynamic.agile.bowling.game.dapV1;
 import java.util.ArrayList;
 
 class MissRule extends ScoreRuleDAPV1 {
-    public MissRule(ArrayList<Integer> rolls) {
+    MissRule(ArrayList<Integer> rolls) {
         super(rolls);
     }
 

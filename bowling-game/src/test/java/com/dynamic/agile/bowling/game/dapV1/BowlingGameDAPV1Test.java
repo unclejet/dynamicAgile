@@ -89,4 +89,30 @@ public class BowlingGameDAPV1Test {
         roll(2);
         assertThat(game.score(), is(15 + 12));
     }
+
+    @Test
+    public void roll1Strike() {
+        rollStrike();
+        assertThat(game.score(), is(0));
+    }
+
+    @Test
+    public void roll1StrikeAnd2() {
+        rollStrike();
+        roll(2);
+        assertThat(game.score(), is(0));
+    }
+
+    @Test
+    public void roll1StrikeAnd22() {
+        rollStrike();
+        rollMiss(2, 2);
+        assertThat(game.score(), is(14 + 4));
+    }
+
+    @Test
+    public void rollAllStrikes(){
+        rollMany(12,10);
+        assertThat(game.score(),is(300));
+    }
 }
