@@ -1,9 +1,9 @@
-package com.dynamic.agile.bowling.game.gamescore.modeling;
+package com.dynamic.agile.bowling.game.gamescore.v3.modeling;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.dynamic.agile.bowling.game.gamescore.modeling.Frame.*;
+import static com.dynamic.agile.bowling.game.gamescore.v3.modeling.FrameV3X.*;
 
 /**
  * @author: UncleJet
@@ -15,7 +15,7 @@ public class BowlingGame {
     private List<Integer> pins = new ArrayList<>();
     private int rollIndex;
 
-    private List<Frame> frames = new ArrayList<>();
+    private List<FrameV3X> frames = new ArrayList<>();
 
     private int rollIndexOfFrame;
 
@@ -64,25 +64,25 @@ public class BowlingGame {
     }
 
     private void handleAdded() {
-        Frame tenthFrame = getLatestFrame();
+        FrameV3X tenthFrame = getLatestFrame();
         tenthFrame.addAddedRollIndex(rollIndex);
     }
 
     private void handleMiss() {
-        handleFrameWithTwoRoll(new MissFrame(rollIndex - 1, rollIndex));
+        handleFrameWithTwoRoll(new MissFrameV3X(rollIndex - 1, rollIndex));
     }
 
     private void handleSpare() {
-        handleFrameWithTwoRoll(new SpareFrame(rollIndex - 1, rollIndex));
+        handleFrameWithTwoRoll(new SpareFrameV3X(rollIndex - 1, rollIndex));
     }
 
-    private void handleFrameWithTwoRoll(Frame frame) {
+    private void handleFrameWithTwoRoll(FrameV3X frame) {
         frames.add(frame);
         resetRollIndexOfFrame();
     }
 
     private void handleStrike() {
-        frames.add(new StrikeFrame(rollIndex));
+        frames.add(new StrikeFrameV3X(rollIndex));
         resetRollIndexOfFrame();
     }
 
@@ -98,12 +98,12 @@ public class BowlingGame {
         if (isFirstRoll()) {
             return firstRollScoreBoard();
         } else {
-            Frame latestFrame = getLatestFrame();
+            FrameV3X latestFrame = getLatestFrame();
             return formatScoreBoard(getFrameNumber(latestFrame), getRollIndexOfFrame(latestFrame), getPinsLeft(latestFrame), getGameScore());
         }
     }
 
-    private Frame getLatestFrame() {
+    private FrameV3X getLatestFrame() {
         return frames.get(frames.size() - 1);
     }
 
@@ -125,20 +125,20 @@ public class BowlingGame {
         return String.format("Frame:%d;Roll:%s;Pins Left:%s;Score:%d", frameNumber, rollIndexOfFrame, pinsLeft, score);
     }
 
-    private int getFrameNumber(Frame latestFrame) {
+    private int getFrameNumber(FrameV3X latestFrame) {
         int number = isCurrentRollIn(latestFrame) ? frames.size() : frames.size() + 1;
         return number > GAME_FRAMES_NUMBER ? GAME_FRAMES_NUMBER : number;
     }
 
-    private boolean isCurrentRollIn(Frame latestFrame) {
+    private boolean isCurrentRollIn(FrameV3X latestFrame) {
         return latestFrame.contains(rollIndex - 1);
     }
 
-    private String getRollIndexOfFrame(Frame latestFrame) {
+    private String getRollIndexOfFrame(FrameV3X latestFrame) {
         return latestFrame.getRollIndexOfFrame(rollIndex - 1);
     }
 
-    private String getPinsLeft(Frame latestFrame) {
+    private String getPinsLeft(FrameV3X latestFrame) {
         return isCurrentRollIn(latestFrame) ? latestFrame.getPinsLeft(pins) :
                 String.valueOf(PINS_IN_FRAME - pins.get(rollIndex - 1));
     }

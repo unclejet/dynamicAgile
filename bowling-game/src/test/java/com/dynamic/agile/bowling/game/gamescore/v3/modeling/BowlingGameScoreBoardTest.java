@@ -1,11 +1,9 @@
-package com.dynamic.agile.bowling.game.gamescore.modeling;
+package com.dynamic.agile.bowling.game.gamescore.v3.modeling;
 
-import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
-import static com.dynamic.agile.bowling.game.gamescore.modeling.SpareFrame.SPARE;
-import static com.dynamic.agile.bowling.game.gamescore.modeling.StrikeFrame.STRIKE;
+import static com.dynamic.agile.bowling.game.gamescore.v3.modeling.SpareFrameV3X.SPARE;
+import static com.dynamic.agile.bowling.game.gamescore.v3.modeling.StrikeFrameV3X.STRIKE;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 

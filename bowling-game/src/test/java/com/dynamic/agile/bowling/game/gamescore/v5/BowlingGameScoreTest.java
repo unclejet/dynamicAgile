@@ -1,12 +1,9 @@
 package com.dynamic.agile.bowling.game.gamescore.v5;
 
-import com.dynamic.agile.bowling.game.gamescore.modeling.BowlingGame;
-import com.dynamic.agile.bowling.game.gamescore.modeling.BowlingGameTest;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
-import static com.dynamic.agile.bowling.game.gamescore.modeling.Frame.PINS_IN_FRAME;
+import static com.dynamic.agile.bowling.game.gamescore.v3.modeling.FrameV3X.PINS_IN_FRAME;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 

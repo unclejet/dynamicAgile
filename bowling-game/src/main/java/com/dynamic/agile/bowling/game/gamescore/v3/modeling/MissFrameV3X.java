@@ -1,4 +1,4 @@
-package com.dynamic.agile.bowling.game.gamescore.modeling;
+package com.dynamic.agile.bowling.game.gamescore.v3.modeling;
 
 import java.util.List;
 
@@ -7,8 +7,8 @@ import java.util.List;
  * @date: Created in 2020/11/15 9:05
  * @description:
  */
-public class MissFrame extends Frame {
-    public MissFrame(int firstRollIndex, int secondRollIndex) {
+public class MissFrameV3X extends FrameV3X {
+    public MissFrameV3X(int firstRollIndex, int secondRollIndex) {
         super(firstRollIndex, secondRollIndex);
     }
 

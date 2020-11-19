@@ -1,8 +1,8 @@
-package com.dynamic.agile.bowling.game.gamescore.modeling;
+package com.dynamic.agile.bowling.game.gamescore.v3.modeling;
 
 import org.junit.Before;
 
-import static com.dynamic.agile.bowling.game.gamescore.modeling.Frame.PINS_IN_FRAME;
+import static com.dynamic.agile.bowling.game.gamescore.v3.modeling.FrameV3X.PINS_IN_FRAME;
 
 /**
  * @author UncleJet
