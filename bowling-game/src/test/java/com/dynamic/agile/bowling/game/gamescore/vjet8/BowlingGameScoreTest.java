@@ -25,6 +25,7 @@ public class BowlingGameScoreTest {
     }
 
     private void rollMiss(int firstRollPins, int secondRollPins) {
+        assert firstRollPins + secondRollPins < Frame.ALL_PINS_IN_FRAME;
         roll(firstRollPins);
         roll(secondRollPins);
     }
@@ -39,6 +40,13 @@ public class BowlingGameScoreTest {
     @Test
     public void rollMiss() {
         rollMiss(3, 2);
+        assertThat(game.score(), is(5));
+    }
+
+    @Test
+    public void rollMisAndNextRoll() {
+        rollMiss(3, 2);
+        roll(4);
         assertThat(game.score(), is(5));
     }
 }
