@@ -112,5 +112,12 @@ public class BowlingGameScoreTest {
         assertThat(game.score(), is(13 + 18 + 9));
     }
 
+    @Test
+    public void rollAllMissAndLastFrameRollSpare() {
+        rollMany(18, 1);
+        rollSpare(4, 6);
+        assertThat(game.score(), is(18));
+    }
+
 
 }
