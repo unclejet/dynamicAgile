@@ -157,4 +157,20 @@ public class BowlingGameScoreTest {
         rollMany(12 ,Frame.ALL_PINS_IN_FRAME);
         assertThat(game.score(), is(300));
     }
+
+    @Test
+    public void complexRolls_score() {
+        rollMiss(2, 3);
+        rollMiss(7, 0);
+        rollSpare(5, 5);
+        rollSpare(6, 4);
+        rollMiss(5, 4);
+        rollStrike();
+        rollStrike();
+        rollMiss(3, 6);
+        rollStrike();
+        rollSpare(6, 4);
+        roll(4);
+        assertThat(game.score(), is(137));
+    }
 }
