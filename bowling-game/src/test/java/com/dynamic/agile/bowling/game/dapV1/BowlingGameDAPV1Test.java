@@ -60,4 +60,18 @@ public class BowlingGameDAPV1Test {
         roll(1);
         assertThat(game.score(), is(2));
     }
+
+    @Test
+    public void roll11221() {
+        rollMiss(1, 1);
+        rollMiss(2, 2);
+        roll(1);
+        assertThat(game.score(), is(6));
+    }
+
+    @Test
+    public void roll1Spare(){
+        rollSpare(6,4);
+        assertThat(game.score(),is(0));
+    }
 }
