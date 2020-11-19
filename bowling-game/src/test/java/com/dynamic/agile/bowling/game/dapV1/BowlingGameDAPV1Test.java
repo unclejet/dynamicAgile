@@ -160,4 +160,62 @@ public class BowlingGameDAPV1Test {
         rollMiss(5, 4);
         assertThat(game.scoreBoard(), is("-,-,4,293"));
     }
+
+    @Test
+    public void roll1_isFinished() {
+        roll(1);
+        assertThat(game.isFinished(), is(false));
+    }
+
+    @Test
+    public void roll2for20_isFinished() {
+        rollMany(20, 2);
+        assertThat(game.isFinished(), is(true));
+    }
+
+    @Test
+    public void roll5for20_isFinished() {
+        rollMany(20, 5);
+        assertThat(game.isFinished(), is(false));
+    }
+
+    @Test
+    public void roll5for21_isFinished() {
+        rollMany(20, 5);
+        roll(5);
+        assertThat(game.isFinished(), is(true));
+    }
+
+    @Test
+    public void roll10Strikes_isFinished() {
+        rollMany(10, 10);
+        assertThat(game.isFinished(), is(false));
+    }
+
+    @Test
+    public void roll10Strikes2_isFinished() {
+        rollMany(10, 10);
+        roll(2);
+        assertThat(game.isFinished(), is(false));
+    }
+
+    @Test
+    public void roll10Strikes23_isFinished() {
+        rollMany(10, 10);
+        rollMiss(2, 3);
+        assertThat(game.isFinished(), is(true));
+    }
+
+    @Test
+    public void roll11Strikes_isFinished() {
+        rollMany(11, 10);
+        assertThat(game.isFinished(), is(false));
+    }
+
+    @Test
+    public void roll12Strikes_isFinished() {
+        rollMany(12, 10);
+        assertThat(game.isFinished(), is(true));
+    }
+
 }

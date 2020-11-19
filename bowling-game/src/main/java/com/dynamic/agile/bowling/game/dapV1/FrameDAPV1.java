@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 class FrameDAPV1 {
     static final int PINS_OF_FRAME = 10;
-    static final int SCORE_IS_NOT_READY_TO_COUNT = 0;
+    private static final int SCORE_IS_NOT_READY_TO_COUNT = 0;
     private ScoreRuleDAPV1 scoreRule;
     private ArrayList<Integer> hitPins = new ArrayList<>();
 
@@ -17,11 +17,11 @@ class FrameDAPV1 {
         return isFinished() ? scoreRule.score() : SCORE_IS_NOT_READY_TO_COUNT;
     }
 
-    private boolean isMiss() {
+    boolean isMiss() {
         return hasTwoRolls() && countTwoRollPins() < PINS_OF_FRAME;
     }
 
-    private boolean isSpare() {
+    boolean isSpare() {
         return hasTwoRolls() && countTwoRollPins() == PINS_OF_FRAME;
     }
 
@@ -49,7 +49,7 @@ class FrameDAPV1 {
         return isStrike() || hasTwoRolls();
     }
 
-    private boolean isStrike() {
+    boolean isStrike() {
         return hasRolls() && hitPins.get(0) == PINS_OF_FRAME;
     }
 
@@ -57,11 +57,11 @@ class FrameDAPV1 {
         return hitPins.size() > 0;
     }
 
-    public String frameRollIndex() {
+    String frameRollIndex() {
         return String.valueOf(hitPins.size());
     }
 
-    public String showHitPins() {
+    String showHitPins() {
         return isStrike() ? "x" : isSpare() ? "/" : String.valueOf(frameHitPins());
     }
 
@@ -69,7 +69,7 @@ class FrameDAPV1 {
         return hitPins.stream().mapToInt(Integer::intValue).sum();
     }
 
-    public boolean isNew() {
+    boolean isNew() {
         return hitPins.size() == 0;
     }
 }
