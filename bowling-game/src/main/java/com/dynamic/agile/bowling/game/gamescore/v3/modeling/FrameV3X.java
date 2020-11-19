@@ -1,4 +1,4 @@
-package com.dynamic.agile.bowling.game.gamescore.modeling;
+package com.dynamic.agile.bowling.game.gamescore.v3.modeling;
 
 import java.util.List;
 
@@ -7,7 +7,7 @@ import java.util.List;
  * @date: Created in 2020/11/15 8:57
  * @description:
  */
-public abstract class Frame {
+public abstract class FrameV3X {
     public static final int PINS_IN_FRAME = 10;
     public static final int MAX_ROLL_NUMBER_IN_FRAME = 2;
     public static final int INVALID_ROLL_INDEX = -1;
@@ -17,7 +17,7 @@ public abstract class Frame {
     protected int addedFirstRollIndex;
     protected int addedSecondRollIndex;
 
-    public Frame(int firstRollIndex, int secondRollIndex) {
+    public FrameV3X(int firstRollIndex, int secondRollIndex) {
         this.firstRollIndex = firstRollIndex;
         this.secondRollIndex = secondRollIndex;
         addedFirstRollIndex = INVALID_ROLL_INDEX;

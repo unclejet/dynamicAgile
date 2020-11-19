@@ -1,4 +1,4 @@
-package com.dynamic.agile.bowling.game.gamescore.modeling;
+package com.dynamic.agile.bowling.game.gamescore.v3.modeling;
 
 import java.util.List;
 
@@ -7,11 +7,11 @@ import java.util.List;
  * @date: Created in 2020/11/15 10:57
  * @description:
  */
-public class StrikeFrame extends Frame {
+public class StrikeFrameV3X extends FrameV3X {
 
     public static final String STRIKE = "X";
 
-    public StrikeFrame(int firstRollIndex) {
+    public StrikeFrameV3X(int firstRollIndex) {
         super(firstRollIndex, -1);
     }
 
