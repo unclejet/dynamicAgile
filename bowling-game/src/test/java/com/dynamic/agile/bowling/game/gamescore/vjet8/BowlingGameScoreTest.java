@@ -37,6 +37,12 @@ public class BowlingGameScoreTest {
         }
     }
 
+    private void rollSpare(int firstRollPins, int secondRollPins) {
+        assert firstRollPins + secondRollPins == Frame.ALL_PINS_IN_FRAME;
+        roll(firstRollPins);
+        roll(secondRollPins);
+    }
+
     @Test
     public void rollOneBallHit3Pins() {
         int pins = 3;
@@ -72,8 +78,7 @@ public class BowlingGameScoreTest {
 
     @Test
     public void rollSpare() {
-        roll(5);
-        roll(5);
+        rollSpare(5, 5);
         assertThat(game.score(), is(0));
     }
 }
