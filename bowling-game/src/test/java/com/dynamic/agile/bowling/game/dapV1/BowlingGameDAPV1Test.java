@@ -1,6 +1,7 @@
 package com.dynamic.agile.bowling.game.dapV1;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -46,5 +47,10 @@ public class BowlingGameDAPV1Test {
         roll(1);
         assertThat(game.score(), is(0));
     }
-
+@Ignore
+    @Test
+    public void roll11(){
+        rollMiss(1,1);
+        assertThat(game.score(),is(2));
+    }
 }
