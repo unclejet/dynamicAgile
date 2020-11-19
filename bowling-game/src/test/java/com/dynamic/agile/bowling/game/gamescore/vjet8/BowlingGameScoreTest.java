@@ -69,4 +69,11 @@ public class BowlingGameScoreTest {
         rollMany(20, 1);
         assertThat(game.score(), is(20));
     }
+
+    @Test
+    public void rollSpare() {
+        roll(5);
+        roll(5);
+        assertThat(game.score(), is(0));
+    }
 }
