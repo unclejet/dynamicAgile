@@ -2,7 +2,7 @@ package com.dynamic.agile.bowling.game.v6;
 
 import java.util.ArrayList;
 
-public abstract class ScoreRule {
+abstract class ScoreRule {
     int lastRollIndexOfFrame;
     protected ArrayList<Integer> rolls;
     ScoreRule(ArrayList<Integer> rolls) {

@@ -7,8 +7,8 @@ import java.util.List;
  * @date: Created in 2020/11/19 16:33
  * @description:
  */
-public class MissScoreRule extends ScoreRule {
-    public MissScoreRule(List<Integer> rolls) {
+class MissScoreRule extends ScoreRule {
+    MissScoreRule(List<Integer> rolls) {
         super(rolls);
     }
 

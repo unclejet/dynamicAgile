@@ -1,20 +1,23 @@
 package com.dynamic.agile.bowling.game.dapv2;
 
+
 import java.util.ArrayList;
 
 class FrameDAPV2 {
     private static final int PINS_OF_FRAME = 10;
     private static final int SCORE_IS_NOT_READY_TO_COUNT = 0;
     private ArrayList<Integer> hitPins = new ArrayList<>();
+    private ScoreRule scoreRule;
 
     int score() {
-        if(isSpare()){
-            return 0;
+        if (isSpare()) {
+            scoreRule = new SpareScoreRule();
         }
-        if(isMiss()){
-            return countTwoRollPins();
+        if (isMiss()) {
+            scoreRule = new MissScoreRule();
         }
-        return SCORE_IS_NOT_READY_TO_COUNT;
+        return scoreRule != null ? scoreRule.score() : SCORE_IS_NOT_READY_TO_COUNT;
+//        return SCORE_IS_NOT_READY_TO_COUNT;
     }
 
     private boolean isMiss() {
