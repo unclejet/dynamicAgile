@@ -9,8 +9,8 @@ import static com.dynamic.agile.bowling.game.gamescore.vjet8.Frame.ALL_PINS_IN_F
  * @date: Created in 2020/11/19 16:55
  * @description:
  */
-public class StrikeScoreRule extends ScoreRule {
-    public StrikeScoreRule(List<Integer> rolls) {
+class StrikeScoreRule extends ScoreRule {
+    StrikeScoreRule(List<Integer> rolls) {
         super(rolls);
     }
 

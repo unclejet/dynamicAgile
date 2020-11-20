@@ -19,7 +19,7 @@ class BowlingGameDAPV2 {
     void roll(int pins) {
         frame.hitPins(pins);
         rollPins.add(pins);
-        if(frame.hasTwoRolls()){
+        if(frame.isFinished()){
             frame.createScoreRule(rollPins);
             createNewFrame();
         }

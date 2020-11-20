@@ -75,4 +75,31 @@ public class BowlingGameDAPV2Test {
         roll(2);
         assertEquals(12, game.score());
     }
+
+    @Test
+    public void roll13Spare() {
+        rollSpare(6, 4);
+        rollSpare(3, 7);
+        rollSpare(5, 5);
+        assertEquals(13 + 15, game.score());
+    }
+
+    @Test
+    public void roll1Strike() {
+        rollStrike();
+        assertEquals(0, game.score());
+    }
+
+    @Test
+    public void roll1StrikeAnd22() {
+        rollStrike();
+        rollMiss(2, 2);
+        assertEquals(18, game.score());
+    }
+
+    @Test
+    public void roll12Strikes() {
+        rollMany(12, 10);
+        assertEquals(300, game.score());
+    }
 }

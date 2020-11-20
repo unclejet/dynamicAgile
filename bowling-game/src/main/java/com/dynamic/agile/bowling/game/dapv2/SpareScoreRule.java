@@ -10,7 +10,7 @@ class SpareScoreRule extends ScoreRule {
 
     @Override
     int score() {
-        return hasNextRoll() ? 10 + rollPins.get(frameLastRollIndex + 1) : 0;
+        return hasNextRoll() ? FrameDAPV2.PINS_OF_FRAME + rollPins.get(frameLastRollIndex + 1) : FrameDAPV2.SCORE_IS_NOT_READY_TO_COUNT;
     }
 
     private boolean hasNextRoll() {
