@@ -10,14 +10,7 @@ class FrameDAPV2 {
     private ScoreRule scoreRule;
 
     int score() {
-        if (isSpare()) {
-            scoreRule = new SpareScoreRule();
-        }
-        if (isMiss()) {
-            scoreRule = new MissScoreRule();
-        }
-        return scoreRule != null ? scoreRule.score() : SCORE_IS_NOT_READY_TO_COUNT;
-//        return SCORE_IS_NOT_READY_TO_COUNT;
+        return hasTwoRolls() ? scoreRule.score() : SCORE_IS_NOT_READY_TO_COUNT;
     }
 
     private boolean isMiss() {
@@ -38,5 +31,14 @@ class FrameDAPV2 {
 
     void hitPins(int pins) {
         hitPins.add(pins);
+    }
+
+    void createScoreRule(ArrayList<Integer> rollPins) {
+        if (isSpare()) {
+            scoreRule = new SpareScoreRule(rollPins);
+        }
+        if (isMiss()) {
+            scoreRule = new MissScoreRule(rollPins);
+        }
     }
 }
