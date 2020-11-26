@@ -169,4 +169,101 @@ public class BowlingGameTest {
         rollMany(12, 10);
         assertThat(game.isFinished(), is(true));
     }
+
+    @Test
+    public void sb_roll1() {
+        roll(1);
+        assertThat(game.scoreBoard(), is("1,1,1,0"));
+    }
+
+    @Test
+    public void sb_roll34() {
+        rollMiss(3, 4);
+        assertThat(game.scoreBoard(), is("1,2,7,7"));
+    }
+
+    @Test
+    public void sb_roll1Spare() {
+        rollSpare(6, 4);
+        assertThat(game.scoreBoard(), is("1,2,/,0"));
+    }
+
+    @Test
+    public void sb_roll1Strike() {
+        rollStrike();
+        assertThat(game.scoreBoard(), is("1,1,x,0"));
+    }
+
+    @Test
+    public void sb_roll3for20() {
+        rollMany(20, 3);
+        assertThat(game.scoreBoard(), is("10,2,6,60"));
+    }
+
+    @Test
+    public void sb_roll5for20() {
+        rollMany(20, 5);
+        assertThat(game.scoreBoard(), is("10,2,/,135"));
+        assertThat(game.isFinished(), is(false));
+    }
+
+    @Test
+    public void sb_roll5for21() {
+        rollMany(21, 5);
+        assertThat(game.scoreBoard(), is("10,/1,5,150"));
+        assertThat(game.isFinished(), is(true));
+    }
+
+    @Test
+    public void sb_roll5for20AndStrike() {
+        rollMany(20, 5);
+        rollStrike();
+        assertThat(game.scoreBoard(), is("10,/1,x,155"));
+        assertThat(game.isFinished(), is(true));
+    }
+
+    @Test
+    public void sb_roll10for10And5() {
+        rollMany(10, 10);
+        roll(5);
+        assertThat(game.scoreBoard(), is("10,x1,5,265"));
+        assertThat(game.isFinished(), is(false));
+    }
+
+    @Test
+    public void sb_roll10for10And55() {
+        rollMany(10, 10);
+        rollSpare(5, 5);
+        assertThat(game.scoreBoard(), is("10,x2,5,285"));
+        assertThat(game.isFinished(), is(true));
+    }
+
+    @Test
+    public void sb_roll10for11() {
+        rollMany(11, 10);
+        assertThat(game.scoreBoard(), is("10,x1,x,270"));
+        assertThat(game.isFinished(), is(false));
+    }
+
+    @Test
+    public void sb_roll10for10() {
+        rollMany(10, 10);
+        assertThat(game.scoreBoard(), is("10,1,x,240"));
+        assertThat(game.isFinished(), is(false));
+    }
+
+    @Test
+    public void sb_roll10for12() {
+        rollMany(12, 10);
+        assertThat(game.scoreBoard(), is("10,x2,x,300"));
+        assertThat(game.isFinished(), is(true));
+    }
+
+    @Test
+    public void sb_roll10for11And5() {
+        rollMany(11, 10);
+        roll(5);
+        assertThat(game.scoreBoard(), is("10,x2,5,295"));
+        assertThat(game.isFinished(), is(true));
+    }
 }

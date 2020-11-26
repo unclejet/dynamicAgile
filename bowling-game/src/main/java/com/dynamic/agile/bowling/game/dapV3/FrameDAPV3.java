@@ -75,4 +75,18 @@ class FrameDAPV3 {
     private boolean hasTwoRolls() {
         return hitPins.size() == 2;
     }
+
+    int currentRoll() {
+        return hitPins.size();
+    }
+
+    String displayFrameRollPins() {
+        if (isSpare()) {
+            return "/";
+        }
+        if (isStrike()) {
+            return "x";
+        }
+        return "" + hitPins.stream().mapToInt(Integer::intValue).sum();
+    }
 }
