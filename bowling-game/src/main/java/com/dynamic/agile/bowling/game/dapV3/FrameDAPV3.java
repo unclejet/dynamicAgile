@@ -56,15 +56,15 @@ class FrameDAPV3 {
         return rollPins.get(frameLastRollIndex + 1);
     }
 
-    private boolean isMiss() {
+    boolean isMiss() {
         return hasTwoRolls() && countFrameTwoRollPins() < PINS_OF_FRAME;
     }
 
-    private boolean isSpare() {
+    boolean isSpare() {
         return hasTwoRolls() && countFrameTwoRollPins() == PINS_OF_FRAME;
     }
 
-    private boolean isStrike() {
+    boolean isStrike() {
         return hitPins.size() == 1 && hitPins.get(0) == PINS_OF_FRAME;
     }
 
