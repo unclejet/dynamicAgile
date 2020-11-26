@@ -44,7 +44,7 @@ class BowlingGameDAPV3 {
         if (extraRoll2()) {
             currentRollAndPins = "a2," + displayLastRollPins();
         }
-        scoreBoard = frames.size() + "," + currentRollAndPins + "," + score();
+        scoreBoard = frames.size() + "," + currentRollAndPins + "," + score() + "," + isFinished();
     }
 
     private void addRollPins(int pins) {
