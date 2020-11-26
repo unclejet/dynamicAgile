@@ -10,7 +10,6 @@ class BowlingGameDAPV3 {
 
     private boolean finished;
     private int lastRollIndexOfFrame10 = -1;
-
     private String scoreBoard;
 
     BowlingGameDAPV3() {
@@ -18,7 +17,47 @@ class BowlingGameDAPV3 {
     }
 
     void roll(int pins) {
+        addRollPins(pins);
+        frameRollAndCheckFinish(pins);
+        displayScoreBoard();
+        createNewFrameIfLessThan10Frames();
+    }
+
+    int score() {
+        return frames.stream().mapToInt(FrameDAPV3::score).sum();
+    }
+
+    boolean isFinished() {
+        return finished;
+    }
+
+    String scoreBoard() {
+        return scoreBoard;
+    }
+
+    private void displayScoreBoard() {
+        String currentRollAndPins = currentFrame.currentRoll() + "," +
+                currentFrame.displayFrameRollPins();
+        if (extraRoll1()) {
+            currentRollAndPins = "a1," + displayLastRollPins();
+        }
+        if (extraRoll2()) {
+            currentRollAndPins = "a2," + displayLastRollPins();
+        }
+        scoreBoard = frames.size() + "," + currentRollAndPins + "," + score();
+    }
+
+    private void addRollPins(int pins) {
         rollPins.add(pins);
+    }
+
+    private void createNewFrameIfLessThan10Frames() {
+        if (lessThan10Frames() && currentFrame.isFinish()) {
+            createNewFrame();
+        }
+    }
+
+    private void frameRollAndCheckFinish(int pins) {
         if (alreadyHas10Frames()) {
             if (currentFrame.isFinish()) {
                 checkExtraRoll();
@@ -29,18 +68,6 @@ class BowlingGameDAPV3 {
         } else {
             frameRoll(pins);
         }
-        setScoreBoard();
-        if (lessThan10Frames() && currentFrame.isFinish()) {
-            createNewFrame();
-        }
-    }
-
-    int score() {
-        return frames.stream().mapToInt(FrameDAPV3::score).sum();
-    }
-
-    boolean isFinished() {
-        return finished;
     }
 
     private void createNewFrame() {
@@ -85,30 +112,6 @@ class BowlingGameDAPV3 {
         return frames.size() == FRAMES_OF_GAME;
     }
 
-    String scoreBoard() {
-        return scoreBoard;
-    }
-
-    private void setScoreBoard() {
-        String currentRoll = "" + currentFrame.currentRoll();
-        String frameRollPins = currentFrame.displayFrameRollPins();
-        if (extraRoll1()) {
-            if (currentFrame.isSpare()) {
-                currentRoll = "/1";
-                frameRollPins = displayLastRollPins();
-            }
-            if (currentFrame.isStrike()) {
-                currentRoll = "x1";
-                frameRollPins = displayLastRollPins();
-            }
-        }
-        if (extraRoll2()) {
-            currentRoll = "x2";
-            frameRollPins = displayLastRollPins();
-        }
-        scoreBoard = frames.size() + "," + currentRoll + "," + frameRollPins + "," + score();
-    }
-
     private boolean extraRoll2() {
         return lastRollIndexOfFrame10 != -1 && lastRollIndex() - lastRollIndexOfFrame10 == 2;
     }
@@ -118,7 +121,7 @@ class BowlingGameDAPV3 {
     }
 
     private String displayLastRollPins() {
-        return lastRollPins() == 10 ? "x" : "" + lastRollPins();
+        return lastRollPins() == FrameDAPV3.PINS_OF_FRAME ? "x" : "" + lastRollPins();
     }
 
     private Integer lastRollPins() {

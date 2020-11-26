@@ -210,7 +210,7 @@ public class BowlingGameTest {
     @Test
     public void sb_roll5for21() {
         rollMany(21, 5);
-        assertThat(game.scoreBoard(), is("10,/1,5,150"));
+        assertThat(game.scoreBoard(), is("10,a1,5,150"));
         assertThat(game.isFinished(), is(true));
     }
 
@@ -218,7 +218,7 @@ public class BowlingGameTest {
     public void sb_roll5for20AndStrike() {
         rollMany(20, 5);
         rollStrike();
-        assertThat(game.scoreBoard(), is("10,/1,x,155"));
+        assertThat(game.scoreBoard(), is("10,a1,x,155"));
         assertThat(game.isFinished(), is(true));
     }
 
@@ -226,7 +226,7 @@ public class BowlingGameTest {
     public void sb_roll10for10And5() {
         rollMany(10, 10);
         roll(5);
-        assertThat(game.scoreBoard(), is("10,x1,5,265"));
+        assertThat(game.scoreBoard(), is("10,a1,5,265"));
         assertThat(game.isFinished(), is(false));
     }
 
@@ -234,14 +234,14 @@ public class BowlingGameTest {
     public void sb_roll10for10And55() {
         rollMany(10, 10);
         rollSpare(5, 5);
-        assertThat(game.scoreBoard(), is("10,x2,5,285"));
+        assertThat(game.scoreBoard(), is("10,a2,5,285"));
         assertThat(game.isFinished(), is(true));
     }
 
     @Test
     public void sb_roll10for11() {
         rollMany(11, 10);
-        assertThat(game.scoreBoard(), is("10,x1,x,270"));
+        assertThat(game.scoreBoard(), is("10,a1,x,270"));
         assertThat(game.isFinished(), is(false));
     }
 
@@ -255,7 +255,7 @@ public class BowlingGameTest {
     @Test
     public void sb_roll10for12() {
         rollMany(12, 10);
-        assertThat(game.scoreBoard(), is("10,x2,x,300"));
+        assertThat(game.scoreBoard(), is("10,a2,x,300"));
         assertThat(game.isFinished(), is(true));
     }
 
@@ -263,7 +263,7 @@ public class BowlingGameTest {
     public void sb_roll10for11And5() {
         rollMany(11, 10);
         roll(5);
-        assertThat(game.scoreBoard(), is("10,x2,5,295"));
+        assertThat(game.scoreBoard(), is("10,a2,5,295"));
         assertThat(game.isFinished(), is(true));
     }
 }
