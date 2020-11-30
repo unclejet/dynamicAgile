@@ -1,4 +1,6 @@
-package com.dynamic.agile.bowling.game.scoreboard.v1;
+package com.dynamic.agile.bowling.game.scoreboard.v1.scorerule;
+
+import com.dynamic.agile.bowling.game.scoreboard.v1.Frame;
 
 import java.util.List;
 

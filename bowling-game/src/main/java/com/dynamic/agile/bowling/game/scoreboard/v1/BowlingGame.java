@@ -35,4 +35,8 @@ public class BowlingGame {
         currentFrame = new Frame();
         frames.add(currentFrame);
     }
+
+    public String showScoreBoard() {
+        return String.format("%d, %s, %s, %d", frames.size(), currentFrame.getRollIndex(), currentFrame.getPins(), score());
+    }
 }

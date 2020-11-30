@@ -1,5 +1,10 @@
 package com.dynamic.agile.bowling.game.scoreboard.v1;
 
+import com.dynamic.agile.bowling.game.scoreboard.v1.scorerule.MissScoreRule;
+import com.dynamic.agile.bowling.game.scoreboard.v1.scorerule.ScoreRule;
+import com.dynamic.agile.bowling.game.scoreboard.v1.scorerule.SpareScoreRule;
+import com.dynamic.agile.bowling.game.scoreboard.v1.scorerule.StrikeScoreRule;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -57,5 +62,13 @@ public class Frame {
 
     private boolean isMiss() {
         return pins.size() == 2 && firstRollPins() + secondRollPins() < ALL_PINS_IN_FRAME;
+    }
+
+    public int getRollIndex() {
+        return pins.size();
+    }
+
+    public int getPins() {
+        return pins.get(pins.size() - 1);
     }
 }
