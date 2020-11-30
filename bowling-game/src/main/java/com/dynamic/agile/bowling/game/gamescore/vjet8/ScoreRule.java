@@ -7,7 +7,7 @@ import java.util.List;
  * @date: Created in 2020/11/19 16:33
  * @description:
  */
-public abstract class ScoreRule {
+abstract class ScoreRule {
     protected List<Integer> rolls;
     protected int lastRollIndex;
 

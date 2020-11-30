@@ -7,8 +7,8 @@ import java.util.List;
  * @date: Created in 2020/11/19 16:50
  * @description:
  */
-public class SpareScoreRule extends ScoreRule {
-    public SpareScoreRule(List<Integer> rolls) {
+class SpareScoreRule extends ScoreRule {
+    SpareScoreRule(List<Integer> rolls) {
         super(rolls);
     }
 

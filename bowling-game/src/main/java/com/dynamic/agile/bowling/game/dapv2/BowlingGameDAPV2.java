@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 class BowlingGameDAPV2 {
     private ArrayList<FrameDAPV2> frames = new ArrayList<>();
+    private ArrayList<Integer> rollPins = new ArrayList<>();
     private FrameDAPV2 frame;
 
     BowlingGameDAPV2() {
@@ -17,7 +18,9 @@ class BowlingGameDAPV2 {
 
     void roll(int pins) {
         frame.hitPins(pins);
-        if(frame.hasTwoRolls()){
+        rollPins.add(pins);
+        if(frame.isFinished()){
+            frame.createScoreRule(rollPins);
             createNewFrame();
         }
     }
