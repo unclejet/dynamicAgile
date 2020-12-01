@@ -59,8 +59,8 @@ class BowlingGameDAPV3 {
 
     private void frameRollAndCheckFinish(int pins) {
         if (alreadyHas10Frames()) {
-            if (currentFrame.isFinish()) {
-                checkExtraRoll();
+            if (isExtraRoll()) {
+                checkGameFinishWhenExtraRoll();
             } else {
                 frameRoll(pins);
                 checkGameFinish();
@@ -75,7 +75,7 @@ class BowlingGameDAPV3 {
         frames.add(currentFrame);
     }
 
-    private void checkExtraRoll() {
+    private void checkGameFinishWhenExtraRoll() {
         if (extraRoll1() && currentFrame.isSpare()) {
             finished = true;
         }
@@ -113,11 +113,15 @@ class BowlingGameDAPV3 {
     }
 
     private boolean extraRoll2() {
-        return lastRollIndexOfFrame10 != -1 && lastRollIndex() - lastRollIndexOfFrame10 == 2;
+        return isExtraRoll() && lastRollIndex() - lastRollIndexOfFrame10 == 2;
+    }
+
+    private boolean isExtraRoll() {
+        return alreadyHas10Frames() && lastRollIndexOfFrame10 != -1;
     }
 
     private boolean extraRoll1() {
-        return lastRollIndexOfFrame10 != -1 && lastRollIndex() - lastRollIndexOfFrame10 == 1;
+        return isExtraRoll() && lastRollIndex() - lastRollIndexOfFrame10 == 1;
     }
 
     private String displayLastRollPins() {
