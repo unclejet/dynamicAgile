@@ -69,6 +69,6 @@ public class Frame {
     }
 
     public int getPins() {
-        return pins.get(pins.size() - 1);
+        return pins.stream().mapToInt(Integer::intValue).sum();
     }
 }

@@ -37,6 +37,15 @@ public class BowlingGame {
     }
 
     public String showScoreBoard() {
-        return String.format("%d, %s, %s, %d", frames.size(), currentFrame.getRollIndex(), currentFrame.getPins(), score());
+        Frame frame = currentFrameNotStart() ? getLastFrame() : currentFrame;
+        return String.format("%d, %s, %s, %d", frames.indexOf(frame) + 1, frame.getRollIndex(), frame.getPins(), score());
+    }
+
+    private Frame getLastFrame() {
+        return frames.get(frames.size() - 2);
+    }
+
+    private boolean currentFrameNotStart() {
+        return currentFrame.getRollIndex() == 0;
     }
 }
