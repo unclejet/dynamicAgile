@@ -52,4 +52,53 @@ public class BowlingGameScoreBoardTest extends BowlingGameBaseTest {
         rollSpare(5, 5);
         assertThat(game.showScoreBoard(), is("3, 2, /, 12"));
     }
+
+    @Test
+    public void frame4roll6() {
+        rollMiss(2, 3);
+        rollMiss(7, 0);
+        rollSpare(5, 5);
+        roll(6);
+        assertThat(game.showScoreBoard(), is("4, 1, 6, 28"));
+    }
+
+    @Test
+    public void frame4rollSpare() {
+        rollMiss(2, 3);
+        rollMiss(7, 0);
+        rollSpare(5, 5);
+        rollSpare(6, 4);
+        assertThat(game.showScoreBoard(), is("4, 2, /, 28"));
+    }
+
+    @Test
+    public void frame5roll5() {
+        rollMiss(2, 3);
+        rollMiss(7, 0);
+        rollSpare(5, 5);
+        rollSpare(6, 4);
+        roll(5);
+        assertThat(game.showScoreBoard(), is("5, 1, 5, 43"));
+    }
+
+    @Test
+    public void frame5rollMiss() {
+        rollMiss(2, 3);
+        rollMiss(7, 0);
+        rollSpare(5, 5);
+        rollSpare(6, 4);
+        rollMiss(5, 4);
+        assertThat(game.showScoreBoard(), is("5, 2, 9, 52"));
+    }
+
+    @Test
+    public void frame6rollStrike() {
+        rollMiss(2, 3);
+        rollMiss(7, 0);
+        rollSpare(5, 5);
+        rollSpare(6, 4);
+        rollMiss(5, 4);
+        rollStrike();
+        assertThat(game.showScoreBoard(), is("6, 1, x, 52"));
+    }
 }
