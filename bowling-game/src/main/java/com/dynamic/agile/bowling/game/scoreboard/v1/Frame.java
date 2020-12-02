@@ -69,6 +69,8 @@ public class Frame {
     }
 
     public String getPins() {
-        return isSpare() ? "/" : String.valueOf(pins.stream().mapToInt(Integer::intValue).sum());
+        return isSpare() ? "/"
+                : isStrike() ? "x"
+                : String.valueOf(pins.stream().mapToInt(Integer::intValue).sum());
     }
 }

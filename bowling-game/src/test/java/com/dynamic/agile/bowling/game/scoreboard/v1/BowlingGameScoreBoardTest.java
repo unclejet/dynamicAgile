@@ -1,5 +1,6 @@
 package com.dynamic.agile.bowling.game.scoreboard.v1;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -101,4 +102,88 @@ public class BowlingGameScoreBoardTest extends BowlingGameBaseTest {
         rollStrike();
         assertThat(game.showScoreBoard(), is("6, 1, x, 52"));
     }
+
+    @Test
+    public void frame7rollStrike() {
+        rollMiss(2, 3);
+        rollMiss(7, 0);
+        rollSpare(5, 5);
+        rollSpare(6, 4);
+        rollMiss(5, 4);
+        rollStrike();
+        rollStrike();
+        assertThat(game.showScoreBoard(), is("7, 1, x, 52"));
+    }
+
+    @Test
+    public void frame8roll3() {
+        rollMiss(2, 3);
+        rollMiss(7, 0);
+        rollSpare(5, 5);
+        rollSpare(6, 4);
+        rollMiss(5, 4);
+        rollStrike();
+        rollStrike();
+        roll(3);
+        assertThat(game.showScoreBoard(), is("8, 1, 3, 75"));
+    }
+
+    @Test
+    public void frame8rollMiss() {
+        rollMiss(2, 3);
+        rollMiss(7, 0);
+        rollSpare(5, 5);
+        rollSpare(6, 4);
+        rollMiss(5, 4);
+        rollStrike();
+        rollStrike();
+        rollMiss(3, 6);
+        assertThat(game.showScoreBoard(), is("8, 2, 9, 103"));
+    }
+
+    @Test
+    public void frame9rollStrike() {
+        rollMiss(2, 3);
+        rollMiss(7, 0);
+        rollSpare(5, 5);
+        rollSpare(6, 4);
+        rollMiss(5, 4);
+        rollStrike();
+        rollStrike();
+        rollMiss(3, 6);
+        rollStrike();
+        assertThat(game.showScoreBoard(), is("9, 1, x, 103"));
+    }
+
+    @Test
+    public void frame10roll6() {
+        rollMiss(2, 3);
+        rollMiss(7, 0);
+        rollSpare(5, 5);
+        rollSpare(6, 4);
+        rollMiss(5, 4);
+        rollStrike();
+        rollStrike();
+        rollMiss(3, 6);
+        rollStrike();
+        roll(6);
+        assertThat(game.showScoreBoard(), is("10, 1, 6, 103"));
+    }
+
+    @Test
+    public void frame10rollSpare() {
+        rollMiss(2, 3);
+        rollMiss(7, 0);
+        rollSpare(5, 5);
+        rollSpare(6, 4);
+        rollMiss(5, 4);
+        rollStrike();
+        rollStrike();
+        rollMiss(3, 6);
+        rollStrike();
+        rollSpare(6, 4);
+        assertThat(game.showScoreBoard(), is("10, 2, /, 123"));
+    }
+
+
 }
