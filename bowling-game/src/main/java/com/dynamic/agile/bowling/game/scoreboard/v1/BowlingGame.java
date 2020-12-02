@@ -9,6 +9,7 @@ import java.util.List;
  * @description:
  */
 public class BowlingGame {
+    public static final int FRAMES_NUMBER_IN_GAME = 10;
     private List<Frame> frames = new ArrayList<>();
     private Frame currentFrame;
 
@@ -19,7 +20,10 @@ public class BowlingGame {
     }
 
     public int score() {
-        return frames.stream().mapToInt(Frame::score).sum();
+        return frames.stream()
+                .limit(FRAMES_NUMBER_IN_GAME)
+                .mapToInt(Frame::score)
+                .sum();
     }
 
     public void roll(int pins) {
@@ -38,7 +42,21 @@ public class BowlingGame {
 
     public String showScoreBoard() {
         Frame frame = currentFrameNotStart() ? getLastFrame() : currentFrame;
-        return String.format("%d, %s, %s, %d", frames.indexOf(frame) + 1, frame.getRollIndex(), frame.getPins(), score());
+        return String.format("%d, %s, %s, %d", getFrameIndex(frame), getRollIndex(frame), frame.getPins(), score());
+    }
+
+    private String getRollIndex(Frame frame) {
+        int rollIndex = frame.getRollIndex();
+        return indexOf(frame) > FRAMES_NUMBER_IN_GAME ? "a" + rollIndex : String.valueOf(rollIndex);
+    }
+
+    private int getFrameIndex(Frame frame) {
+        int index = indexOf(frame);
+        return index > FRAMES_NUMBER_IN_GAME ? FRAMES_NUMBER_IN_GAME : index;
+    }
+
+    private int indexOf(Frame frame) {
+        return frames.indexOf(frame) + 1;
     }
 
     private Frame getLastFrame() {
