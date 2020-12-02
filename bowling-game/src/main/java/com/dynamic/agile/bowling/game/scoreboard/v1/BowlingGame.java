@@ -13,10 +13,13 @@ public class BowlingGame {
     private List<Frame> frames = new ArrayList<>();
     private Frame currentFrame;
 
+    private GameScoreBoard scoreBoard;
+
     private List<Integer> rolls = new ArrayList<>();
 
     public BowlingGame() {
         newFrame();
+        scoreBoard = new GameScoreBoard();
     }
 
     public int score() {
@@ -41,29 +44,35 @@ public class BowlingGame {
     }
 
     public String showScoreBoard() {
-        Frame frame = currentFrameNotStart() ? getLastFrame() : currentFrame;
-        return String.format("%d, %s, %s, %d", getFrameIndex(frame), getRollIndex(frame), frame.getPins(), score());
+        return scoreBoard.generateContent();
     }
 
-    private String getRollIndex(Frame frame) {
-        int rollIndex = frame.getRollIndex();
-        return indexOf(frame) > FRAMES_NUMBER_IN_GAME ? "a" + rollIndex : String.valueOf(rollIndex);
-    }
+    private class GameScoreBoard {
+        public String generateContent() {
+            Frame frame = currentFrameNotStart() ? getLastFrame() : currentFrame;
+            return String.format("%d, %s, %s, %d", getFrameIndex(frame), getRollIndex(frame), frame.getPins(), score());
+        }
 
-    private int getFrameIndex(Frame frame) {
-        int index = indexOf(frame);
-        return index > FRAMES_NUMBER_IN_GAME ? FRAMES_NUMBER_IN_GAME : index;
-    }
+        private String getRollIndex(Frame frame) {
+            int rollIndex = frame.getRollIndex();
+            return indexOf(frame) > FRAMES_NUMBER_IN_GAME ? "a" + rollIndex : String.valueOf(rollIndex);
+        }
 
-    private int indexOf(Frame frame) {
-        return frames.indexOf(frame) + 1;
-    }
+        private int getFrameIndex(Frame frame) {
+            int index = indexOf(frame);
+            return index > FRAMES_NUMBER_IN_GAME ? FRAMES_NUMBER_IN_GAME : index;
+        }
 
-    private Frame getLastFrame() {
-        return frames.get(frames.size() - 2);
-    }
+        private int indexOf(Frame frame) {
+            return frames.indexOf(frame) + 1;
+        }
 
-    private boolean currentFrameNotStart() {
-        return currentFrame.getRollIndex() == 0;
+        private Frame getLastFrame() {
+            return frames.get(frames.size() - 2);
+        }
+
+        private boolean currentFrameNotStart() {
+            return currentFrame.getRollIndex() == 0;
+        }
     }
 }
