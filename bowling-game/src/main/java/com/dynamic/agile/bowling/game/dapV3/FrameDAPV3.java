@@ -5,6 +5,8 @@ import java.util.ArrayList;
 class FrameDAPV3 {
     public static final int PINS_OF_FRAME = 10;
     private static final int SCORE_NOT_READY_TO_COUNT = 0;
+    public static final String STRIKE = "x";
+    public static final String SPARE = "/";
     private ArrayList<Integer> hitPins = new ArrayList<>();
     private ArrayList<Integer> rollPins;
     private int frameLastRollIndex;
@@ -14,6 +16,18 @@ class FrameDAPV3 {
         hitPins.add(pins);
     }
 
+    boolean isMiss() {
+        return hasTwoRolls() && countFrameTwoRollPins() < PINS_OF_FRAME;
+    }
+
+    boolean isSpare() {
+        return hasTwoRolls() && countFrameTwoRollPins() == PINS_OF_FRAME;
+    }
+
+    boolean isStrike() {
+        return onlyOneRoll() && firstRollPins() == PINS_OF_FRAME;
+    }
+
     boolean isFinish() {
         return isStrike() || hasTwoRolls();
     }
@@ -21,6 +35,14 @@ class FrameDAPV3 {
     void setRollPins(ArrayList<Integer> rollPins) {
         this.rollPins = rollPins;
         frameLastRollIndex = lastRollIndex();
+    }
+
+    int rollTimes() {
+        return hitPins.size();
+    }
+
+    String displayFrameRollPins() {
+        return isSpare() ? SPARE : isStrike() ? STRIKE : String.valueOf(hitPins.stream().mapToInt(Integer::intValue).sum());
     }
 
     int score() {
@@ -36,57 +58,43 @@ class FrameDAPV3 {
         return SCORE_NOT_READY_TO_COUNT;
     }
 
-    private int next2RollPins() {
-        return rollPins.get(frameLastRollIndex + 1) + rollPins.get(frameLastRollIndex + 2);
-    }
-
-    private boolean hasNext2Rolls() {
-        return lastRollIndex() >= frameLastRollIndex + 2;
-    }
-
     private boolean hasNextRoll() {
         return lastRollIndex() >= frameLastRollIndex + 1;
-    }
-
-    private int lastRollIndex() {
-        return rollPins.size() - 1;
     }
 
     private int nextRollPins() {
         return rollPins.get(frameLastRollIndex + 1);
     }
 
-    boolean isMiss() {
-        return hasTwoRolls() && countFrameTwoRollPins() < PINS_OF_FRAME;
+    private boolean hasNext2Rolls() {
+        return lastRollIndex() >= frameLastRollIndex + 2;
     }
 
-    boolean isSpare() {
-        return hasTwoRolls() && countFrameTwoRollPins() == PINS_OF_FRAME;
+    private int next2RollPins() {
+        return rollPins.get(frameLastRollIndex + 1) + rollPins.get(frameLastRollIndex + 2);
     }
 
-    boolean isStrike() {
-        return hitPins.size() == 1 && hitPins.get(0) == PINS_OF_FRAME;
+    private int lastRollIndex() {
+        return rollPins.size() - 1;
     }
 
-    private int countFrameTwoRollPins() {
-        return hitPins.get(0) + hitPins.get(1);
+    private boolean onlyOneRoll() {
+        return hitPins.size() == 1;
     }
 
     private boolean hasTwoRolls() {
         return hitPins.size() == 2;
     }
 
-    int currentRoll() {
-        return hitPins.size();
+    private int countFrameTwoRollPins() {
+        return firstRollPins() + secondRollPins();
     }
 
-    String displayFrameRollPins() {
-        if (isSpare()) {
-            return "/";
-        }
-        if (isStrike()) {
-            return "x";
-        }
-        return "" + hitPins.stream().mapToInt(Integer::intValue).sum();
+    private int firstRollPins() {
+        return hitPins.get(0);
+    }
+
+    private int secondRollPins() {
+        return hitPins.get(1);
     }
 }
