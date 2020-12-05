@@ -12,6 +12,7 @@ public class BowlingGame {
     public static final int FRAMES_NUMBER_IN_GAME = 10;
     private List<Frame> frames = new ArrayList<>();
     private Frame currentFrame;
+    private Frame addedFrame;
 
     private GameScoreBoard scoreBoard;
 
@@ -40,7 +41,16 @@ public class BowlingGame {
 
     private void newFrame() {
         currentFrame = new Frame();
-        frames.add(currentFrame);
+        if (hasNextFrame()) {
+            frames.add(currentFrame);
+        } else if(addedFrame == null) {
+            addedFrame = currentFrame;
+        }
+
+    }
+
+    private boolean hasNextFrame() {
+        return frames.size() < FRAMES_NUMBER_IN_GAME;
     }
 
     public String showScoreBoard() {
@@ -50,17 +60,23 @@ public class BowlingGame {
     private class GameScoreBoard {
         public String generateContent() {
             Frame frame = currentFrameNotStart() ? getLastFrame() : currentFrame;
-            return String.format("%d, %s, %s, %d", getFrameIndex(frame), getRollIndex(frame), frame.getPins(), score());
+            return String.format("%d, %s, %s, %d", getFrameIndex(frame), getRollIndex(frame), getHitPins(frame), score());
+        }
+
+        private String getHitPins(Frame frame) {
+            return isAddedFrameNotStart() ? frame.getPins() : addedFrame.getPins();
         }
 
         private String getRollIndex(Frame frame) {
-            int rollIndex = frame.getRollIndex();
-            return indexOf(frame) > FRAMES_NUMBER_IN_GAME ? "a" + rollIndex : String.valueOf(rollIndex);
+            return isAddedFrameNotStart() ? String.valueOf(frame.getRollIndex()) : "a" + addedFrame.getRollIndex() ;
+        }
+
+        private boolean isAddedFrameNotStart() {
+            return addedFrame == null || addedFrame.getRollIndex() == 0;
         }
 
         private int getFrameIndex(Frame frame) {
-            int index = indexOf(frame);
-            return index > FRAMES_NUMBER_IN_GAME ? FRAMES_NUMBER_IN_GAME : index;
+            return isAddedFrameNotStart() ? indexOf(frame) : FRAMES_NUMBER_IN_GAME;
         }
 
         private int indexOf(Frame frame) {
@@ -68,7 +84,7 @@ public class BowlingGame {
         }
 
         private Frame getLastFrame() {
-            return frames.get(frames.size() - 2);
+            return currentFrame == addedFrame ? frames.get(FRAMES_NUMBER_IN_GAME - 1) : frames.get(frames.size() - 2);
         }
 
         private boolean currentFrameNotStart() {

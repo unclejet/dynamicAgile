@@ -211,4 +211,16 @@ public class BowlingGameScoreBoardTest extends BowlingGameBaseTest {
         roll(4);
         assertThat(game.showScoreBoard(), is("10, a2, 7, 17"));
     }
+
+    @Test
+    public void rollAllTrike() {
+        rollMany(12, 10);
+        assertThat(game.showScoreBoard(), is("10, a2, x, 300"));
+    }
+
+    @Test
+    public void rollInvalid_notInfluenceResult() {
+        rollMany(15, 10);
+        assertThat(game.showScoreBoard(), is("10, a2, x, 300"));
+    }
 }
