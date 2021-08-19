@@ -23,10 +23,11 @@ public class Game {
 //        if(currentFrame.isFinished()) {
 //            startNextFrame();
 //        }
+        currentFrame.record(hitPins);
 
     }
 
     public int score() {
-        return 0;
+        return frames.stream().mapToInt(Frame::addPins).sum();
     }
 }
