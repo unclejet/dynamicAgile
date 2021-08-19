@@ -9,9 +9,11 @@ import java.util.List;
  * @description：
  */
 public class Frame {
-    private List<Integer> hitPins = new ArrayList<>();
+    public static final int TOTAL_PINS = 10;
+    private List<Integer> hitPins = new ArrayList<>(2);
 
     public void record(int pins) {
+        assert hitPins.size() <= 2;
         hitPins.add(pins);
     }
 
@@ -19,4 +21,16 @@ public class Frame {
     public int addPins() {
         return hitPins.stream().reduce(0, Integer::sum);
     }
+
+    public boolean isFinished() {
+        if (isMiss()) {
+            return true;
+        }
+        return false;
+    }
+
+    private boolean isMiss() {
+        return hitPins.size() == 2 && hitPins.get(0) + hitPins.get(1) < TOTAL_PINS;
+    }
+
 }

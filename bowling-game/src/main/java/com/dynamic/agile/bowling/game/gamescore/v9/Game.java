@@ -18,13 +18,16 @@ public class Game {
         frames.add(currentFrame);
     }
 
-    //todo 每一投都需要摆球
     public void roll(int hitPins) {
-//        if(currentFrame.isFinished()) {
-//            startNextFrame();
-//        }
+        if(currentFrame.isFinished()) {
+            startNextFrame();
+        }
         currentFrame.record(hitPins);
+    }
 
+    private void startNextFrame() {
+        currentFrame = new Frame();
+        frames.add(currentFrame);
     }
 
     public int score() {

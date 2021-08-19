@@ -1,6 +1,7 @@
 package com.dynamic.agile.bowling.game.gamescore.v9;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -26,17 +27,31 @@ public class BowlingGameScoreTest {
         assertThat(game.score(), is(5));
     }
 
-    private void rollMiss(int pins1, int pins2) {
-        assert pins1 + pins2 < 10;
-        roll(pins1);
-        roll(pins2);
+    @Test
+    public void rollAllMiss_score6() {
+        rollMany(18, 0);
+        rollMiss(5, 1);
+        assertThat(game.score(), is(6));
     }
 
+    private void rollMany(int times, int pins) {
+        for (int i = 0; i < times; i++) {
+            game.roll(pins);
+        }
+    }
+
+    @Ignore
     @Test
     public void roll5And5_score5() {
         game.roll(0);
         game.roll(5);
         assertThat(game.score(), is(5));
+    }
+
+    private void rollMiss(int pins1, int pins2) {
+        assert pins1 + pins2 < 10;
+        roll(pins1);
+        roll(pins2);
     }
 
 
