@@ -17,20 +17,23 @@ public class Frame {
         hitPins.add(pins);
     }
 
-
-    public int addPins() {
-        return hitPins.stream().reduce(0, Integer::sum);
+    public int getFramePins() {
+        return  hitPins.stream().reduce(0, Integer::sum);
     }
 
     public boolean isFinished() {
-        if (isMiss()) {
-            return true;
-        }
-        return false;
+       return hitPins.size() == 2;
     }
 
-    private boolean isMiss() {
-        return hitPins.size() == 2 && hitPins.get(0) + hitPins.get(1) < TOTAL_PINS;
+    public boolean isMiss() {
+        return isFinished() && getFramePins() < TOTAL_PINS;
     }
 
+    public boolean isSpare() {
+        return isFinished() && getFramePins() == TOTAL_PINS;
+    }
+
+    public int getFirstRollPins() {
+        return hitPins.get(0);
+    }
 }

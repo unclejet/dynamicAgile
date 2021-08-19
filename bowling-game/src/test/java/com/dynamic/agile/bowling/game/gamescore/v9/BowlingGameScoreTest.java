@@ -40,12 +40,36 @@ public class BowlingGameScoreTest {
         }
     }
 
-    @Ignore
     @Test
-    public void roll5And5_score5() {
-        game.roll(0);
-        game.roll(5);
-        assertThat(game.score(), is(5));
+    public void roll5_5_3_score5() {
+        rollSpare(5, 5);
+        assertThat(game.score(), is(0));
+        roll(3);
+        assertThat(game.score(), is(13));
+    }
+
+    @Test
+    public void rollMissAndSpare() {
+        rollSpare(4, 6);
+        rollMiss(4, 4);
+        rollMany(16, 0);
+        assertThat(game.score(), is(14 + 8));
+    }
+
+    @Test
+    public void rollStrike() {
+        roll(10);
+        assertThat(game.score(), is(0));
+        roll(5);
+        assertThat(game.score(), is(0));
+        roll(4);
+        assertThat(game.score(), is(0));
+    }
+
+    private void rollSpare(int p1, int p2) {
+        assert p1 + p2 == 10;
+        roll(p1);
+        roll(p2);
     }
 
     private void rollMiss(int pins1, int pins2) {

@@ -31,6 +31,24 @@ public class Game {
     }
 
     public int score() {
-        return frames.stream().mapToInt(Frame::addPins).sum();
+        return frames.stream().mapToInt(frame -> calScore(frame)).sum();
+    }
+
+    private int calScore(Frame frame) {
+        if (frame.isMiss()) {
+            return frame.getFramePins();
+        }
+        if (frame.isSpare() && hasNextRoll(frame)) {
+            return Frame.TOTAL_PINS + frames.get(getNextFrameIndex(frame)).getFirstRollPins();
+        }
+        return 0;
+    }
+
+    private boolean hasNextRoll(Frame frame) {
+        return  frames.size() > getNextFrameIndex(frame) ? true : false;
+    }
+
+    private int getNextFrameIndex(Frame frame) {
+        return frames.indexOf(frame) + 1;
     }
 }
