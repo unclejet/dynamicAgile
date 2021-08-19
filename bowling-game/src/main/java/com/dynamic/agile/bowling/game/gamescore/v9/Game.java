@@ -35,20 +35,52 @@ public class Game {
     }
 
     private int calScore(Frame frame) {
-        if (frame.isMiss()) {
-            return frame.getFramePins();
-        }
-        if (frame.isSpare() && hasNextRoll(frame)) {
-            return Frame.TOTAL_PINS + frames.get(getNextFrameIndex(frame)).getFirstRollPins();
-        }
-        return 0;
-    }
-
-    private boolean hasNextRoll(Frame frame) {
-        return  frames.size() > getNextFrameIndex(frame) ? true : false;
+        return frame.isMiss() ? frame.getFramePins() :
+                frame.isSpare() && hasNextRoll(getNextFrameIndex(frame)) ?
+                        Frame.TOTAL_PINS + getNextRollPins(getNextFrameIndex(frame)) :
+                        frame.isStrike() && hasNextTwoRolls(getNextFrameIndex(frame)) ?
+                                Frame.TOTAL_PINS + getNextTwoRollPins(getNextFrameIndex(frame)) : 0;
     }
 
     private int getNextFrameIndex(Frame frame) {
         return frames.indexOf(frame) + 1;
+    }
+
+    private int getNextRollPins(int nextFrameIndex) {
+        return getNextFrame(nextFrameIndex).getFirstRollPins();
+    }
+
+    private Frame getNextFrame(int nextFrameIndex) {
+        return frames.get(nextFrameIndex);
+    }
+
+    private int getNextTwoRollPins(int nextFrameIndex) {
+        Frame nextFrame = getNextFrame(nextFrameIndex);
+        if (nextFrame.isMiss() || nextFrame.isSpare()) {
+            return nextFrame.getFramePins();
+        } else if (nextFrame.isStrike()) {
+            return Frame.TOTAL_PINS + getNextRollPins(nextFrameIndex + 1);
+        }
+        return 0;
+    }
+
+    private boolean hasNextTwoRolls(int nextFrameIndex) {
+        if (hasNextFrame(nextFrameIndex)) {
+            Frame nextFrame = getNextFrame(nextFrameIndex);
+            if (nextFrame.isMiss() || nextFrame.isSpare()) {
+                return nextFrame.isFinished();
+            } else if (nextFrame.isStrike()) {
+                return hasNextRoll(nextFrameIndex + 1);
+            }
+        }
+        return false;
+    }
+
+    private boolean hasNextRoll(int nextFrameIndex) {
+        return  hasNextFrame(nextFrameIndex) && getNextFrame(nextFrameIndex).hasFirstRollPins();
+    }
+
+    private boolean hasNextFrame(int nextFrameIndex) {
+        return frames.size() > nextFrameIndex;
     }
 }

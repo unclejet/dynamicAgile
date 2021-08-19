@@ -22,18 +22,26 @@ public class Frame {
     }
 
     public boolean isFinished() {
-       return hitPins.size() == 2;
+       return hitPins.size() == 2 || hitPins.size() == 1 && getFirstRollPins() == TOTAL_PINS;
     }
 
     public boolean isMiss() {
-        return isFinished() && getFramePins() < TOTAL_PINS;
+        return hitPins.size() == 2 && getFramePins() < TOTAL_PINS;
     }
 
     public boolean isSpare() {
-        return isFinished() && getFramePins() == TOTAL_PINS;
+        return hitPins.size() == 2 && getFramePins() == TOTAL_PINS;
+    }
+
+    public boolean isStrike() {
+        return hitPins.size() == 1 && getFirstRollPins() == TOTAL_PINS;
     }
 
     public int getFirstRollPins() {
         return hitPins.get(0);
+    }
+
+    public boolean hasFirstRollPins() {
+        return hitPins.size() > 0;
     }
 }

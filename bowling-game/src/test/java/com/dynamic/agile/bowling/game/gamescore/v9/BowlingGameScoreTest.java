@@ -57,13 +57,50 @@ public class BowlingGameScoreTest {
     }
 
     @Test
-    public void rollStrike() {
-        roll(10);
+    public void rollStrikeAndMiss() {
+        rollStrike();
         assertThat(game.score(), is(0));
         roll(5);
         assertThat(game.score(), is(0));
         roll(4);
+        assertThat(game.score(), is(19+9));
+    }
+
+    private void rollStrike() {
+        roll(10);
+    }
+
+    @Test
+    public void rollSomeStrikeAndMiss() {
+        rollStrike();
         assertThat(game.score(), is(0));
+        rollStrike();
+        assertThat(game.score(), is(0));
+        rollStrike();
+        rollMiss(0, 0);
+        assertThat(game.score(), is(30 + 20 + 10));
+    }
+
+    @Test
+    public void rollAllStrike() {
+        rollMany(12, 10);
+        assertThat(game.score(), is(300));
+    }
+
+    @Test
+    public void complexRolls_score() {
+        rollMiss(2, 3);
+        rollMiss(7, 0);
+        rollSpare(5, 5);
+        rollSpare(6, 4);
+        rollMiss(5, 4);
+        rollStrike();
+        rollStrike();
+        rollMiss(3, 6);
+        rollStrike();
+        rollSpare(6, 4);
+        roll(4);
+        assertThat(game.score(), is(137));
     }
 
     private void rollSpare(int p1, int p2) {
