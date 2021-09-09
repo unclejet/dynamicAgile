@@ -26,8 +26,7 @@ public class WrapperTest {
     }
 
     private String wrap(String s, int width) {
-        if (s.length() <= width)
-            return s.trim();
-        return (s.substring(0, width).trim() + "\n" + wrap(s.substring(width).trim(), width)).trim();
+        return s.length() <= width ? s.trim() :
+                (s.substring(0, width).trim() + "\n" + wrap(s.substring(width).trim(), width)).trim();
     }
 }
