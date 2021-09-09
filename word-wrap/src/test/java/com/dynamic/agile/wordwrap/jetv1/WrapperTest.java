@@ -20,11 +20,14 @@ public class WrapperTest {
         assertThat(wrap("x ", 1), is("x"));
         assertThat(wrap("x x", 1), is("x\nx"));
         assertThat(wrap("x x x", 1), is("x\nx\nx"));
+        assertThat(wrap(" x ", 1), is("x"));
+        assertThat(wrap("xx xxxx xxxxxxx xx", 3), is("xx\nxxx\nx x\nxxx\nxxx\nxx"));
+        assertThat(wrap("a dog with a bone", 6), is("a dog\nwith a\nbone"));
     }
 
     private String wrap(String s, int width) {
         if (s.length() <= width)
             return s.trim();
-        return (s.substring(0, width) + "\n" + wrap(s.substring(width), width)).trim();
+        return (s.substring(0, width).trim() + "\n" + wrap(s.substring(width).trim(), width)).trim();
     }
 }
