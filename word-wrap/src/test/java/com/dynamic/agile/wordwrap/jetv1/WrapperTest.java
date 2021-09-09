@@ -13,7 +13,8 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class WrapperTest {
     @Test
     public void shouldWrap() {
-        assertThat(wrap("", 1), is(""));
+        assertThat(wrap("x", 1), is("x"));
+        assertThat(wrap("xx", 1), is("x\nx"));
     }
 
     private String wrap(String s, int width) {
