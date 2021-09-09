@@ -17,11 +17,12 @@ public class WrapperTest {
         assertThat(wrap("xx", 2), is("xx"));
         assertThat(wrap("xx", 1), is("x\nx"));
         assertThat(wrap("xxx", 1), is("x\nx\nx"));
+        assertThat(wrap("x ", 1), is("x"));
     }
 
     private String wrap(String s, int width) {
         if (s.length() <= width)
-            return s;
-        return s.substring(0, width) + "\n" + wrap(s.substring(width), width);
+            return s.trim();
+        return (s.substring(0, width) + "\n" + wrap(s.substring(width), width)).trim();
     }
 }
