@@ -13,7 +13,11 @@ import static org.hamcrest.MatcherAssert.assertThat;
  */
 public class WrapperTest {
     @Test
-    public void nothing() {
+    public void shouldWrap() {
+        assertThat(wrap(null, 1), is(""));
+    }
 
+    private String wrap(String s, int width) {
+        return null;
     }
 }
