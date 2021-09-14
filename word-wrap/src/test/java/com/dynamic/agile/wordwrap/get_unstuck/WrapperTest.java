@@ -18,7 +18,8 @@ public class WrapperTest {
         assertThat(wrap("", 1), is(""));
         assertThat(wrap("x", 1), is("x"));
         assertThat(wrap("xx", 1), is("x\nx"));
-        assertThat(wrap("xxx", 1), is("x\nx\nx"));
+        assertThat(wrap("xxx", 1), is("x\nx\nx")); //找到高频互动行为，让其反复发生
+
     }
 
     private String wrap(String s, int width) {
@@ -27,7 +28,7 @@ public class WrapperTest {
         if (s.length() <= width) {
             return s;
         } else {
-            return s.substring(0, width) + "\n" + s.substring(width);
+            return s.substring(0, width) + "\n" + wrap(s.substring(width), width); //代码是业务的抽象，业务的重复发生必然在代码上显现
         }
     }
 }
