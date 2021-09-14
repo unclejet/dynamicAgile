@@ -28,7 +28,7 @@ public class WrapperTest {
         if (s.length() <= width) {
             return s;
         } else {
-            return s.substring(0, width) + "\n" + wrap(s.substring(width), width); //代码是业务的抽象，业务的重复发生必然在代码上显现
+            return s.substring(0, width) + "\n" + wrap(s.substring(width).trim(), width); //代码是业务的抽象，业务的重复发生必然在代码上显现
         }
     }
 }
