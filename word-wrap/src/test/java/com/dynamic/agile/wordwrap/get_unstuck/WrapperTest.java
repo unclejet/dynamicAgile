@@ -19,7 +19,7 @@ public class WrapperTest {
         assertThat(wrap("x", 1), is("x"));
         assertThat(wrap("xx", 1), is("x\nx"));
         assertThat(wrap("xxx", 1), is("x\nx\nx")); //找到高频互动行为，让其反复发生
-
+        assertThat(wrap("x x", 1), is("x\nx"));
     }
 
     private String wrap(String s, int width) {
