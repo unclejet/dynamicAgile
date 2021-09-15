@@ -22,21 +22,21 @@ public class WrapperTest {
         assertThat(wrap("xxx", 1), is("x\nx\nx")); //找到高频互动行为，让其反复发生
         assertThat(wrap("x x", 1), is("x\nx"));
         assertThat(wrap("x xx", 3), is("x\nxx"));
-        assertThat(wrap("x x", 3), is("x x"));
-        assertThat(wrap("four score and seven years ago our fathers brought forth upon this continent", 7), is("four\nscore\nand\nseven\nyears\nago our\nfathers\nbrought\nforth\nupon\nthis\ncontine\nnt"));
+        assertThat(wrap("x x", 3), is("x\nx"));
+        assertThat(wrap("four score and seven years ago our fathers brought forth upon this continent", 7), is("four\nscore\nand\nseven\nyears\nago\nour\nfathers\nbrought\nforth\nupon\nthis\ncontine\nnt"));
     }
 
     private String wrap(String s, int width) {
         if (s == null)
             return "";
         if (s.length() <= width) {
-            return s;
+            return s.replaceAll(" ", "\n");
         } else {
             int breakPoint = s.lastIndexOf(" ", width);
             if (breakPoint == -1) {
                 breakPoint = width;
             }
-            return s.substring(0, breakPoint) + "\n" + wrap(s.substring(breakPoint).trim(), width); //代码是业务的抽象，业务的重复发生必然在代码上显现
+            return s.substring(0, breakPoint).replaceAll(" ", "\n") + "\n" + wrap(s.substring(breakPoint).trim(), width); //代码是业务的抽象，业务的重复发生必然在代码上显现
         }
     }
 }
