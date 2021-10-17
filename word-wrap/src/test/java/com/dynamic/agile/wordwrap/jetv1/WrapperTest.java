@@ -23,6 +23,9 @@ public class WrapperTest {
         assertThat(wrap(" x ", 1), is("x"));
         assertThat(wrap("xx xxxx xxxxxxx xx", 3), is("xx\nxxx\nx x\nxxx\nxxx\nxx"));
         assertThat(wrap("a dog with a bone", 6), is("a dog\nwith a\nbone"));
+
+        assertThat(wrap("four score and seven years ago our fathers brought forth upon this continent", 7),
+                is("four\nscore\nand\nseven\nyears\nago\nour\nfathers\nbrought\nforth\nupon\nthis\ncontine\nnt"));
     }
 
     private String wrap(String s, int width) {
