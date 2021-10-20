@@ -2,7 +2,7 @@ package com.dynamic.agile.chorus;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
+import java.util.stream.IntStream;
 
 /**
  * @author ：UncleJet
@@ -10,8 +10,26 @@ import java.util.Map;
  * @description：
  */
 public class Chorus {
-    public static List<Integer> outQueue(int[] heights) {
+    private int[] heights;
+
+    public Chorus(int[] heights) {
+        this.heights = heights;
+    }
+
+    public List<Integer> outQueue() {
         List<Integer> outs = new ArrayList<>();
+        int hIdx = findHighestIdx();
+        for (int i = 0; i < heights.length; i++) {
+            if (i != hIdx) {
+                outs.add(heights[i]);
+            }
+        }
         return outs;
+    }
+
+    private int findHighestIdx() {
+        return IntStream.range(0, heights.length)
+                .reduce((i, j) -> heights[i] >= heights[j] ? i : j)
+                .getAsInt();
     }
 }

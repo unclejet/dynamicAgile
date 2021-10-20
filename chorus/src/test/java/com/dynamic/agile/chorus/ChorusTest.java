@@ -3,8 +3,12 @@ package com.dynamic.agile.chorus;
 
 import org.junit.Test;
 
+import java.util.List;
+
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.CoreMatchers.hasItems;
+import static org.hamcrest.collection.IsIterableContainingInOrder.contains;
 
 /**
  * @author ：UncleJet
@@ -50,6 +54,24 @@ public class ChorusTest {
     @Test
     public void onePerson() {
         int[] heights = new int[]{200};
-        assertThat(Chorus.outQueue(heights).size(), is(0));
+        assertThat(new Chorus(heights).outQueue().size(), is(0));
     }
+
+    @Test
+    public void twoPeople_lowAndHigh_lowOut() {
+        int[] heights = new int[]{200, 180};
+        List<Integer> outQueue = new Chorus(heights).outQueue();
+        assertThat(outQueue.size(), is(1));
+        assertThat(outQueue, hasItems(180));
+    }
+
+    @Test
+    public void twoPeople_sameHeight_oneOut() {
+        int[] heights = new int[]{200, 200};
+        List<Integer> outQueue = new Chorus(heights).outQueue();
+        assertThat(outQueue.size(), is(1));
+        assertThat(outQueue, hasItems(200));
+    }
+
+
 }
