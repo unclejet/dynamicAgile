@@ -34,11 +34,18 @@ public class SortTest {
                 asList.set(0, asList.get(1));
                 asList.set(1, temp);
             }
+            if (asList.size() > 2) {
+                if (asList.get(1) > asList.get(2)) {
+                    Integer temp = asList.get(1);
+                    asList.set(1, asList.get(2));
+                    asList.set(2, temp);
+                }
+            }
         }
         return asList;
     }
 
-    private List<Integer> intList(Integer ... ints) {
+    private List<Integer> intList(Integer... ints) {
         return Arrays.asList(ints);
     }
 }
