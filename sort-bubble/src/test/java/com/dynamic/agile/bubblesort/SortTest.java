@@ -17,8 +17,12 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class SortTest {
     @Test
     public void sortings() {
-        assertThat(sort(intList()), is(Arrays.asList()));
-        assertThat(sort(intList(1)), is(Arrays.asList(1)));
+        assertSorted(intList(), Arrays.asList());
+        assertSorted(intList(1), Arrays.asList(1));
+    }
+
+    private void assertSorted(List<Integer> unsorted, List<Integer> sorted) {
+        assertThat(sort(unsorted), is(sorted));
     }
 
     private List<Integer> sort(List<Integer> asList) {
