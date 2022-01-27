@@ -29,10 +29,10 @@ public class SortTest {
     }
 
     private List<Integer> sort(List<Integer> asList) {
-        for (int index = 0; asList.size() > index + 1; index++) {
-            if (outOfOrder(asList, index))
-                swap(asList, index);
-        }
+        for (int size = asList.size(); size > 0; size--)
+            for (int index = 0; size > index + 1; index++)
+                if (outOfOrder(asList, index))
+                    swap(asList, index);
         return asList;
     }
 
