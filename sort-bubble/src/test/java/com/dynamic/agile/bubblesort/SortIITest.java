@@ -37,7 +37,17 @@ public class SortIITest {
     }
 
     private List<Integer> sort(List<Integer> asList) {
-        return asList;
+        List<Integer> sorted = new ArrayList<>();
+        if (asList.size() <= 1)
+            return asList;
+        if (asList.get(0) > asList.get(1)) {
+            sorted.add(asList.get(1));
+            sorted.add(asList.get(0));
+        } else {
+            sorted.add(asList.get(0));
+            sorted.add(asList.get(1));
+        }
+        return sorted;
     }
 
     private List<Integer> intList(Integer... ints) {
