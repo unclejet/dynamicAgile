@@ -20,6 +20,7 @@ public class SortTest {
         assertSorted(intList(), Arrays.asList());
         assertSorted(intList(1), Arrays.asList(1));
         assertSorted(intList(2, 1), Arrays.asList(1, 2));
+        assertSorted(intList(1, 3, 2), Arrays.asList(1, 2, 3));
     }
 
     private void assertSorted(List<Integer> unsorted, List<Integer> sorted) {
