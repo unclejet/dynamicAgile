@@ -56,26 +56,16 @@ public class SortIITest {
             int l = 0;
             int m = asList.get(0);
             int h = 0;
-            if (asList.get(1) > asList.get(2)) {
-                l = asList.get(2);
-                h = asList.get(1);
-            } else  {
-                l = asList.get(1);
-                h = asList.get(2);
+            for (int i : asList) {
+                if (i > m) {
+                    h = i;
+                } else if (i < m) {
+                    l = i;
+                }
             }
             sorted.add(l);
             sorted.add(m);
             sorted.add(h);
-//            if (asList.get(1) > asList.get(2)) {
-//                sorted.add(asList.get(2));
-//                sorted.add(asList.get(0));
-//                sorted.add(asList.get(1));
-//            } else  {
-//                sorted.add(asList.get(1));
-//                sorted.add(asList.get(0));
-//                sorted.add(asList.get(2));
-//            }
-
         }
         return sorted;
     }
