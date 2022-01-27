@@ -22,7 +22,7 @@ public class SortTest {
     }
 
     private List<Integer> sort(List<Integer> asList) {
-        return new ArrayList<Integer>();
+        return asList;
     }
 
     private List<Integer> intList(Integer ... ints) {
