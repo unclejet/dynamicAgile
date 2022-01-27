@@ -73,5 +73,81 @@ public class ChorusTest {
         assertThat(outQueue, hasItems(200));
     }
 
+    @Test
+    public void threePeople_sameHeight_twoOut() {
+        int[] heights = new int[]{200, 200, 200};
+        List<Integer> outQueue = new Chorus(heights).outQueue();
+        assertThat(outQueue.size(), is(2));
+        assertThat(outQueue, contains(200, 200));
+    }
 
+    @Test
+    public void threePeople_highLeft_twoOthersOut() {
+        int[] heights = new int[]{200, 190, 180};
+        List<Integer> outQueue = new Chorus(heights).outQueue();
+        assertThat(outQueue.size(), is(2));
+        assertThat(outQueue, hasItems(190, 180));
+    }
+
+    @Test
+    public void threePeople_highRight_twoOthersOut() {
+        int[] heights = new int[]{190, 180, 200};
+        List<Integer> outQueue = new Chorus(heights).outQueue();
+        assertThat(outQueue.size(), is(2));
+        assertThat(outQueue, hasItems(190, 180));
+    }
+
+    @Test
+    public void threePeople_highMiddle_noOut() {
+        int[] heights = new int[]{190, 200, 180};
+        List<Integer> outQueue = new Chorus(heights).outQueue();
+        assertThat(outQueue.size(), is(0));
+    }
+
+    @Test
+    public void fourPeople_leftPeopleMore_noOut() {
+        int[] heights = new int[]{150, 190, 200, 180};
+        List<Integer> outQueue = new Chorus(heights).outQueue();
+        assertThat(outQueue.size(), is(0));
+    }
+
+    @Test
+    public void fourPeople_leftPeopleMore_1out() {
+        int[] heights = new int[]{190, 150, 200, 180};
+        List<Integer> outQueue = new Chorus(heights).outQueue();
+        assertThat(outQueue.size(), is(1));
+        assertThat(outQueue, hasItems(150));
+    }
+
+    @Test
+    public void fourPeople_rightPeopleMore_1out() {
+        int[] heights = new int[]{190, 200, 150, 180};
+        List<Integer> outQueue = new Chorus(heights).outQueue();
+        assertThat(outQueue.size(), is(1));
+        assertThat(outQueue, hasItems(180));
+    }
+
+    @Test
+    public void manyPeople_highestInMiddle() {
+        int[] heights = new int[]{186, 186, 150, 200, 160, 130, 197, 200};
+        List<Integer> outQueue = new Chorus(heights).outQueue();
+        assertThat(outQueue.size(), is(4));
+        assertThat(outQueue, hasItems(186,200,197));
+    }
+
+    @Test
+    public void highestNotInMiddle() {
+        int[] heights = new int[]{186, 186, 150, 190, 160, 130, 197, 200};
+        List<Integer> outQueue = new Chorus(heights).outQueue();
+        assertThat(outQueue.size(), is(4));
+        assertThat(outQueue, hasItems(186,200,197));
+    }
+
+    @Test
+    public void chorusInLeft() {
+        int[] heights = new int[]{186, 187, 150, 149, 148, 147, 148, 200};
+        List<Integer> outQueue = new Chorus(heights).outQueue();
+        assertThat(outQueue.size(), is(2));
+        assertThat(outQueue, hasItems(148,200));
+    }
 }
