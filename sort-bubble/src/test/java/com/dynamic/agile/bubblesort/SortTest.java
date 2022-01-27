@@ -19,6 +19,7 @@ public class SortTest {
     public void sortings() {
         assertSorted(intList(), Arrays.asList());
         assertSorted(intList(1), Arrays.asList(1));
+        assertSorted(intList(2, 1), Arrays.asList(1, 2));
     }
 
     private void assertSorted(List<Integer> unsorted, List<Integer> sorted) {
