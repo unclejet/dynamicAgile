@@ -2,6 +2,7 @@ package com.dynamic.agile.bubblesort;
 
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -19,8 +20,8 @@ public class SortTest {
         assertThat(sort(intList()), is(Arrays.asList()));
     }
 
-    private String sort(List<Integer> asList) {
-        return null;
+    private List<Integer> sort(List<Integer> asList) {
+        return new ArrayList<Integer>();
     }
 
     private List<Integer> intList() {
