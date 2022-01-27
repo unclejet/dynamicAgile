@@ -7,7 +7,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.sameInstance;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 /**
@@ -23,7 +22,32 @@ public class SortIITest {
         assertSorted(intList(2, 1), Arrays.asList(1, 2));
         assertSorted(intList(2, 1, 3), Arrays.asList(1, 2, 3));
         assertSorted(intList(2, 3, 1), Arrays.asList(1, 2, 3));
-//        assertSorted(intList(1, 3, 2), Arrays.asList(1, 2, 3));
+
+        assertSorted(intList(1, 3, 2), Arrays.asList(1, 2, 3));
+        assertSorted(intList(3, 2, 1), Arrays.asList(1, 2, 3));
+        assertSorted(intList(3, 2, 2, 1), Arrays.asList(1, 2, 2, 3));
+        sortBigList(100000 * 5);
+    }
+
+    private List<Integer> sort(List<Integer> asList) {
+        List<Integer> sorted = new ArrayList<>();
+        if (asList.size() == 0)
+            return asList;
+
+        List<Integer> l = new ArrayList<>();
+        Integer m = asList.get(0);
+        List<Integer> h = new ArrayList<>();
+        for (int i : asList.subList(1, asList.size())) { //asList from 0 index will cause stack overflow
+            if (i > m)
+                h.add(i);
+            else
+                l.add(i);
+        }
+        sorted.addAll(sort(l));
+        sorted.add(m);
+        sorted.addAll(sort(h));
+
+        return sorted;
     }
 
     private void sortBigList(int n) {
@@ -38,28 +62,6 @@ public class SortIITest {
 
     private void assertSorted(List<Integer> unsorted, List<Integer> sorted) {
         assertThat(sort(unsorted), is(sorted));
-    }
-
-    private List<Integer> sort(List<Integer> asList) {
-        List<Integer> sorted = new ArrayList<>();
-        if (asList.size() == 0)
-            return asList;
-
-        Integer l = null;
-        Integer m = asList.get(0);
-        Integer h = null;
-        for (int i : asList) {
-            if (i > m) {
-                h = i;
-            } else if (i < m) {
-                l = i;
-            }
-        }
-        if (l != null) sorted.add(l);
-        sorted.add(m);
-        if (h != null) sorted.add(h);
-
-        return sorted;
     }
 
     private List<Integer> intList(Integer... ints) {
