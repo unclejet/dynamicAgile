@@ -30,14 +30,21 @@ public class SortTest {
     private List<Integer> sort(List<Integer> asList) {
         int index = 0;
         while (asList.size() > index + 1) {
-            if (asList.get(index) > asList.get(index + 1)) {
-                Integer temp = asList.get(index);
-                asList.set(index, asList.get(index + 1));
-                asList.set(index + 1, temp);
-            }
+            if (outOfOrder(asList, index))
+                swap(asList, index);
             index++;
         }
         return asList;
+    }
+
+    private boolean outOfOrder(List<Integer> asList, int index) {
+        return asList.get(index) > asList.get(index + 1);
+    }
+
+    private void swap(List<Integer> asList, int index) {
+        Integer temp = asList.get(index);
+        asList.set(index, asList.get(index + 1));
+        asList.set(index + 1, temp);
     }
 
     private List<Integer> intList(Integer... ints) {
