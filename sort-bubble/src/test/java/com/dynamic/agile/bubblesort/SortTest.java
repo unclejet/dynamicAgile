@@ -28,11 +28,9 @@ public class SortTest {
     }
 
     private List<Integer> sort(List<Integer> asList) {
-        int index = 0;
-        while (asList.size() > index + 1) {
+        for (int index = 0; asList.size() > index + 1; index++) {
             if (outOfOrder(asList, index))
                 swap(asList, index);
-            index++;
         }
         return asList;
     }
