@@ -28,19 +28,14 @@ public class SortTest {
     }
 
     private List<Integer> sort(List<Integer> asList) {
-        if (asList.size() > 1) {
-            if (asList.get(0) > asList.get(1)) {
-                Integer temp = asList.get(0);
-                asList.set(0, asList.get(1));
-                asList.set(1, temp);
+        int index = 0;
+        while (asList.size() > index + 1) {
+            if (asList.get(index) > asList.get(index + 1)) {
+                Integer temp = asList.get(index);
+                asList.set(index, asList.get(index + 1));
+                asList.set(index + 1, temp);
             }
-            if (asList.size() > 2) {
-                if (asList.get(1) > asList.get(2)) {
-                    Integer temp = asList.get(1);
-                    asList.set(1, asList.get(2));
-                    asList.set(2, temp);
-                }
-            }
+            index++;
         }
         return asList;
     }
