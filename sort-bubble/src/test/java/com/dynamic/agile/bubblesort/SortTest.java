@@ -18,13 +18,14 @@ public class SortTest {
     @Test
     public void sortings() {
         assertThat(sort(intList()), is(Arrays.asList()));
+        assertThat(sort(intList(1)), is(Arrays.asList(1)));
     }
 
     private List<Integer> sort(List<Integer> asList) {
         return new ArrayList<Integer>();
     }
 
-    private List<Integer> intList() {
-        return Arrays.asList();
+    private List<Integer> intList(Integer ... ints) {
+        return Arrays.asList(ints);
     }
 }
