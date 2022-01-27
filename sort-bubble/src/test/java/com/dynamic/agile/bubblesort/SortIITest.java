@@ -20,6 +20,7 @@ public class SortIITest {
         assertSorted(intList(), Arrays.asList());
         assertSorted(intList(1), Arrays.asList(1));
         assertSorted(intList(2, 1), Arrays.asList(1, 2));
+        assertSorted(intList(2, 1, 3), Arrays.asList(1, 2, 3));
     }
 
     private void sortBigList(int n) {
@@ -40,12 +41,24 @@ public class SortIITest {
         List<Integer> sorted = new ArrayList<>();
         if (asList.size() <= 1)
             return asList;
-        if (asList.get(0) > asList.get(1)) {
-            sorted.add(asList.get(1));
-            sorted.add(asList.get(0));
-        } else {
-            sorted.add(asList.get(0));
-            sorted.add(asList.get(1));
+        else if (asList.size() == 2) {
+            if (asList.get(0) > asList.get(1)) {
+                sorted.add(asList.get(1));
+                sorted.add(asList.get(0));
+            } else {
+                sorted.add(asList.get(0));
+                sorted.add(asList.get(1));
+            }
+        } else if (asList.size() == 3) {
+            if (asList.get(1) > asList.get(2)) {
+                sorted.add(asList.get(2));
+                sorted.add(asList.get(0));
+                sorted.add(asList.get(1));
+            } else  {
+                sorted.add(asList.get(1));
+                sorted.add(asList.get(0));
+                sorted.add(asList.get(2));
+            }
         }
         return sorted;
     }
