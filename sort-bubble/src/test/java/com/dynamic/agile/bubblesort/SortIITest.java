@@ -42,7 +42,7 @@ public class SortIITest {
 
     private List<Integer> sort(List<Integer> asList) {
         List<Integer> sorted = new ArrayList<>();
-        if (asList.size() <= 1)
+        if (asList.size() == 0)
             return asList;
 
         Integer l = null;
