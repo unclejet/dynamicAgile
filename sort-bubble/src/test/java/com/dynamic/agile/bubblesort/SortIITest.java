@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.sameInstance;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 /**
@@ -52,15 +53,29 @@ public class SortIITest {
                 sorted.add(asList.get(1));
             }
         } else if (asList.size() == 3) {
+            int l = 0;
+            int m = asList.get(0);
+            int h = 0;
             if (asList.get(1) > asList.get(2)) {
-                sorted.add(asList.get(2));
-                sorted.add(asList.get(0));
-                sorted.add(asList.get(1));
+                l = asList.get(2);
+                h = asList.get(1);
             } else  {
-                sorted.add(asList.get(1));
-                sorted.add(asList.get(0));
-                sorted.add(asList.get(2));
+                l = asList.get(1);
+                h = asList.get(2);
             }
+            sorted.add(l);
+            sorted.add(m);
+            sorted.add(h);
+//            if (asList.get(1) > asList.get(2)) {
+//                sorted.add(asList.get(2));
+//                sorted.add(asList.get(0));
+//                sorted.add(asList.get(1));
+//            } else  {
+//                sorted.add(asList.get(1));
+//                sorted.add(asList.get(0));
+//                sorted.add(asList.get(2));
+//            }
+
         }
         return sorted;
     }
