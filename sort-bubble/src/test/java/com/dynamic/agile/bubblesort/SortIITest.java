@@ -29,7 +29,7 @@ public class SortIITest {
     private void sortBigList(int n) {
         List<Integer> unsorted = new ArrayList<>();
         for (int i = 0; i < n; i++) {
-            unsorted.add((int)(Math.random() * 10000.0));
+            unsorted.add((int) (Math.random() * 10000.0));
         }
         List<Integer> sorted = sort(unsorted);
         for (int i = 0; i < n - 1; i++)
@@ -42,31 +42,23 @@ public class SortIITest {
 
     private List<Integer> sort(List<Integer> asList) {
         List<Integer> sorted = new ArrayList<>();
-        if (asList.size() == 1)
-            sorted.add(asList.get(0));
-        else if (asList.size() == 2) {
-            if (asList.get(0) > asList.get(1)) {
-                sorted.add(asList.get(1));
-                sorted.add(asList.get(0));
-            } else {
-                sorted.add(asList.get(0));
-                sorted.add(asList.get(1));
+        if (asList.size() <= 1)
+            return asList;
+
+        Integer l = null;
+        Integer m = asList.get(0);
+        Integer h = null;
+        for (int i : asList) {
+            if (i > m) {
+                h = i;
+            } else if (i < m) {
+                l = i;
             }
-        } else if (asList.size() == 3) {
-            int l = 0;
-            int m = asList.get(0);
-            int h = 0;
-            for (int i : asList) {
-                if (i > m) {
-                    h = i;
-                } else if (i < m) {
-                    l = i;
-                }
-            }
-            sorted.add(l);
-            sorted.add(m);
-            sorted.add(h);
         }
+        if (l != null) sorted.add(l);
+        sorted.add(m);
+        if (h != null) sorted.add(h);
+
         return sorted;
     }
 
