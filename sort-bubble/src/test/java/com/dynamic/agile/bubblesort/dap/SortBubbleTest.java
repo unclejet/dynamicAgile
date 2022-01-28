@@ -20,6 +20,18 @@ public class SortBubbleTest {
     public void sortIntegerList() {
         assertSorted(intList(), intList());
         assertSorted(intList(1), intList(1));
+        assertSorted(intList(2, 1), intList(1, 2));
+    }
+
+    private List<Integer> sort(List<Integer> asList) {
+        if (asList.size() == 2) {
+            if (asList.get(0) > asList.get(1)) {
+                Integer temp = asList.get(1);
+                asList.set(1, asList.get(0));
+                asList.set(0, temp);
+            }
+        }
+        return asList;
     }
 
     private void assertSorted(List<Integer> unsorted, List<Integer> sorted) {
@@ -28,9 +40,5 @@ public class SortBubbleTest {
 
     private List<Integer> intList(Integer ... ints) {
         return Arrays.asList(ints);
-    }
-
-    private List<Integer> sort(List<Integer> asList) {
-        return asList;
     }
 }
