@@ -18,7 +18,16 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class SortBubbleTest {
     @Test
     public void sortIntegerList() {
-        assertThat(sort(Arrays.asList()), is(Arrays.asList()));
+        assertSorted(intList(), intList());
+        assertSorted(intList(1), intList(1));
+    }
+
+    private void assertSorted(List<Integer> unsorted, List<Integer> sorted) {
+        assertThat(sort(unsorted), is(sorted));
+    }
+
+    private List<Integer> intList(Integer ... ints) {
+        return Arrays.asList(ints);
     }
 
     private List<Integer> sort(List<Integer> asList) {
