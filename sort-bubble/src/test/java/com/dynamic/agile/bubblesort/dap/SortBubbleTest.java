@@ -1,7 +1,6 @@
 package com.dynamic.agile.bubblesort.dap;
 
 import org.junit.Test;
-import org.junit.experimental.theories.internal.Assignments;
 
 import java.util.Arrays;
 import java.util.List;
@@ -23,23 +22,33 @@ public class SortBubbleTest {
         assertSorted(intList(1), intList(1));
         assertSorted(intList(2, 1), intList(1, 2));
     }
+
     //assign, split flow, constant to variable
     private List<Integer> sort(List<Integer> asList) {
-        if (asList.size() == 2) {
-            if (asList.get(0) > asList.get(1)) {
-                Integer temp = asList.get(1);
-                asList.set(1, asList.get(0));
-                asList.set(0, temp);
-            }
-        }
+        if (asList.size() <= 1)
+            return asList;
+
+        int index = 0;
+        if (outOfOrder(asList, index))
+            swap(asList, index);
         return asList;
+    }
+
+    private boolean outOfOrder(List<Integer> asList, int index) {
+        return asList.get(index) > asList.get(index + 1);
+    }
+
+    private void swap(List<Integer> asList, int index) {
+        Integer temp = asList.get(index + 1);
+        asList.set(index + 1, asList.get(index));
+        asList.set(index, temp);
     }
 
     private void assertSorted(List<Integer> unsorted, List<Integer> sorted) {
         assertThat(sort(unsorted), is(sorted));
     }
 
-    private List<Integer> intList(Integer ... ints) {
+    private List<Integer> intList(Integer... ints) {
         return Arrays.asList(ints);
     }
 }
