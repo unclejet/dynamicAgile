@@ -1,4 +1,4 @@
-package com.dynamic.agile.bubblesort.dap;
+package com.dynamic.agile.bubblesort.dap.v1;
 
 import org.junit.Test;
 
@@ -21,16 +21,19 @@ public class SortBubbleTest {
         assertSorted(intList(), intList());
         assertSorted(intList(1), intList(1));
         assertSorted(intList(2, 1), intList(1, 2));
+        assertSorted(intList(1, 3, 2), intList(1, 2, 3));
+//        assertSorted(intList(3, 2, 1), intList(1, 2, 3));
     }
 
-    //assign, split flow, constant to variable
+    //assign, split flow, constant to variable, if to while,while to for
     private List<Integer> sort(List<Integer> asList) {
         if (asList.size() <= 1)
             return asList;
 
-        int index = 0;
-        if (outOfOrder(asList, index))
-            swap(asList, index);
+        for (int index = 0;index < asList.size() - 1;index++) {
+            if (outOfOrder(asList, index))
+                swap(asList, index);
+        }
         return asList;
     }
 
