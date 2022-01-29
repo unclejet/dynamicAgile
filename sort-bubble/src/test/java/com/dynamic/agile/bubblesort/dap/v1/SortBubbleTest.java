@@ -2,6 +2,7 @@ package com.dynamic.agile.bubblesort.dap.v1;
 
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -22,19 +23,30 @@ public class SortBubbleTest {
         assertSorted(intList(1), intList(1));
         assertSorted(intList(2, 1), intList(1, 2));
         assertSorted(intList(1, 3, 2), intList(1, 2, 3));
-//        assertSorted(intList(3, 2, 1), intList(1, 2, 3));
+        assertSorted(intList(3, 2, 1), intList(1, 2, 3));
+        assertSorted(intList(3, 2, 2, 1), intList(1, 2, 2, 3));
+        sortBigList(1000);
     }
 
     //assign, split flow, constant to variable, if to while,while to for
     private List<Integer> sort(List<Integer> asList) {
         if (asList.size() <= 1)
             return asList;
-
-        for (int index = 0;index < asList.size() - 1;index++) {
-            if (outOfOrder(asList, index))
-                swap(asList, index);
-        }
+        for (int size = asList.size(); size > 0; size--)
+            for (int index = 0; index < size - 1; index++)
+                if (outOfOrder(asList, index))
+                    swap(asList, index);
         return asList;
+    }
+
+    private void sortBigList(int n) {
+        List<Integer> unsorted = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            unsorted.add((int)(Math.random() * 10000.0));
+        }
+        List<Integer> sorted = sort(unsorted);
+        for (int i = 0; i < n - 1; i++)
+            assertThat(sorted.get(i) <= sorted.get(i + 1), is(true));
     }
 
     private boolean outOfOrder(List<Integer> asList, int index) {
