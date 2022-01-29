@@ -20,6 +20,7 @@ public class SortBubbleTest {
     @Test
     public void sortIntegers() {
         assertThat(sort(Arrays.asList()), is(Arrays.asList()));
+        assertThat(sort(Arrays.asList(1)), is(Arrays.asList(1)));
     }
 
     private List<Integer> sort(List<Integer> asList) {
