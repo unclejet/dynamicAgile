@@ -29,17 +29,20 @@ public class SortBubbleTest {
 
     private List<Integer> sort(List<Integer> asList) {
         int index = 0;
-        if (asList.size() > 1) {
-            if (outOfOrder(asList, index)) {
-                swap(asList, index);
-            }
-            if (asList.size() > 2) {
-                if (outOfOrder(asList, index + 1)) {
-                    swap(asList, index + 1);
-                }
-            }
+        while (asList.size() > index + 1) {
+            extracted(asList, index);
+            index++;
+//            if (asList.size() > index + 2) {
+//                extracted(asList, index + 1);
+//            }
         }
         return asList;
+    }
+
+    private void extracted(List<Integer> asList, int index) {
+        if (outOfOrder(asList, index)) {
+            swap(asList, index);
+        }
     }
 
     private boolean outOfOrder(List<Integer> asList, int index) {
