@@ -28,14 +28,8 @@ public class SortBubbleTest {
     }
 
     private List<Integer> sort(List<Integer> asList) {
-        int index = 0;
-        while (asList.size() > index + 1) {
+        for (int index = 0; asList.size() > index + 1; index++)
             extracted(asList, index);
-            index++;
-//            if (asList.size() > index + 2) {
-//                extracted(asList, index + 1);
-//            }
-        }
         return asList;
     }
 
