@@ -28,22 +28,28 @@ public class SortBubbleTest {
     }
 
     private List<Integer> sort(List<Integer> asList) {
+        int index = 0;
         if (asList.size() > 1) {
-            int index = 0;
-            if (asList.get(index) > asList.get(index + 1)) {
-                Integer temp = asList.get(index);
-                asList.set(index, asList.get(index + 1));
-                asList.set(index + 1, temp);
+            if (outOfOrder(asList, index)) {
+                swap(asList, index);
             }
             if (asList.size() > 2) {
-                if (asList.get(index + 1) > asList.get(index + 2)) {
-                    Integer temp = asList.get(index + 1);
-                    asList.set(index + 1, asList.get(index + 2));
-                    asList.set(index + 2, temp);
+                if (outOfOrder(asList, index + 1)) {
+                    swap(asList, index + 1);
                 }
             }
         }
         return asList;
+    }
+
+    private boolean outOfOrder(List<Integer> asList, int index) {
+        return asList.get(index) > asList.get(index + 1);
+    }
+
+    private void swap(List<Integer> asList, int index) {
+        Integer temp = asList.get(index);
+        asList.set(index, asList.get(index + 1));
+        asList.set(index + 1, temp);
     }
 
     private void assertSorted(List<Integer> unsorted, List<Integer> sorted) {
