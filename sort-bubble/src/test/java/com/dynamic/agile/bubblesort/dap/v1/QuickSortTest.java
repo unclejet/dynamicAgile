@@ -23,27 +23,45 @@ public class QuickSortTest {
         assertSorted(intList(), intList());
         assertSorted(intList(1), intList(1));
         assertSorted(intList(2, 1), intList(1, 2));
+        assertSorted(intList(1, 2), intList(1, 2));
+        assertSorted(intList(2, 1, 3), intList(1, 2, 3));
+        assertSorted(intList(2, 3, 1), intList(1, 2, 3));
+        assertSorted(intList(1, 2, 3), intList(1, 2, 3));
+        assertSorted(intList(1, 3, 2), intList(1, 2, 3));
+        assertSorted(intList(3, 2, 1), intList(1, 2, 3));
+        assertSorted(intList(3, 1, 2), intList(1, 2, 3));
+        assertSorted(intList(3, 2, 2, 1), intList(1, 2, 2, 3));
+        sortBigList(10000);
 
+    }
+
+    private void sortBigList(int n) {
+        List<Integer> unsorted = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            unsorted.add((int)(Math.random() * 10000.0));
+        }
+        List<Integer> sorted = sort(unsorted);
+        for (int i = 0; i < n - 1; i++)
+            assertThat(sorted.get(i) <= sorted.get(i + 1), is(true));
     }
 
     private List<Integer> sort(List<Integer> asList) {
         List<Integer> sorted = new ArrayList<>(asList.size());
-        Integer l = null;
-        Integer h = null;
-        if (asList.size() == 1) {
-            l = asList.get(0);
+        if (asList.size() == 0) {
+            return asList;
         }
-        if (asList.size() == 2) {
-            if (asList.get(0) > asList.get(1)) {
-                l = asList.get(1);
-                h = asList.get(0);
-            } else {
-                l = asList.get(0);
-                h = asList.get(1);
-            }
+        List<Integer> l = new ArrayList<>();
+        Integer m = asList.get(0);
+        List<Integer> h = new ArrayList<>();
+        for (int i : asList.subList(1, asList.size())) {
+            if (i < m)
+                l.add(i);
+            else
+                h.add(i);
         }
-        if (l != null) sorted.add(l);
-        if (h != null) sorted.add(h);
+        if (l != null) sorted.addAll(sort(l));
+        sorted.add(m);
+        if (h != null) sorted.addAll(sort(h));
         return sorted;
     }
 
