@@ -2,6 +2,7 @@ package com.dynamic.agile.bubblesort.dap.v2;
 
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -22,6 +23,6 @@ public class SortBubbleTest {
     }
 
     private List<Integer> sort(List<Integer> asList) {
-        return null;
+        return new ArrayList<>();
     }
 }
