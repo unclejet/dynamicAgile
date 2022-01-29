@@ -25,18 +25,16 @@ public class SortBubbleTest {
         assertSorted(intList(2, 1, 3), intList(1, 2, 3));
         assertSorted(intList(1, 2, 3), intList(1, 2, 3));
         assertSorted(intList(1, 3, 2), intList(1, 2, 3));
+        assertSorted(intList(3, 1, 2), intList(1, 2, 3));
+        assertSorted(intList(2, 3, 1), intList(1, 2, 3));
     }
 
     private List<Integer> sort(List<Integer> asList) {
-        for (int index = 0; asList.size() > index + 1; index++)
-            extracted(asList, index);
+        for (int size = asList.size(); size > 0; size--)
+            for (int index = 0; size > index + 1; index++)
+                if (outOfOrder(asList, index))
+                    swap(asList, index);
         return asList;
-    }
-
-    private void extracted(List<Integer> asList, int index) {
-        if (outOfOrder(asList, index)) {
-            swap(asList, index);
-        }
     }
 
     private boolean outOfOrder(List<Integer> asList, int index) {
