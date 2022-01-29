@@ -24,6 +24,6 @@ public class SortBubbleTest {
     }
 
     private List<Integer> sort(List<Integer> asList) {
-        return new ArrayList<>();
+        return asList;
     }
 }
