@@ -19,6 +19,7 @@ public class PrimeFactorsTest {
     public void canFactorIntoPrimes() {
         assertEquals(list(), of(1));
         assertEquals(list(2), of(2));
+        assertEquals(list(3), of(3));
     }
 
     private List<Integer> of(int n) {
