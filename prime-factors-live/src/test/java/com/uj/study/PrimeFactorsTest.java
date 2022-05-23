@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import static org.junit.Assert.assertEquals;
+
 /**
  * @author ：UncleJet
  * @date ：Created in 2022/5/23 下午12:24
@@ -15,14 +17,19 @@ import java.util.List;
 public class PrimeFactorsTest {
     @Test
     public void canFactorIntoPrimes() {
-        Assert.assertEquals(list(), of(1));
+        assertEquals(list(), of(1));
+        assertEquals(list(2), of(2));
     }
 
     private List<Integer> of(int n) {
-        return new ArrayList<>();
+        ArrayList<Integer> factors = new ArrayList<>();
+        if (n == 2) {
+            factors.add(2);
+        }
+        return factors;
     }
 
-    private List<Integer> list() {
-        return Arrays.asList();
+    private List<Integer> list(Integer ... ints) {
+        return Arrays.asList(ints);
     }
 }
